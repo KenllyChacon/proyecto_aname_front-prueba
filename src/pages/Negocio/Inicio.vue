@@ -226,4 +226,11 @@
   padding-right: 120px;
 }
 
+@media (min-width: 320px) {
+  #contenido {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 </style>
