@@ -168,6 +168,7 @@
 </template>
 
 <style scoped>
+
 .carousel-item {
   max-height: 348px;
   /* Ajusta la altura */

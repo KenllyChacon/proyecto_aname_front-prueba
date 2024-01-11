@@ -205,10 +205,15 @@ export default {
   padding-top: 20px;
 }
 
-@media (min-width: 320px) {
+@media (min-width: 768px) {
   #cont {
-    padding-left: 30px;
-    padding-right: 30px;
+    width: 40%;
+  }
+}
+
+@media (max-width:767px) {
+  #cont {
+    width: 95%;
   }
 }
 

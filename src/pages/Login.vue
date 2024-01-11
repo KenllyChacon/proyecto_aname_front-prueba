@@ -117,6 +117,9 @@ export default {
 
 <style scoped>
 #fondoPag {
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
   background-color: #fff2f1;
   height: 100vh;
 }
@@ -153,10 +156,15 @@ h2 {
   color: #003153;
 }
 
-@media (min-width: 320px) {
+@media (min-width: 768px) {
   #fondoPag {
-    padding-left: auto;
-    padding-right: auto;
+    width: 40%;
+  }
+}
+
+@media (max-width: 767px){
+  #fondoPag {
+    width: 100%;
   }
 }
 
