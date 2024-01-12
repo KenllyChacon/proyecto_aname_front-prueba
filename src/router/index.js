@@ -28,6 +28,11 @@ const routes = [
       requiresAuth: false,
       roles: ['ADMIN']
     }
+  },
+  {
+    path: '/inscripcion',
+    name: 'inscripcion',
+    component: () => import(/* webpackChunkName: "InscribirseCampeonato" */ '@/pages/Negocio/InscribirseCampeonato.vue')
   }
 
 ]

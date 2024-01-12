@@ -1,8 +1,6 @@
-<script setup>
-
-</script>
-
 <template>
+  <!--Barra navegacion-->
+  <BarraNav />
 
   <div class="form-group">
     <label for="categoria">Categoría:</label>
@@ -157,8 +155,21 @@
     </tr>
     </tbody>
   </table>
+  
+  <!-- Pie de página -->
+  <PiePagina />
 </template>
 
-<style scoped>
+<script>
+import PiePagina from '@/components/PiePagina.vue'
+import BarraNav from '@/components/BarraNav.vue'
 
-</style>
+export default {
+  name: 'Inscripcion',
+  components: {
+    PiePagina,
+    BarraNav
+  }
+}
+
+</script>
