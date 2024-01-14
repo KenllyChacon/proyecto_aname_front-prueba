@@ -83,7 +83,8 @@ methods: {
             fechaInicio: this.fInicio,
             fechaFin: this.fFin,
             inscripcionInicio: this.finicioI,
-            inscripcionFin: this.fFinI
+            inscripcionFin: this.fFinI,
+            pruebas:[ 5, 4, 6 ]
         }
 
         await CrearCampeonatoP(campeonato)
