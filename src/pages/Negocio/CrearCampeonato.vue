@@ -20,19 +20,19 @@
             </tr>
             <tr>
                 <td><label for="">Fecha de inicio: </label></td>
-                <td><input v-model="fInicio" required type="datetime"></td>
+                <td><input v-model="fInicio" required type="date"></td>
             </tr>
             <tr>
                 <td><label for="">Fecha de finalizacion</label></td>
-                <td><input v-model="fFin" required type="datetime"></td>
+                <td><input v-model="fFin" required type="date"></td>
             </tr>
             <tr>
                 <td><label for="">Fecha inicio de Inscripcion: </label></td>
-                <td><input v-model="finicioI" required type="datetime"></td>
+                <td><input v-model="finicioI" required type="date"></td>
             </tr>
             <tr>
                 <td><label for="">Fecha fin de Inscripcion</label></td>
-                <td><input v-model="fFinI" required type="datetime"></td>
+                <td><input v-model="fFinI" required type="date"></td>
             </tr>
         </table>
     </form>
