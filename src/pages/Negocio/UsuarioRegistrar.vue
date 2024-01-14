@@ -5,13 +5,13 @@
     <form @submit.prevent="registrarUsuario()">
 
       <div class="form-group">
-        <label for="email">Nombres:</label>
-        <input type="text" class="form-control bordeCaja" id="email" v-model="nombres" required>
+        <label for="">Nombres:</label>
+        <input type="text" class="form-control bordeCaja" id="" v-model="nombres" required>
       </div>
 
       <div class="form-group">
-        <label for="email">Apellidos:</label>
-        <input type="text" class="form-control bordeCaja" id="email" v-model="apellidos" required>
+        <label for="">Apellidos:</label>
+        <input type="text" class="form-control bordeCaja" id="" v-model="apellidos" required>
       </div>
 
       <div class="card-body">
@@ -22,13 +22,13 @@
       </div>
 
       <div class="form-group">
-        <label for="email">Dirección:</label>
-        <input type="text" class="form-control bordeCaja" id="email" v-model="direccion" required>
+        <label for="">Dirección:</label>
+        <input type="text" class="form-control bordeCaja" id="" v-model="direccion" required>
       </div>
 
       <div class="form-group">
-        <label for="email">Ciudad:</label>
-        <input type="text" class="form-control bordeCaja" id="email" v-model="ciudad" required>
+        <label for="">Ciudad:</label>
+        <input type="text" class="form-control bordeCaja" id="" v-model="ciudad" required>
       </div>
 
       <div class="form-group">

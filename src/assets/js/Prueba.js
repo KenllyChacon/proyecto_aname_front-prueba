@@ -9,3 +9,4 @@ export const listarPruebasFachada = async () => {
 const listarPruebas = async () => {
   return axios.get(url + `/usuario`).then((r) => r.data);
 };
+
