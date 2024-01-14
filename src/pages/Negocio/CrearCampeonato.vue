@@ -34,6 +34,20 @@
                 <td><label for="">Fecha fin de Inscripcion</label></td>
                 <td><input v-model="fFinI" required type="datetime-local"></td>
             </tr>
+            <tr>
+                <td><label for="">Pruebas: </label></td>
+                <td>
+                    <select name="" id="" multiple>
+                        <option value="">dsd</option>
+                        <option value="">dsd2</option>
+                        <option value="">dsd3</option>
+                    </select>
+
+                </td>
+            </tr>
+        </table>
+        <table>
+
         </table>
     </form>
     <br>
