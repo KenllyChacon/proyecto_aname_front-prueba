@@ -34,6 +34,7 @@ export default {
   },
   methods: {
     login() {
+      console.log("Verga de grupo");
       axios.post('https://aname-a05m.onrender.com/API/Aname/V1/login', {
         email: this.email,
         password: this.password
