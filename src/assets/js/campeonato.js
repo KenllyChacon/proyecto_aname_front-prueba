@@ -9,5 +9,11 @@ export const CrearCampeonatoP = async(body) =>{
 
 
 const CrearCampeonato = async(body) =>{
-    return axios.post(url + `/campeonato`,body,{headers:{'Authorization': `Bearer ${localStorage.getItem('token')}`}}).then(r =>r.data)
-}
+    try {
+        const response = await axios.post(url + `/campeonato`, body, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
+        return response.data;
+    } catch (error) {
+        console.error('Error en la solicitud:', error.response || error.message);
+        throw error; // Re-lanzar el error para que se maneje en el componente que llama a esta función
+    }
+};
