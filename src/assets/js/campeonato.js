@@ -14,6 +14,7 @@ const CrearCampeonato = async(body) =>{
         return response.data;
     } catch (error) {
         console.error('Error en la solicitud:', error.response || error.message);
+        console.log(body);
         throw error; // Re-lanzar el error para que se maneje en el componente que llama a esta función
     }
 };
