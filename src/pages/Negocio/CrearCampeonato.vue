@@ -76,6 +76,7 @@ export default {
 methods: {
     
     async insertar(){
+        console.log(localStorage.getItem('token'));
         const campeonato={
             nombre: this.nombre,
             organizador: this.organizador,
