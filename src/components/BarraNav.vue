@@ -16,7 +16,7 @@
                         <router-link to="/inscripcion" class="nav-link">Inscripción</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Campeonato</a>
+                        <router-link to="/campeonato/crear" class="nav-link">Crear Campeonato</router-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Administración</a>

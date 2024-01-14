@@ -30,9 +30,9 @@ const routes = [
     }
   },
   {
-    path: '/inscripcion',
-    name: 'inscripcion',
-    component: () => import(/* webpackChunkName: "InscribirseCampeonato" */ '@/pages/Negocio/InscribirseCampeonato.vue')
+    path: '/campeonato/crear',
+    name: 'crearCampeonato',
+    component: () => import(/* webpackChunkName: "crearCampeonato" */ '@/pages/Negocio/CrearCampeonato.vue')
   }
 
 ]

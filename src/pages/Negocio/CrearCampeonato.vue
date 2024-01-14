@@ -8,38 +8,38 @@
         <table>
             <tr>
                 <td><label for="">Nombre: </label></td>
-                <td><input type="text"></td>
+                <td><input v-model="nombre" required type="text"></td>
             </tr>
             <tr>
                 <td><label for="">Federacion que Organiza: </label></td>
-                <td><input type="text"></td>
+                <td><input v-model="organizador" required type="text"></td>
             </tr>
             <tr>
                 <td><label for="">Sede: </label></td>
-                <td><input type="text"></td>
+                <td><input v-model="sede" required type="text"></td>
             </tr>
             <tr>
                 <td><label for="">Fecha de inicio: </label></td>
-                <td><input type="datetime"></td>
+                <td><input v-model="fInicio" required type="datetime"></td>
             </tr>
             <tr>
                 <td><label for="">Fecha de finalizacion</label></td>
-                <td><input type="datetime"></td>
+                <td><input v-model="fFin" required type="datetime"></td>
             </tr>
             <tr>
                 <td><label for="">Fecha inicio de Inscripcion: </label></td>
-                <td><input type="datetime"></td>
+                <td><input v-model="finicioI" required type="datetime"></td>
             </tr>
             <tr>
                 <td><label for="">Fecha fin de Inscripcion</label></td>
-                <td><input type="datetime"></td>
+                <td><input v-model="fFinI" required type="datetime"></td>
             </tr>
         </table>
     </form>
     <br>
         <table>
             <tr>
-                <td><button>Siguiente</button></td>
+                <td><button @click="insertar()">Crear Campeonato</button></td>
             </tr>
         </table>
     <br>
@@ -52,21 +52,54 @@
 <script>
 import BarraNav from "@/components/BarraNav.vue";
 import PiePagina from "@/components/PiePagina.vue";
+import {CrearCampeonatoP} from "@/assets/js/campeonato.js"
+import { listarPruebasFachada } from '@/assets/js/Prueba';
+
 
 export default {
-
-
     components:{
         BarraNav,
         PiePagina
+    },
+    data() {
+        return {
+            nombre:null,
+            organizador:null,
+            sede:null,
+            fInicio:null,
+            fFin:null,
+            finicioI:null,
+            fFinI:null
+        }
+    },
+
+methods: {
+    
+    async insertar(){
+        const campeonato={
+            nombre: this.nombre,
+            organizador: this.organizador,
+            sede: this.sede,
+            fechaInicio: this.fInicio,
+            fechaFin: this.fFin,
+            inscripcionInicio: this.finicioI,
+            inscripcionFin: this.fFinI
+        }
+
+        await CrearCampeonatoP(campeonato)
+
     }
 
+
+},
 
 }
 
 
 </script>
 <style>
-
+table{
+    margin: 0 auto;
+}
 
 </style>
