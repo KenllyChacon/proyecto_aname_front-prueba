@@ -9,5 +9,5 @@ export const CrearCampeonatoP = async(body) =>{
 
 
 const CrearCampeonato = async(body) =>{
-    return axios.post(url + `/campeonato`,{headers:{'Authorization': `Bearer ${localStorage.getItem('token')}`}}).then(r =>r.data)
+    return axios.post(url + `/campeonato`,body,{headers:{'Authorization': `Bearer ${localStorage.getItem('token')}`}}).then(r =>r.data)
 }
