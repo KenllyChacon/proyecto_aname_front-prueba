@@ -34,6 +34,8 @@
                 <td><label for="">Fecha fin de Inscripcion</label></td>
                 <td><input v-model="fFinI" required type="datetime-local"></td>
             </tr>
+        </table>
+        <table>            
             <tr>
                 <td><label for="">Pruebas: </label></td>
                 <td>
