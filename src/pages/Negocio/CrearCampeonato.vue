@@ -38,10 +38,7 @@
                 <td><label for="">Pruebas: </label></td>
                 <td>
                     <select name="" id="" multiple>
-                        <option value="">dsd</option>
-                        <option value="">dsd2</option>
-                        <option value="">dsd3</option>
-                        
+                        <option v-for="l in listaPruebas" v-bind:key="l">{{ l.id }} - {{ l.nombre }}</option>
                     </select>
 
                 </td>
@@ -84,7 +81,8 @@ export default {
             fInicio:null,
             fFin:null,
             finicioI:null,
-            fFinI:null
+            fFinI:null,
+            listaPruebas:[]
         }
     },
 
@@ -105,9 +103,16 @@ methods: {
 
         await CrearCampeonatoP(campeonato)
 
+    },
+    async lista(){
+        this.listaPruebas = await listarPruebasFachada()
     }
 
 
+
+},
+mounted() {
+    this.lista()
 },
 
 }
