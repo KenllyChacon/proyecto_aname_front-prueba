@@ -132,6 +132,7 @@ table{
 .opciones-container {
     display: flex;
     flex-wrap: wrap;
+    margin: 30px;
   }
   
   .opcion-item {
