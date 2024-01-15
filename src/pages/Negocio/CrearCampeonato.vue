@@ -135,7 +135,7 @@ table{
   }
   
   .opcion-item {
-    flex-basis: calc(33.33% - 10px); /* Ajusta el tamaño de cada columna según tus necesidades */
+    flex-basis: calc(23.33% - 10px); /* Ajusta el tamaño de cada columna según tus necesidades */
     margin: 5px;
     box-sizing: border-box;
   }
