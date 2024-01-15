@@ -37,10 +37,12 @@
             <tr>
                 <td><label for="">Pruebas: </label></td>
                 <td>
-                    <div v-for="opcion in listaPruebas" :key="opcion">
+                <div class="opciones-container">
+                    <div v-for="opcion in listaPruebas" :key="opcion" class="opcion-item">
                         <input type="checkbox" :id="opcion" :value="opcion.id" v-model="seleccionadas">
                         <label :for="opcion">{{ opcion.nombre }}</label>
                     </div>
+                </div>
                 </td>
             </tr>
         </table>
@@ -125,4 +127,14 @@ table{
     margin: 0 auto;
 }
 
+.opciones-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .opcion-item {
+    flex-basis: calc(33.33% - 10px); /* Ajusta el tamaño de cada columna según tus necesidades */
+    margin: 5px;
+    box-sizing: border-box;
+  }
 </style>
