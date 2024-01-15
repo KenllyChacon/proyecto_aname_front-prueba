@@ -44,9 +44,6 @@
                 </td>
             </tr>
         </table>
-        <table>
-
-        </table>
     </form>
     <br>
         <table>
@@ -82,7 +79,7 @@ export default {
             fFin:null,
             finicioI:null,
             fFinI:null,
-            listaPruebas:[],,
+            listaPruebas:[],
             seleccionadas: []
 
         }
