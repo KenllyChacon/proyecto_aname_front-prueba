@@ -23,6 +23,8 @@ import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
 import router from "@/router/index";
 import { listarPruebasFachada } from "@/assets/js/Prueba";
+import {InscribirseCampeonatoP} from "@/assets/js/campeonato.js"
+
 
 
 export default {
