@@ -40,17 +40,21 @@ export default {
         password: this.password
       })
         .then(response => {
+          console.log("***********************" +this.email)
           const token = response.data.Usuario.token
-          const roles = response.data.Usuario.roles
+          const rol = response.data.Usuario.rol
           const estado = response.data.Usuario.estado // Agregamos el estado
-          console.log("*******************ESTADO**********************" + estado)
-          console.log("**********************TOKEN*******************" + token)
-          localStorage.setItem('token', token)
-          localStorage.setItem('roles', JSON.stringify(roles))
-          localStorage.setItem('email', this.email)
-          localStorage.setItem('estado', estado) // Guardamos el estado
-          if (estado) { // Verificamos si el estado es true
-            this.$router.push('/') // redirigir a la página principal
+          // console.log("*******************ESTADO**********************" + estado)
+          // console.log("**********************TOKEN*******************" + token)
+          console.log("ROLES" + rol)
+          sessionStorage.setItem('token', token)
+          sessionStorage.setItem('rol', rol)
+          sessionStorage.setItem('email', this.email)
+          sessionStorage.setItem('estado', estado)
+         // Guardamos el estado
+          if (estado) {
+            sessionStorage.setItem('mostrar', true)// Verificamos si el estado es true
+            this.$router.push('/')// redirigir a la página principal
           } else {
             alert('Tu cuenta está desactivada') // Mostramos un mensaje de error si el estado es false
           }

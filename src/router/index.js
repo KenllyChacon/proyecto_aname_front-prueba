@@ -26,13 +26,17 @@ const routes = [
     component: () => import(/* webpackChunkName: "UsuarioRegistrar" */ '@/pages/Negocio/UsuarioRegistrar.vue'),
     meta: {
       requiresAuth: false,
-      roles: ['ADMIN']
+      // roles: ['ADMIN']
     }
   },
   {
     path: '/campeonato/crear',
     name: 'crearCampeonato',
-    component: () => import(/* webpackChunkName: "crearCampeonato" */ '@/pages/Negocio/CrearCampeonato.vue')
+    component: () => import(/* webpackChunkName: "crearCampeonato" */ '@/pages/Negocio/CrearCampeonato.vue'),
+    meta: {
+      requiresAuth: true,
+      roles: ['ADM', 'JUN', 'ORG']
+    }
   }
 
 ]
@@ -41,20 +45,24 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-/*
+
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem('token')
+  const isAuthenticated = sessionStorage.getItem('token')
   const requiredAuth = to.matched.some(record => record.meta.requiresAuth)
   const rolesRequired = to.meta.roles
-  const estado = localStorage.getItem('estado') // Agregamos el estado
+  const estado = sessionStorage.getItem('estado') // Agregamos el estado
+  console.log(rolesRequired)
 
-  if (requiredAuth && !isAuthenticated) {
+  if(to.path==='/' && !isAuthenticated){
+    next()
+  }else   if (requiredAuth && !isAuthenticated) {
     next('/login')
   } else if (to.path === '/login') { // Agregamos una verificación adicional para evitar la redirección infinita
     next()
-  } else if (isAuthenticated && rolesRequired && !getRoles().some(role => rolesRequired.includes(role))) {
-    next('/') // redirigir a la página principal si no tiene el rol necesario
-  } else if (!estado) { // Agregamos la verificación del estado
+  } else if (isAuthenticated && rolesRequired && !rolesRequired.includes(sessionStorage.getItem("rol").toUpperCase())) {
+    next('/');
+  }
+  else if (!estado) { // Agregamos la verificación del estado
     next('/login')
   } else {
     next()
@@ -63,7 +71,7 @@ router.beforeEach((to, from, next) => {
 
 
 function getRoles() {
-  return JSON.parse(localStorage.getItem('roles'))
-}*/
+  return JSON.parse(sessionStorage.getItem('roles'))
+}
 
 export default router

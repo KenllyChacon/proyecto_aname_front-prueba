@@ -10,7 +10,7 @@ export const CrearCampeonatoP = async(body) =>{
 
 const CrearCampeonato = async(body) =>{
     try {
-        const response = await axios.post(url + `/campeonato`, body, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
+        const response = await axios.post(url + `/campeonato`, body, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
         return response.data;
     } catch (error) {
         console.error('Error en la solicitud:', error.response || error.message);

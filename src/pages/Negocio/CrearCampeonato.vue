@@ -4,35 +4,35 @@
     <h1>Crear Campeonato</h1>
     <br>
 
-    <form action="">
+  <form @submit.prevent="insertar()">
         <table>
             <tr>
                 <td><label for="">Nombre: </label></td>
-                <td><input v-model="nombre" required type="text"></td>
+                <td><input class="form-control" v-model="nombre" required type="text"></td>
             </tr>
             <tr>
                 <td><label for="">Federacion que Organiza: </label></td>
-                <td><input v-model="organizador" required type="text"></td>
+                <td><input class="form-control" v-model="organizador" required type="text"></td>
             </tr>
             <tr>
                 <td><label for="">Sede: </label></td>
-                <td><input v-model="sede" required type="text"></td>
+                <td><input class="form-control" v-model="sede"  type="text" required></td>
             </tr>
             <tr>
                 <td><label for="">Fecha de inicio: </label></td>
-                <td><input v-model="fInicio" required type="datetime-local"></td>
+                <td><input class="form-control" v-model="fInicio" required type="datetime-local"></td>
             </tr>
             <tr>
                 <td><label for="">Fecha de finalizacion</label></td>
-                <td><input v-model="fFin" required type="datetime-local"></td>
+                <td><input class="form-control" v-model="fFin" required type="datetime-local"></td>
             </tr>
             <tr>
                 <td><label for="">Fecha inicio de Inscripcion: </label></td>
-                <td><input v-model="finicioI" required type="datetime-local"></td>
+                <td><input class="form-control" v-model="finicioI" required type="datetime-local"></td>
             </tr>
             <tr>
                 <td><label for="">Fecha fin de Inscripcion</label></td>
-                <td><input v-model="fFinI" required type="datetime-local"></td>
+                <td><input class="form-control" v-model="fFinI" required type="datetime-local"></td>
             </tr>
         </table>
         <table>            
@@ -47,20 +47,16 @@
                 </div>
                 </td>
             </tr>
+          <br>
+          <table>
+            <tr>
+              <td><button type="submit">Crear Campeonato</button></td>
+            </tr>
+          </table>
+          <br>
         </table>
     </form>
-    <br>
-        <table>
-            <tr>
-                <td><button @click="insertar()">Crear Campeonato</button></td>
-            </tr>
-        </table>
-    <br>
-
-
-
     <PiePagina />
-
 </template>
 <script>
 import BarraNav from "@/components/BarraNav.vue";
@@ -94,7 +90,7 @@ methods: {
     
     async insertar(){
         console.log(this.seleccionadas);
-        console.log(localStorage.getItem('token'));
+        console.log(sessionStorage.getItem('token'));
         const campeonato={
             nombre: this.nombre,
             organizador: this.organizador,
