@@ -88,6 +88,7 @@ export default {
 methods: {
     
     async insertar(){
+        console.log(seleccionadas);
         console.log(localStorage.getItem('token'));
         const campeonato={
             nombre: this.nombre,
