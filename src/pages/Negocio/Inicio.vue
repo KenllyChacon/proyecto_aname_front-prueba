@@ -124,7 +124,7 @@ export default {
     BarraNav
   },
   mounted() {
-    console.log("listo 5");
+    console.log("listo 6");
   },
 }
 

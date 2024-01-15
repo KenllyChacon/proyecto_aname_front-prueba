@@ -37,7 +37,7 @@
         </table>
         <table>            
             <tr>
-                <td><label for="">Pruebas: </label></td>
+                <td><label id="prueba" for="">Pruebas: </label></td>
                 <td>
                 <div class="opciones-container">
                     <div v-for="opcion in listaPruebas" :key="opcion" class="opcion-item">
@@ -140,4 +140,9 @@ table{
     margin: 5px;
     box-sizing: border-box;
   }
+
+#prueba{
+
+    padding-left: 20px;
+}
 </style>
