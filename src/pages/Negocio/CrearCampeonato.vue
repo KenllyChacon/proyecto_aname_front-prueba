@@ -88,7 +88,7 @@ export default {
 methods: {
     
     async insertar(){
-        console.log(seleccionadas);
+        console.log(this.seleccionadas);
         console.log(localStorage.getItem('token'));
         const campeonato={
             nombre: this.nombre,
@@ -98,7 +98,7 @@ methods: {
             fechaFin: this.fFin,
             inscripcionInicio: this.finicioI,
             inscripcionFin: this.fFinI,
-            pruebas:[ 5, 4, 6 ]
+            pruebas:this.seleccionadas
         }
 
         await CrearCampeonatoP(campeonato)
