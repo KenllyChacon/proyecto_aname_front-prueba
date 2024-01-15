@@ -50,21 +50,27 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = sessionStorage.getItem('token')
   const requiredAuth = to.matched.some(record => record.meta.requiresAuth)
   const rolesRequired = to.meta.roles
-  const estado = sessionStorage.getItem('estado') // Agregamos el estado
+  const estado = sessionStorage.getItem('estado')
+
   console.log(rolesRequired)
 
-  if(to.path==='/' && !isAuthenticated){
+  if (to.path === '/' && !isAuthenticated) {
     next()
-  }else   if (requiredAuth && !isAuthenticated) {
+    console.log("aaaaaaaaaaaaaaaaaaaaaa")
+  } else if (requiredAuth && !isAuthenticated) {
+    console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeee")
     next('/login')
-  } else if (to.path === '/login') { // Agregamos una verificación adicional para evitar la redirección infinita
+  } else if (to.path === '/login') {
+    console.log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
     next()
   } else if (isAuthenticated && rolesRequired && !rolesRequired.includes(sessionStorage.getItem("rol").toUpperCase())) {
-    next('/');
-  }
-  else if (!estado) { // Agregamos la verificación del estado
+    console.log("oooooooooooooooooooooooooooooooooooo")
+    next('/')
+  } else if (!estado) {
+    console.log("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
     next('/login')
   } else {
+    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
     next()
   }
 })
