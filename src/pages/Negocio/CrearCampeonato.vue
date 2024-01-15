@@ -37,16 +37,11 @@
             <tr>
                 <td><label for="">Pruebas: </label></td>
                 <td>
-                    <select name="" id="" multiple>
-                        <option v-for="l in listaPruebas" :key="l" :value="l.id">{{ l.id }} - {{ l.nombre }}</option>
-                    </select>
-
+                    <div v-for="opcion in listaPruebas" :key="opcion">
+                        <input type="checkbox" :id="opcion" :value="opcion.id" v-model="seleccionadas">
+                        <label :for="opcion">{{ opcion.nombre }}</label>
+                    </div>
                 </td>
-                <td><button @click="guardar()">h</button></td>
-            </tr>
-            <tr>
-                <td><label for="">Pruebas seleccionadas</label></td>
-                <td><label v-for="id in listaIdsSeleccionados" :key="id">{{ id }}</label></td>
             </tr>
         </table>
         <table>
@@ -87,9 +82,9 @@ export default {
             fFin:null,
             finicioI:null,
             fFinI:null,
-            listaPruebas:[],
-            listaIdPruebas:[],
-      listaIdsSeleccionados: []
+            listaPruebas:[],,
+            seleccionadas: []
+
         }
     },
 
@@ -113,9 +108,6 @@ methods: {
     },
     async lista(){
         this.listaPruebas = await listarPruebasFachada()
-    },
-    guardar(){
-        this.listaIdsSeleccionados = this.listaIdPruebas.slice(); 
     }
 
 
