@@ -46,7 +46,7 @@
         <div class="col" id="banner">
           <img class="img-fluid mx-auto d-block" alt="Banner Principal" src="@/assets/img/bannerprincipal.png">
         </div>
-
+        
         <div class="card mb-2" id="cardPersonalizada">
           <div class="row g-4">
             <div class="col-md-6">
@@ -122,7 +122,10 @@ export default {
   components: {
     PiePagina,
     BarraNav
-  }
+  },
+  mounted() {
+    console.log("listo 1");
+  },
 }
 
 </script>
