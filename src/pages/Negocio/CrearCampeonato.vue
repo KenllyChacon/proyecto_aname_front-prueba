@@ -67,6 +67,7 @@ import BarraNav from "@/components/BarraNav.vue";
 import PiePagina from "@/components/PiePagina.vue";
 import {CrearCampeonatoP} from "@/assets/js/campeonato.js"
 import { listarPruebasFachada } from '@/assets/js/Prueba';
+import router from '@/router';
 
 
 export default {
@@ -105,12 +106,22 @@ methods: {
             pruebas:this.seleccionadas
         }
 
-        await CrearCampeonatoP(campeonato)
+        await CrearCampeonatoP(campeonato);
+        this.nombre = null,
+        this.organizador = null,
+        this.sede = null,
+        this.fInicio = null,
+        this.fFin = null,
+        this.finicioI = null,
+        this.fFinI = null,
+        this.seleccionadas = null
 
+        alert("Se ha ingresado correctamente")
+        router.push('/')
     },
     async lista(){
         this.listaPruebas = await listarPruebasFachada()
-    }
+    },
 
 
 
