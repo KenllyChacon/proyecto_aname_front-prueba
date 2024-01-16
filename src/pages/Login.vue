@@ -10,17 +10,17 @@
         <label for="password" class="form-label"> Contraseña:</label>
         <div class="input-group mb-3">
           <input id="password" placeholder="Ingrese la contraseña" class="form-control" type="password" v-model="password" required>
-          <!--        <button class="btn btn-outline-secondary" type="button" id="btnMostrar">
+          <!--    <button class="btn btn-outline-secondary" type="button" id="btnMostrar">
           <i class="bi bi-eye-fill"></i>
         </button>-->
-
         </div>
 
         <button type="submit" class="btn btn-danger">Iniciar sesión</button>
-      </form>
+        <div class="loader" v-if="loading"></div> </form>
     </div>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios'
@@ -30,16 +30,19 @@ export default {
     return {
       email: '',
       password: '',
+      loading: false,
     }
   },
   methods: {
     login() {
+      this.loading = true;
       console.log("Verga de grupo");
       axios.post('https://aname-a05m.onrender.com/API/Aname/V1/login', {
         email: this.email,
         password: this.password
       })
         .then(response => {
+          this.loading = false;
           console.log("***********************" +this.email)
           const token = response.data.Usuario.token
           const rol = response.data.Usuario.rol
@@ -60,6 +63,7 @@ export default {
           }
         })
         .catch(error => {
+          this.loading = false;
           console.error(error)
           alert('Credenciales incorrectas')
         })
@@ -193,5 +197,17 @@ h2 {
 /* .mb-3 {
   width: 500px;
 } */
-
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+      radial-gradient(farthest-side,#ffa516 94%,#0000) top/8px 8px no-repeat,
+      conic-gradient(#0000 30%,#ffa516);
+  //-webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+  animation: l13 1s infinite linear;
+}
+@keyframes l13{
+  100%{transform: rotate(1turn)}
+}
 </style>

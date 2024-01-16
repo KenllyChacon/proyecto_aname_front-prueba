@@ -52,25 +52,20 @@ router.beforeEach((to, from, next) => {
   const rolesRequired = to.meta.roles
   const estado = sessionStorage.getItem('estado')
 
-  console.log(rolesRequired)
-
-  if (to.path === '/' && !isAuthenticated) {
+  if (to.path === '/registro') {
+    console.log(sessionStorage.getItem("rol"))
     next()
-    console.log("aaaaaaaaaaaaaaaaaaaaaa")
+  } else if (to.path === '/' && !isAuthenticated) {
+    next()
   } else if (requiredAuth && !isAuthenticated) {
-    console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeee")
     next('/login')
   } else if (to.path === '/login') {
-    console.log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
     next()
   } else if (isAuthenticated && rolesRequired && !rolesRequired.includes(sessionStorage.getItem("rol").toUpperCase())) {
-    console.log("oooooooooooooooooooooooooooooooooooo")
     next('/')
   } else if (!estado) {
-    console.log("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
     next('/login')
   } else {
-    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
     next()
   }
 })
