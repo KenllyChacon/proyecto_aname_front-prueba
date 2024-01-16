@@ -132,7 +132,7 @@ export default {
   mounted() {
     console.log("listo 6");
     console.log("ROL INICIO" + sessionStorage.getItem("rol"))
-    if(sessionStorage.getItem("rol") == "ADM") {
+    if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
       console.log("Dentro del mounted xD")
       this.mostrarBarra = false;
     }else{
