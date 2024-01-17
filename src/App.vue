@@ -4,14 +4,16 @@
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 #app {
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #242424;
 }
+
+
 
 nav {
   padding: 30px;

@@ -37,8 +37,16 @@ const routes = [
       requiresAuth: true,
       roles: ['ADM', 'JUN', 'ORG']
     }
-  }
-
+  },
+  {
+    path: '/ficha',
+    name: 'ficha',
+    component: () => import(/* webpackChunkName: "FichaInscripcion" */ '@/pages/Negocio/FichaInscripcion.vue'),
+    meta: {
+      requiresAuth: false,
+      // roles: ['ADMIN']
+    }
+  },
 ]
 
 const router = createRouter({
