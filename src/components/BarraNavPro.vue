@@ -13,11 +13,11 @@
             <router-link to="/" class="nav-link">Inicio</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/ficha" class="nav-link">Inscripción</router-link>
+            <router-link to="/inscripcion" class="nav-link">Inscripción</router-link>
           </li>
-<!--          <li class="nav-item">
+          <li class="nav-item">
             <router-link to="/campeonato/crear" class="nav-link">Crear Campeonato</router-link>
-          </li>-->
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Administración</a>
           </li>

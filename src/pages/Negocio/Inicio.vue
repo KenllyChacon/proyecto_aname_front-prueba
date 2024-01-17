@@ -37,8 +37,12 @@
   </div>
 
   <!--Barra navegacion-->
-  <BarraNav />
-
+  <div v-if="mostrarBarra">
+    <BarraNav />
+  </div>
+  <div v-else>
+    <BarraNavPro/>
+  </div>
   <div>
     <!-- Contenido -->
     <main>
@@ -116,16 +120,30 @@
 <script>
 import PiePagina from '@/components/PiePagina.vue'
 import BarraNav from '@/components/BarraNav.vue'
+import BarraNavPro from "@/components/BarraNavPro.vue";
 
 export default {
   name: 'Inicio',
   components: {
+    BarraNavPro,
     PiePagina,
-    BarraNav
+    BarraNav,
   },
   mounted() {
     console.log("listo 6");
+    console.log("ROL INICIO" + sessionStorage.getItem("rol"))
+    if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
+      console.log("Dentro del mounted xD")
+      this.mostrarBarra = false;
+    }else{
+      this.mostrarBarra = true;
+    }
   },
+  data(){
+    return{
+      mostrarBarra: null
+    }
+  }
 }
 
 </script>
