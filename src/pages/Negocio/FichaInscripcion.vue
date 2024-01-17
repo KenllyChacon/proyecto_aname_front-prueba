@@ -68,7 +68,7 @@
                     
         <br>
         <!--Selección de campeonato-->
-        <select class="form-select" aria-label="Seleccionar campeonato" id="campeonatos1" style="background-color: #fff2f1; color: #000000;">
+        <select class="form-select" aria-label="Seleccionar campeonato" id="campeonatos1" style="background-color: #edf3f5; color: #000000;">
             <option selected>Seleccione un campeonato</option>
             <option value="1">Enero 2024</option>
             <option value="2">Febrero 2024</option>
@@ -120,7 +120,7 @@
       <div class="container" id="ficha2">
         <h2 class="fw-bold">Verificar Inscripciones</h2>
     
-      <table class="table bordeCaja table-responsive">
+      <table class="table-responsive table-bordered bordeCaja">
           <label for="" id="labelSup">Seleccione campeonato</label>
           <select class="bordeCaja" required>
           </select>
@@ -135,6 +135,7 @@
       </table>
       </div>
     </div>
+    <br>
   </div>
 
    <!-- Pie de página -->
@@ -167,12 +168,12 @@ export default {
 
 <style>
 #encabezado1 {
-  background-color: #3083dc;
+  background-color: #2660a4;
   padding: 10px;
 }
 
 #encabezado2{
-  background-color: #efca08;
+  background-color: #52bad1;
   padding: 5px;
 }
 .nav-tabs .nav-link {
@@ -181,17 +182,17 @@ export default {
 }
 
 .nav-tabs .nav-link.active {
-  background-color: #3083dc; /* Color de fondo de la pestaña activa */
+  background-color: #003153; /* Color de fondo de la pestaña activa */
   color: #ffffff; /* Color de texto de la pestaña activa */
 }
 
 .btn-primary.active {
-  background-color: #5e7185; /* Color de fondo del botón activo */
+  background-color: #1a1c1c; /* Color de fondo del botón activo */
   border-color: #2a2b2e; /*Color de borde del botón activo*/
 }
 
 .btn-primary:not(.active) {
-  background-color: #3083dc; /* Color de fondo del botón inactivo */
+  background-color: #003153; /* Color de fondo del botón inactivo */
   border-color: #003153; /*Color de borde del botón inactivo*/
 }
 
@@ -205,11 +206,11 @@ export default {
 }
 
 #tablaInsc {
-  background-color: #efca08;
+  background-color: #52bad1;
 }
 
 .form-control {
-  border: 2px solid #efca08;
+  border: 2px solid #2660a4;
 }
 
 h2 {
@@ -244,7 +245,7 @@ table {
 }
 
 .bordeCaja {
-border: 2px solid #efca08;
+border: 2px solid #1a1c1c;
 }
 
 @media (min-width: 768px){

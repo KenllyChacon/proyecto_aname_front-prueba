@@ -7,20 +7,36 @@
           <img src="@/assets/img/img-slide-01.jpg" class="d-block w-100" alt="">
         </div>
         <div class="carousel-caption d-none d-md-block">
-          <h3 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">ASOCIACIÓN NACIONAL DE
-            ATLETISMO MÁSTER</h3>
+          <h3 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h3>
         </div>
         <div class="carousel-item">
           <img src="@/assets/img/img-slide-02.jpg" class="d-block w-100" alt="">
         </div>
+        <div class="carousel-caption d-none d-md-block">
+          <h3 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h3>
+        </div>
         <div class="carousel-item">
           <img src="@/assets/img/img-slide-03.jpg" class="d-block w-100" alt="">
+        </div>
+        <div class="carousel-caption d-none d-md-block">
+          <h3 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h3>
         </div>
         <div class="carousel-item">
           <img src="@/assets/img/img-slide-04.jpg" class="d-block w-100" alt="">
         </div>
+        <div class="carousel-caption d-none d-md-block">
+          <h3 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h3>
+        </div>
         <div class="carousel-item">
           <img src="@/assets/img/img-slide-05.jpg" class="d-block w-100" alt="">
+        </div>
+        <div class="carousel-caption d-none d-md-block">
+          <h3 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h3>
         </div>
       </div>
       <!--botón anterior-->
@@ -61,11 +77,10 @@
                 <h5 class="card-title fs-2 fw-bold text-center" id="textCard1">ANAME como parte del Sistema Deportivo
                   Nacional
                 </h5>
-                <p class="card-text" id="textCard1">El atletismo master acoge a deportistas desde los 30 años en adelante,
+                <p class="card-text" id="textCard1">El atletismo máster acoge a deportistas desde los 30 años en adelante,
                   divididos en modalidades de acuerdo a las edades de los participantes.
                   En Ecuador la organización promotora de estas competencias es la Asociación Nacional de Atletas Master
-                  del
-                  Ecuador (ANAME).</p>
+                  del Ecuador (ANAME).</p>
                 <p class="card-text" id="textCard2"><small>La ANAME fue fundada el 18 de septiembre de 2011.</small></p>
               </div>
             </div>
@@ -77,22 +92,22 @@
             <h2 class="text-center text-uppercase" id="textTitleInfo">Información Relacionada</h2>
           </div>
           <div class="row">
-            <div class="col" style="border-right: 4px solid #d62828;">
+            <div class="col" style="border-right: 4px solid #52bad1;">
               <a href="https://asudama.org/"><img src="@/assets/img/logo-asudama.png" class="imgAsudama"></a>
             </div>
             <div class="col" style="padding-top: 10px;">
               <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
                 <div class="card-body">
                   <h5 class="card-title fw-bold">2024 SOUTH AMERICAN COMBINED EVENTS CHAMPIONSHIPS</h5>
-                  <p class="card-text">Location: Mar de Plata, Argentina</p>
-                  <a href="https://asudama.org/" class="card-link" style="color: #d62828;">Más información</a>
+                  <p class="card-text">Sede: Mar de Plata, Argentina</p>
+                  <a href="https://asudama.org/" class="card-link" style="color: #2660a4;">Más información</a>
                 </div>
               </div>
             </div>
           </div>
           <hr>
           <div class="row">
-            <div class="col" style="border-right: 4px solid #d62828;">
+            <div class="col" style="border-right: 4px solid #52bad1;">
               <a href="https://world-masters-athletics.org/championships/2024-european-championships-indoor/"><img
                   src="@/assets/img/ema-logo.png" class="imgWma"></a>
             </div>
@@ -100,9 +115,9 @@
               <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
                 <div class="card-body">
                   <h5 class="card-title fw-bold">2024 EUROPEAN CHAMPIONSHIPS INDOOR</h5>
-                  <p class="card-text">Location: Torún, Poland</p>
+                  <p class="card-text">Sede: Torún, Polonia</p>
                   <a href="https://world-masters-athletics.org/championships/2024-european-championships-indoor/"
-                    class="card-link" style="color: #d62828;">Más información</a>
+                    class="card-link" style="color: #2660a4;">Más información</a>
                 </div>
               </div>
             </div>
@@ -162,7 +177,7 @@ export default {
 #banner {
   padding-bottom: 40px;
   margin-bottom: 40px;
-  border-bottom: 4px solid #d62828;
+  border-bottom: 4px solid #52bad1;
 }
 
 #cardPersonalizada {
@@ -170,7 +185,7 @@ export default {
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #3083dc;
+  background-color: #52bad1;
 }
 
 #textCard1 {
@@ -178,7 +193,7 @@ export default {
 }
 
 #textCard2 {
-  color: #efca08;
+  color: #edf3f5;
 }
 
 #textTitleInfo {
@@ -200,7 +215,7 @@ export default {
 }
 
 #contenido {
-  background-color: #fff2f1;
+  background-color: #edf3f5;
   padding-bottom: 30px;
   padding-top: 30px;
   padding-left: 120px;

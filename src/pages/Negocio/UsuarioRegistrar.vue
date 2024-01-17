@@ -196,7 +196,7 @@ export default {
 #cont {
   width: auto;
   margin: 30px auto;
-  background-color: #fff2f1;
+  background-color: #edf3f5;
   border: 5px solid #003153;
   border-radius: 12px;
   padding-left: 20px;
@@ -224,15 +224,16 @@ h2 {
 
 
 .bordeCaja {
-  border: 2px solid #efca08;
+  border: 2px solid #2660a4;
 }
 
 .colorTexto {
-  color: #3083dc;
+  color: #000000;
 }
 
 .btn {
   margin: 10px 40%;
+  border-color: #1a1c1c;
 }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <button @click="logout" class="btn btn-danger">Cerrar sesión</button>
+  <button @click="logout" class="btn btn-dark">Cerrar sesión</button>
 </template>
 
 <script>
@@ -23,6 +23,9 @@ export default {
 .btn{
   margin-right: 2%;
   margin-bottom: 0.6%;
+  background-color: #003153;
+  border-color: #1a1c1c;
+  color: #edf3f5;
 }
 
 </style>

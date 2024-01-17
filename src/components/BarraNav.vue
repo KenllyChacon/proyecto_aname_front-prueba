@@ -1,6 +1,6 @@
 <template>
   <!--Barra navegacion-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary w-100 ">
+  <nav class="navbar navbar-expand-lg w-100 ">
     <div class="container-fluid">
       <img src="@/assets/img/logofin.png" alt="Logo" width="75" height="75">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -23,8 +23,8 @@
           </li>
         </ul>
         <div v-if="!mostrar" class="float-end">
-          <router-link to="/login" class="btn btn-danger">Iniciar Sesión</router-link>
-          <router-link to="/registro" class="btn btn-danger ms-3">Registrarse</router-link>
+          <router-link to="/login" class="btn btn-dark">Iniciar Sesión</router-link>
+          <router-link to="/registro" class="btn btn-dark ms-3">Registrarse</router-link>
         </div>
         <div v-else class="float-end">
           <LogOutComp/>
@@ -57,3 +57,15 @@ export default defineComponent({
 })
 
 </script>
+
+<style>
+.navbar{
+  background: #52bad1;
+}
+
+.btn{
+  background-color: #003153;
+  color: #edf3f5;
+}
+
+</style>

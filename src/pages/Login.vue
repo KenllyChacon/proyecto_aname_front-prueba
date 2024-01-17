@@ -15,7 +15,7 @@
         </button>-->
         </div>
 
-        <button type="submit" class="btn btn-danger">Iniciar sesión</button>
+        <button type="submit" class="btn btn-dark">Iniciar sesión</button>
         <div class="loader" v-if="loading"></div> </form>
     </div>
   </div>
@@ -129,7 +129,7 @@ export default {
   padding-top: 30px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #fff2f1;
+  background-color: #edf3f5;
   height: 100vh;
 }
 
@@ -155,7 +155,7 @@ export default {
 input {
   margin-bottom: 10px;
   height: 40px;
-  border: 2px solid #efca08;
+  border: 2px solid #2660a4;
 }
 
 h2 {
@@ -175,6 +175,12 @@ h2 {
   #fondoPag {
     width: 100%;
   }
+}
+
+.btn {
+  background-color: #003153;
+  margin: 10px 40%;
+  border-color: #1a1c1c;
 }
 
 /* button {
