@@ -47,6 +47,16 @@ const routes = [
       // roles: ['ADMIN']
     }
   },
+
+  {
+    path: '/aprobarInscripciones',
+    name: 'aprobarInscripciones',
+    component: () => import(/* webpackChunkName: "AprobarInscripciones" */ '@/pages/Negocio/AprobarInscripciones.vue'),
+    meta: {
+      requiresAuth: true,
+      roles: ['ADMIN']
+    }
+  },
 ]
 
 const router = createRouter({

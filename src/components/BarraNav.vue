@@ -15,11 +15,11 @@
           <li class="nav-item">
             <router-link to="/ficha" class="nav-link">Inscripción</router-link>
           </li>
-<!--          <li class="nav-item">
-            <router-link to="/campeonato/crear" class="nav-link">Crear Campeonato</router-link>
-          </li>-->
           <li class="nav-item">
-            <a class="nav-link" href="#">Administración</a>
+            <router-link to="/campeonato/crear" class="nav-link">Crear Campeonato</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/aprobarInscripciones" class="nav-link">Aprobar Inscripciones</router-link>
           </li>
         </ul>
         <div v-if="!mostrar" class="float-end">
@@ -60,12 +60,13 @@ export default defineComponent({
 
 <style>
 .navbar{
-  background: #52bad1;
+  background: #2660a4;
 }
 
 .btn{
-  background-color: #003153;
-  color: #edf3f5;
+  background-color: #52bad1;
+  color: #1a1c1c;
+  border-color: #003153;
 }
 
 </style>

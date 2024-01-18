@@ -181,6 +181,7 @@ h2 {
   background-color: #003153;
   margin: 10px 40%;
   border-color: #1a1c1c;
+  color: #edf3f5;
 }
 
 /* button {

@@ -2,9 +2,10 @@
     <!--Barra navegacion-->
     <BarraNav />
     
-    <h2 class="fw-bold">Verificar Inscripciones</h2>
+    <h2 class="fw-bold">Aprobar Inscripciones</h2>
     
-    <table class="table bordeCaja">
+    <div class="container" id="contAprobarInsc">
+      <table class="table-responsive table-bordered bordeCaja" id="tabAprobar">
         <label for="" id="labelSup">Seleccione campeonato</label>
         <select class="bordeCaja" required>
         </select>
@@ -17,6 +18,9 @@
           <th id="tablaInsc">Aprobar Inscripción</th>
         </tr>
     </table>
+    </div>
+
+    <br>
   
     <!-- Pie de página -->
     <PiePagina />
@@ -50,13 +54,13 @@
   
   
   #tablaInsc {
-      background-color: #efca08;
+      background-color: #52bad1;
   }
   
   
   
   .form-control {
-      border: 2px solid #efca08;
+      border: 2px solid #2660a4;
   }
   
   h2 {
@@ -91,7 +95,19 @@
   }
 
   .bordeCaja {
-  border: 2px solid #efca08;
+  border: 2px solid #edf3f5;
     }
   
+
+    @media (min-width: 768px) {
+      #contAprobarInsc {
+        width: 75%
+      }
+    }
+    
+    @media (max-width: 767px) {
+      #contAprobarInsc {
+        width: 100%;
+      }
+    }
   </style>

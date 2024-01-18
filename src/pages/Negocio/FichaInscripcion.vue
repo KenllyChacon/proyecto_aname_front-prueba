@@ -14,11 +14,6 @@
           Confirmación de Inscripción
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" :class="{ active: selectedTab === 'tab3' }" @click="selectedTab = 'tab3'">
-          Campeonatos Competidor
-        </a>
-      </li>
     </ul>
 
     <!--Ficha de inscripción-->
@@ -90,12 +85,12 @@
             </div>
             <br>
             <div class="container" id="tabla2">
-              <table class="table-responsive table-hover table-bordered">
-                <thead class="table-dark">
+              <table class="table-responsive table-hover table-bordered" id="tablaPruebas">
+                <thead>
                   <tr>
-                    <th scope="col" class="text-dark">Prueba</th>
-                    <th scope="col" class="text-dark">Costo</th>
-                    <th scope="col" class="text-dark">Seleccionar</th>
+                    <th scope="col" class="text-dark" id="encabezadoPruebas">Prueba</th>
+                    <th scope="col" class="text-dark" id="encabezadoPruebas">Costo</th>
+                    <th scope="col" class="text-dark" id="encabezadoPruebas">Seleccionar</th>
                   </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -123,33 +118,13 @@
       </div>
     </div>
 
-    <!--Verificar Inscripciones-->
+    <!--Subir documentos de Inscripciones-->
     <div v-else-if="selectedTab === 'tab2'">
+
       <div class="container" id="ficha2">
-        <h2 class="fw-bold">Verificar Inscripciones</h2>
-
-        <table class="table-responsive table-bordered bordeCaja">
-          <label for="" id="labelSup">Seleccione campeonato</label>
-          <select class="bordeCaja" required>
-          </select>
-          <tr>
-            <th id="tablaInsc">Competidor</th>
-            <th id="tablaInsc">Estado</th>
-            <th id="tablaInsc">Documento Pago</th>
-            <th id="tablaInsc">Documento Inscripción</th>
-            <th id="tablaInsc">Aprobar Pago</th>
-            <th id="tablaInsc">Aprobar Inscripción</th>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-    <!--Campeonatos Competidor-->
-    <div v-else-if="selectedTab === 'tab3'">
-      <div class="container" id="ficha3">
-        <h2 class="fw-bold">Campeonatos</h2>
-        <div class="table-responsive-sm">
-          <table class="table table-bordered">
+        <h2 class="fw-bold">Documentos</h2>
+        <div class="table-responsive-sm" id="tabla3">
+          <table class="table table-bordered table-responsive">
             <thead>
               <tr>
                 <th scope="col" id="encabezadoCamp">Campeonato</th>
@@ -262,22 +237,11 @@ export default {
   /* Color de fondo del botón inactivo */
   border-color: #003153;
   /*Color de borde del botón inactivo*/
-}
-
-#labelSup {
-  padding-right: 15px;
-  font-weight: bold;
+  color: #edf3f5;
 }
 
 .form-control {
   width: 100%;
-}
-
-#tablaInsc {
-  background-color: #52bad1;
-}
-
-.form-control {
   border: 2px solid #2660a4;
 }
 
@@ -288,32 +252,12 @@ h2 {
   margin-bottom: 15px;
 }
 
-h4 {
-  color: #003153;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 20px;
+#encabezadoPruebas {
+  background-color: #52bad1;
 }
 
-table {
-  margin: 0 auto;
-}
-
-.opciones-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 30px;
-}
-
-.opcion-item {
-  flex-basis: calc(23.33% - 10px);
-  /* Ajusta el tamaño de cada columna según tus necesidades */
-  margin: 5px;
-  box-sizing: border-box;
-}
-
-.bordeCaja {
-  border: 2px solid #1a1c1c;
+#tablaPruebas {
+  border-color: #edf3f5;
 }
 
 @media (min-width: 768px) {
@@ -340,7 +284,7 @@ table {
   }
 }
 
-/* Estilos de Campeonatos competidor */
+/* Estilos de Subir documentos */
 #encabezadoCamp {
   background-color: #52bad1;
 }
