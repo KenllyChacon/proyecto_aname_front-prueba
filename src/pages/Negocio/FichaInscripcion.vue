@@ -185,7 +185,7 @@ export default {
       this.listaSedes = await verSedesP()
     },
     async listarCampInscritosUser(){
-      this.listaCampInscritosUser = await InscribirseCampeonatoP()
+      this.listaCampInscritosUser = await campIncritosUsersP(sessionStorage.getItem("email"))
     },
     getNombrePrueba(pruebaID){
       const prueba = this.listaPruebas.find(prueba => prueba.id === pruebaID);
