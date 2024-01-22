@@ -109,8 +109,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="c in listaCampeonatos" :key="c">
-                <td>{{ getNombreCampeonato(c.id) }}</td>
+              <tr v-for="c in listaCampInscritosUser" :key="c">
+                <td>{{ getNombreCampeonato(c.idCampeonato) }}</td>
                 <td><a href="" download>Descargar comprobante</a></td>
                 <td><a href="" download>Descargar ficha de inscripción</a></td>
                 <td>
