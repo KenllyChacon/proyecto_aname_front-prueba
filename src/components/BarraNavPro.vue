@@ -19,7 +19,7 @@
             <router-link to="/campeonato/crear" class="nav-link">Crear Campeonato</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Administración</a>
+            <a class="nav-link" href="/aprobarInscripciones">Administración</a>
           </li>
         </ul>
         <div v-if="!mostrar" class="float-end">

@@ -32,50 +32,20 @@
               <!--Datos del competidor-->
               <table class="table-responsive table-striped">
                 <tr>
-                  <td><label for="" id="labelSup">Nombres: </label></td>
-                  <td><input class="form-control" v-model="nombres"></td>
-                </tr>
-                <tr>
-                  <td><label for="" id="labelSup">Apellidos: </label></td>
-                  <td><input class="form-control" v-model="apellidos"></td>
-                </tr>
-                <tr>
                   <td><label for="" id="labelSup">Federación: </label></td>
                   <td><input class="form-control" v-model="federacion"></td>
-                </tr>
-                <tr>
-                  <td><label for="" id="labelSup">Dirección: </label></td>
-                  <td><input class="form-control" v-model="direccion"></td>
-                </tr>
-                <tr>
-                  <td><label for="" id="labelSup">Ciudad: </label></td>
-                  <td><input class="form-control" v-model="ciudad"></td>
-                </tr>
-                <tr>
-                  <td><label for="" id="labelSup">Contacto: </label></td>
-                  <td><input class="form-control" v-model="contacto"></td>
-                </tr>
-                <tr>
-                  <td><label for="" id="labelSup">E-mail: </label></td>
-                  <td><input class="form-control" v-model="email"></td>
-                </tr>
-                <tr>
-                  <td><label for="" id="labelSup">Categoría: </label></td>
-                  <td><input class="form-control" v-model="categoria"></td>
                 </tr>
               </table>
             </div>
 
             <br>
             <!--Selección de campeonato-->
-            <select class="form-select" aria-label="Seleccionar campeonato" id="campeonatos1"
-              style="background-color: #edf3f5; color: #000000;">
-              <option selected>Seleccione un campeonato</option>
-              <option value="1">Enero 2024</option>
-              <option value="2">Febrero 2024</option>
-              <option value="3">Marzo 2024</option>
+            <div  v-for="opcion in listaCampeonatos" :key="opcion" >
+            <select class="form-select" aria-label="Seleccionar campeonato" 
+              style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato" :id="opcion" :value="opcion.id">
+              <option selected :for="opcion">{{ opcion.nombre }}</option>
             </select>
-
+          </div>
             <br>
 
             <br>
@@ -89,14 +59,12 @@
                 <thead>
                   <tr>
                     <th scope="col" class="text-dark" id="encabezadoPruebas">Prueba</th>
-                    <th scope="col" class="text-dark" id="encabezadoPruebas">Costo</th>
                     <th scope="col" class="text-dark" id="encabezadoPruebas">Seleccionar</th>
                   </tr>
                 </thead>
                 <tbody class="table-group-divider">
                   <tr>
                     <td scope="row">100 metros planos</td>
-                    <td>$10</td>
                     <input class="form-check-input" type="checkbox" role="switch">
                   </tr>
                 </tbody>
@@ -179,23 +147,36 @@
 <script>
 import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
+import { VerCampeonatosP , InscribirseCampeonatoP} from "@/assets/js/campeonato";
+import { listarPruebasFachada } from "@/assets/js/Prueba";
+
 export default {
   data() {
     return {
       selectedTab: 'tab1', // Pestaña seleccionada por defecto
-      nombres: '',
-      apellidos: '',
       federacion: '',
-      direccion: '',
-      ciudad: '',
-      contacto: '',
-      email: '',
-      categoria: '',
+      idCampeonato: null,
+      listaCampeonatos:[],
+      listaPruebas:[]
     };
   },
   components: {
     PiePagina,
     BarraNav,
+  },
+
+  methods: {
+    async listarCampeonatos(){
+      this.listaCampeonatos = await VerCampeonatosP()
+    },
+    async listarPruebas(){
+      this.listaPruebas = await listarPruebasFachada()
+    }
+  },
+
+  mounted() {
+    this.listarCampeonatos(),
+    this.listarPruebas()
   },
 };
 </script>
