@@ -41,7 +41,7 @@
           <h3>Información para el pago</h3>
           <ul>
             <li>
-              <label for="banco">Institución financiera: Banco Pichicnah</label>
+              <label for="banco">Institución financiera: Banco Pichincha</label>
             </li>
             <li>
               <label for="titular-cuenta">Nombre del titular: Cristhian Cedeño</label>
