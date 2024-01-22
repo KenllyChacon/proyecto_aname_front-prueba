@@ -111,10 +111,10 @@ export default {
 
       // Verifica si el archivo es una imagen png o jpg
       if (file.type === 'image/png' || file.type === 'image/jpeg') {
-      console.log('Archivo de imagen seleccionado:', file);
+      alert('Archivo de imagen seleccionado:', file);
       
         // Realiza las operaciones que necesites con el archivo
-        console.log('Archivo seleccionado:', file);
+        alert('Archivo seleccionado:', file);
         this.foto = file;
 
         this.cargaFoto();
@@ -132,11 +132,11 @@ export default {
       console.log('Archivo PDF seleccionado:', file);
       
         // Realiza las operaciones que necesites con el archivo
-        console.log('Archivo seleccionado:', file);
+        alert('Archivo seleccionado:', file);
         this.documento = file;
 
         } else {
-        console.log('El archivo seleccionado no es un PDF');
+        alert('El archivo seleccionado no es un PDF');
         }
 
       this.cargarArchivos();
