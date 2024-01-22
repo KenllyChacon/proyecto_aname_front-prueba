@@ -186,6 +186,7 @@ export default {
     },
     async listarCampInscritosUser(){
       this.listaCampInscritosUser = await campIncritosUsersP(sessionStorage.getItem("email"))
+      console.log(this.listaCampInscritosUser);
     },
     getNombrePrueba(pruebaID){
       const prueba = this.listaPruebas.find(prueba => prueba.id === pruebaID);
