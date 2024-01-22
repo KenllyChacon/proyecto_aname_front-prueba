@@ -54,7 +54,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "AprobarInscripciones" */ '@/pages/Negocio/AprobarInscripciones.vue'),
     meta: {
       requiresAuth: true,
-      roles: ['ADMIN']
+      //roles: ['ADMIN']
     }
   },
 ]
