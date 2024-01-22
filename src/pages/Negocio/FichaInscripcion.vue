@@ -200,7 +200,8 @@ export default {
 
   mounted() {
     this.listarCampeonatos(),
-    this.listarPruebas()
+    this.listarPruebas(),
+    this.listarSedes()
   },
 };
 </script>
