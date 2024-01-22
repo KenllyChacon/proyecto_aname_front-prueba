@@ -7,7 +7,7 @@
     <div class="container" id="contAprobarInsc">
       <table class="table-responsive table-bordered bordeCaja" id="tabAprobar">
         <label for="" id="labelSup">Seleccione campeonato</label>
-        <select class="bordeCaja" required v-model="idCampeonato" @change="cambiarTabla(opcion.id)">
+        <select class="bordeCaja" required v-model="idCampeonato" @change="listarCampIsnscritos">
           <option v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id">{{ opcion.nombre }}</option>
         </select>
         <table>
@@ -63,8 +63,8 @@
     },
     methods: {
 
-      async listarCampIsnscritos(iDCampeonatos){
-        this.listaCampInscritos = await campIncritosP(iDCampeonatos)
+      async listarCampIsnscritos(){
+        this.listaCampInscritos = await campIncritosP(this.idCampeonato)
       },
       async listarCampeonatos(){
       this.listaCampeonatos = await VerCampeonatosP();
