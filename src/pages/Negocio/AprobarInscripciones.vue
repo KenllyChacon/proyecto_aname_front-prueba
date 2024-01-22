@@ -7,8 +7,11 @@
     <div class="container" id="contAprobarInsc">
       <table class="table-responsive table-bordered bordeCaja" id="tabAprobar">
         <label for="" id="labelSup">Seleccione campeonato</label>
-        <select class="bordeCaja" required>
+        <select class="bordeCaja" required v-model="idCampeonato" @change="cambiarTabla(opcion.id)">
+          <option v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id">{{ opcion.nombre }}</option>
         </select>
+        <table>
+          <thead>
         <tr>
           <th id="tablaInsc">Competidor</th>
           <th id="tablaInsc">Estado</th>
@@ -17,6 +20,21 @@
           <th id="tablaInsc">Aprobar Pago</th>
           <th id="tablaInsc">Aprobar Inscripción</th>
         </tr>
+      </thead>
+      <tbody>
+        <tr v-for="c in listaCampInscritos" :key="c">
+          <td>{{ c.nombres }}</td>
+          <td></td>
+          <td><a href="" download>Descargar Pago</a></td>
+          <td><a href="" download>Descargar Ficha</a></td>
+          <td><button>Aprobar Pago</button></td>
+          <td><button>Aprobar Inscripcion</button></td>
+
+        </tr>
+
+
+      </tbody>
+      </table>
     </table>
     </div>
 
@@ -29,6 +47,7 @@
   <script>
   import PiePagina from "@/components/PiePagina.vue";
   import BarraNav from "@/components/BarraNav.vue";  
+  import { campIncritosP , VerCampeonatosP} from "@/assets/js/campeonato";
   
   
   export default {
@@ -37,13 +56,34 @@
     data() {
       return {
         categoria: null,
+        idCampeonato: null,
+        listaCampInscritos: [],
+        listaCampeonatos: []
       };
     },
-    methods: {},
+    methods: {
+
+      async listarCampIsnscritos(iDCampeonatos){
+        this.listaCampInscritos = await campIncritosP(iDCampeonatos)
+      },
+      async listarCampeonatos(){
+      this.listaCampeonatos = await VerCampeonatosP();
+      },
+
+      cambiarTabla(id){
+        this.listarCampIsnscritos(id);        
+      }
+
+
+    },
     components: {
       PiePagina,
       BarraNav,
     },
+    mounted(){
+
+
+    }
   };
   </script>
 
