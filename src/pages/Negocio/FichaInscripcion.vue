@@ -273,6 +273,19 @@ h2 {
   border-color: #edf3f5;
 }
 
+.opciones-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px;
+}
+
+.opcion-item {
+  flex-basis: calc(23.33% - 10px);
+  /* Ajusta el tamaño de cada columna según tus necesidades */
+  margin: 5px;
+  box-sizing: border-box;
+}
+
 @media (min-width: 768px) {
   #ficha1 {
     width: 75%
