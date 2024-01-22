@@ -42,12 +42,12 @@ export default {
       })
         .then(response => {
           this.loading = false;
-          console.log("***********************" +this.email)
+          console.log("**********EMAIL*************" +this.email)
           const token = response.data.Usuario.token
           const rol = response.data.Usuario.rol
           const estado = response.data.Usuario.estado // Agregamos el estado
           const id = response.data.Usuario.id
-          // console.log("*******************ESTADO**********************" + estado)
+          console.log("*******************ESTADO**********************" + estado)
           // console.log("**********************TOKEN*******************" + token)
           console.log("ROLES" + rol)
           sessionStorage.setItem('token', token)
