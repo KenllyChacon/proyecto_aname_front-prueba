@@ -76,9 +76,7 @@
             </tr>
             <br>
           </table>
-            
-            <br>
-            <label>Total a pagar: </label><input class="form-control">
+          
             <br>
             <p align="justify">El valor de la inscripción hasta por 3 pruebas individuales es de $15 para socios
               y de $25 para no socios. Cada prueba individual adicional tendrá un costo de 10 doláres.
@@ -161,12 +159,11 @@ export default {
   data() {
     return {
       selectedTab: 'tab1', // Pestaña seleccionada por defecto
-      federacion: '',
+      federacion: null,
       idCampeonato: null,
       listaCampeonatos:[],
       listaPruebas:[],
       listaSedes:[],
-      pruebasSeleccionadas:[],
       pruebasDelCampeonato:[],
       selectedPruebas: []
     };
@@ -196,6 +193,18 @@ export default {
       this.pruebasDelCampeonato = pruebaIDs.filter(pruebaId => this.listaPruebas.some(prueba => prueba.id === pruebaId))
 
       this.selectedPruebas = [];
+    },
+
+    async inscribirse(){
+      const ficha = {
+        email: sessionStorage.getItem("email"),
+        idCampeonato: this.idCampeonato,
+        idAsociacionDeportiva: this.federacion,
+        pruebas: this.selectedPruebas
+      }
+
+
+
     }
   },
 
