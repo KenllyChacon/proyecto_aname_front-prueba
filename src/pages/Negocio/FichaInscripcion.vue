@@ -109,7 +109,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="c in listaCampInscritosUser" :key="c">
+              <tr v-for="c in listaCampInscritosUserId" :key="c">
                 <td>{{ getNombreCampeonato(c.idCampeonato) }}</td>
                 <td><a @click="imprimirComprobante()">Descargar comprobante</a></td>
                 <td><a href="" download>Descargar ficha de inscripción</a></td>
@@ -152,7 +152,7 @@
 <script>
 import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
-import { VerCampeonatosP , InscribirseCampeonatoP, verSedesP, campIncritosUsersP} from "@/assets/js/campeonato";
+import { VerCampeonatosP , InscribirseCampeonatoP, verSedesP, campIncritosUsersP, campIncritosUserIdP} from "@/assets/js/campeonato";
 import { listarPruebasFachada } from "@/assets/js/Prueba";
 
 export default {
@@ -166,7 +166,8 @@ export default {
       listaSedes:[],
       pruebasDelCampeonato:[],
       selectedPruebas: [],
-      listaCampInscritosUser: []
+      listaCampInscritosUser: [],
+      listaCampInscritosUserId: []
     };
   },
   components: {
@@ -183,6 +184,9 @@ export default {
     },
     async listarSedes(){
       this.listaSedes = await verSedesP()
+    },
+    async listarCampInscritosUserId(){
+      this.listaCampInscritosUserId = await campIncritosUserIdP(sessionStorage.getItem("id))
     },
     async listarCampInscritosUser(){
       this.listaCampInscritosUser = await campIncritosUsersP(sessionStorage.getItem("email"))
@@ -233,7 +237,8 @@ export default {
     this.listarCampeonatos(),
     this.listarPruebas(),
     this.listarSedes(),
-    this.listarCampInscritosUser()
+    this.listarCampInscritosUser(),
+    this.listarCampInscritosUserId()
   },
 
 };
