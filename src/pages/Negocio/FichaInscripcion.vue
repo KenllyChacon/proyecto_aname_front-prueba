@@ -45,7 +45,7 @@
             <!--Selección de campeonato-->
             <div  >
             <select class="form-select" aria-label="Seleccionar campeonato" 
-              style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato">
+              style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato" @change="cambiarPruebas">
               <option  v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id" >{{ opcion.nombre }}</option>
             </select>
           </div>
@@ -60,11 +60,11 @@
 
 
           <div>
-            <ul>
-              <li v-for="pruebaId in listaCampeonatos.pruebas" :key="pruebaId">
+            <select v-model="selectedPruebas" name="" id="" multiple>
+              <option v-for="pruebaId in pruebasDelCampeonato" :key="pruebaId" :value="pruebaId">
                 {{ getNombrePrueba(pruebaId) }}
-              </li>
-            </ul>
+              </option>
+            </select>
           </div>
 
             <div class="container" id="tabla2">
@@ -171,7 +171,9 @@ export default {
       listaCampeonatos:[],
       listaPruebas:[],
       listaSedes:[],
-      pruebasSeleccionadas:[]
+      pruebasSeleccionadas:[],
+      pruebasDelCampeonato:[],
+      selectedPruebas: []
     };
   },
   components: {
@@ -192,9 +194,16 @@ export default {
       this.listaSedes = await verSedesP()
     },
     getNombrePrueba(pruebaID){
-      const prueba = this.listaPruebas.find(prueba => prueba.id == pruebaID);
+      const prueba = this.listaPruebas.find(prueba => prueba.id === pruebaID);
       console.log(prueba.nombre);
       return prueba ? prueba.nombre : 'Nombre no econtrado';
+    },
+    cambiarPruebas(){
+      const pruebaIDs = this.listaCampeonatos.find(campeonato => campeonato.id === this.idCampeonato)?.pruebas || [];
+
+      this.pruebasDelCampeonato = pruebaIDs.filter(pruebaId => this.listaPruebas.some(prueba => prueba.id === pruebaId))
+
+      this.selectedPruebas = [];
     }
   },
 
