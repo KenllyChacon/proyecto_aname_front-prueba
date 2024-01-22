@@ -26,11 +26,11 @@
 
       <hr class="mb-4">
       <hr>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control bordeCaja" id="email" v-model="email" required>
-      </div>
       <div class="card-body">
+        <div class="mb-3">
+          <label for="email">Email:</label>
+        <input type="email" class="form-control bordeCaja" id="email" v-model="email" required>
+        </div>
         <div class="mb-3">
           <label for="password" class="form-label">Contraseña</label>
           <input type="password" class="form-control bordeCaja" id="password" name="password" v-model="password">
