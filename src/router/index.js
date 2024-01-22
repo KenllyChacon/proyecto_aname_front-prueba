@@ -62,10 +62,7 @@ const routes = [
     name: 'comprobanteImprimir',
     props: true,
     component: () => import('../pages/PDFs/comprobante.vue'),
-    meta: {
-      requiresAuth: true,
-      //roles: ['ADMIN']
-    }
+
   }
 ]
 
