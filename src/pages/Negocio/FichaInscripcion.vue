@@ -109,8 +109,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
+              <tr v-for="c in listaCampeonatos" :key="c">
+                <td>{{ getNombreCampeonato(c.id) }}</td>
                 <td><a href="" download>Descargar comprobante</a></td>
                 <td><a href="" download>Descargar ficha de inscripción</a></td>
                 <td>
@@ -190,6 +190,10 @@ export default {
     getNombrePrueba(pruebaID){
       const prueba = this.listaPruebas.find(prueba => prueba.id === pruebaID);
       return prueba ? prueba.nombre : 'Nombre no econtrado';
+    },
+    getNombreCampeonato(campeonatoID){
+      const campeonatoId = this.listaCampeonatos.find(campeonatoId => campeonatoId.id === campeonatoID);
+      return campeonatoId ? campeonatoId.nombre : 'Nombre no econtrado';
     },
     cambiarPruebas(){
       const pruebaIDs = this.listaCampeonatos.find(campeonato => campeonato.id === this.idCampeonato)?.pruebas || [];
