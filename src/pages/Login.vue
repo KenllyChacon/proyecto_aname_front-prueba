@@ -38,7 +38,9 @@ export default {
       this.loading = true;
       axios.post('https://aname-a05m.onrender.com/API/Aname/V1/login', {
         email: this.email,
-        password: this.password
+        password: this.password,
+        console.log("**********EMAIL*************" +this.email)
+        console.log("**********CONTRASEÑA*************" +this.password)
       })
         .then(response => {
           this.loading = false;
