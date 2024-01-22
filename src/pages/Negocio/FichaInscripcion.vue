@@ -187,6 +187,7 @@ export default {
     },
     async listarCampInscritosUserId(){
       this.listaCampInscritosUserId = await campIncritosUserIdP(sessionStorage.getItem("id"))
+      console.log(this.listaCampInscritosUserId.id)
     },
     async listarCampInscritosUser(){
       this.listaCampInscritosUser = await campIncritosUsersP(sessionStorage.getItem("email"))
