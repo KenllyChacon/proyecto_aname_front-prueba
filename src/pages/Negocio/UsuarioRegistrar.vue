@@ -25,7 +25,6 @@
       </div>
 
       <hr class="mb-4">
-      <hr>
       <div class="card-body">
         <div class="mb-3">
           <label for="email">Email:</label>
