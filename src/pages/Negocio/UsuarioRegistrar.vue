@@ -31,6 +31,8 @@
         <input type="email" class="form-control bordeCaja" id="email" v-model="email" required>
       </div>
 
+      <br>
+      
       <div class="card-body">
         <div class="mb-3">
           <label for="password" class="form-label">Contraseña</label>
