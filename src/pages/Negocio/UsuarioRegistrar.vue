@@ -109,19 +109,35 @@ export default {
       // Accede al archivo seleccionado
       const file = event.target.files[0];
 
-      // Realiza las operaciones que necesites con el archivo
-      console.log('Archivo seleccionado:', file);
-      this.foto = file;
+      // Verifica si el archivo es una imagen png o jpg
+      if (file.type === 'image/png' || file.type === 'image/jpeg') {
+      console.log('Archivo de imagen seleccionado:', file);
+      
+        // Realiza las operaciones que necesites con el archivo
+        console.log('Archivo seleccionado:', file);
+        this.foto = file;
 
-      this.cargaFoto();
+        this.cargaFoto();
+
+        } else {
+        console.log('El archivo seleccionado no es una imagen png o jpg');
+        }
     },
     fotoDocumento(event) {
       // Accede al archivo seleccionado
       const file = event.target.files[0];
 
-      // Realiza las operaciones que necesites con el archivo
-      console.log('Archivo seleccionado:', file);
-      this.documento = file;
+      // Verifica si el archivo es un pdf
+      if (file.type === 'application/pdf') {
+      console.log('Archivo PDF seleccionado:', file);
+      
+        // Realiza las operaciones que necesites con el archivo
+        console.log('Archivo seleccionado:', file);
+        this.documento = file;
+
+        } else {
+        console.log('El archivo seleccionado no es un PDF');
+        }
 
       this.cargarArchivos();
     },
