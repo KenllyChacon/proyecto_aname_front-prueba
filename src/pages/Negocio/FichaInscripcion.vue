@@ -33,7 +33,10 @@
               <table class="table-responsive table-striped">
                 <tr>
                   <td><label for="" id="labelSup">Federación: </label></td>
-                  <td><input class="form-control" v-model="federacion"></td>
+                  <td> <select class="form-select" aria-label="Seleccionar campeonato" 
+                    style="background-color: #edf3f5; color: #000000;" v-model="federacion">
+                    <option  v-for="opcion3 in listaSedes" :key="opcion3.id" :value="opcion3.id" >{{ opcion3.nombre }}</option>
+                  </select></td>
                 </tr>
               </table>
             </div>
@@ -156,7 +159,7 @@
 <script>
 import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
-import { VerCampeonatosP , InscribirseCampeonatoP} from "@/assets/js/campeonato";
+import { VerCampeonatosP , InscribirseCampeonatoP, verSedesP} from "@/assets/js/campeonato";
 import { listarPruebasFachada } from "@/assets/js/Prueba";
 
 export default {
@@ -167,6 +170,7 @@ export default {
       idCampeonato: null,
       listaCampeonatos:[],
       listaPruebas:[],
+      listaSedes:[],
       pruebasSeleccionadas:[]
     };
   },
@@ -183,6 +187,9 @@ export default {
     },
     async listarPruebas(){
       this.listaPruebas = await listarPruebasFachada()
+    },
+    async listarSedes(){
+      this.listaSedes = await verSedesP()
     },
     getNombrePrueba(pruebaID){
       const prueba = this.listaPruebas.find(prueba => prueba.id == pruebaID);
