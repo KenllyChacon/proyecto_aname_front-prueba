@@ -222,7 +222,7 @@ export default {
     },
 
     imprimirComprobante(){
-      let route = this.$router.resolve({name: 'imprimirComprobante', params:{listaPruebas:this.selectedPruebas}})
+      let route = this.$router.resolve({name: 'comprobanteImprimir', params:{listaPruebas:this.selectedPruebas}})
       window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
     }
   },
