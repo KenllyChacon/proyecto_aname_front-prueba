@@ -14,8 +14,6 @@
         <input type="text" class="form-control bordeCaja" id="" v-model="apellidos" required>
       </div>
 
-
-
       <div class="form-group">
         <label for="">Dirección:</label>
         <input type="text" class="form-control bordeCaja" id="" v-model="direccion" required>
@@ -26,13 +24,12 @@
         <input type="text" class="form-control bordeCaja" id="" v-model="ciudad" required>
       </div>
 
+      <hr class="mb-4">
+      <hr>
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" class="form-control bordeCaja" id="email" v-model="email" required>
       </div>
-
-      <hr class="mb-4">
-      
       <div class="card-body">
         <div class="mb-3">
           <label for="password" class="form-label">Contraseña</label>
