@@ -186,7 +186,7 @@ export default {
       this.listaSedes = await verSedesP()
     },
     async listarCampInscritosUserId(){
-      this.listaCampInscritosUserId = await campIncritosUserIdP(sessionStorage.getItem("id))
+      this.listaCampInscritosUserId = await campIncritosUserIdP(sessionStorage.getItem("id"))
     },
     async listarCampInscritosUser(){
       this.listaCampInscritosUser = await campIncritosUsersP(sessionStorage.getItem("email"))
