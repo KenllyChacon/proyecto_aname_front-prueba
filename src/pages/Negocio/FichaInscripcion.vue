@@ -223,8 +223,9 @@ export default {
 
     imprimirComprobante(){
       const listaIdPruebas = encodeURIComponent(JSON.stringify(this.selectedPruebas));
-      let route = this.$router.resolve({name: 'comprobanteImprimir', params:{listaPruebas:listaIdPruebas}})
-      window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
+      //let route = 
+      this.$router.resolve({name: 'comprobanteImprimir', params:{listaPruebas:listaIdPruebas}})
+      //window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
     }
   },
 
