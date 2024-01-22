@@ -27,7 +27,7 @@
 
           <br>
 
-          <form>
+          <form @submit.prevent="inscribirse()">
           
             <div class="container" id="tabla1">
               <!--Datos del competidor-->
@@ -202,6 +202,10 @@ export default {
         idAsociacionDeportiva: this.federacion,
         pruebas: this.selectedPruebas
       }
+
+      await InscribirseCampeonatoP(ficha);
+      alert("Se ha inscrito correctamente")
+
 
 
 
