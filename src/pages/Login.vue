@@ -46,6 +46,7 @@ export default {
           const token = response.data.Usuario.token
           const rol = response.data.Usuario.rol
           const estado = response.data.Usuario.estado // Agregamos el estado
+          const id = response.data.Usuario.id
           // console.log("*******************ESTADO**********************" + estado)
           // console.log("**********************TOKEN*******************" + token)
           console.log("ROLES" + rol)
@@ -53,6 +54,7 @@ export default {
           sessionStorage.setItem('rol', rol)
           sessionStorage.setItem('email', this.email)
           sessionStorage.setItem('estado', estado)
+          sessionStorage.setItem('id', id)
          // Guardamos el estado
           if (estado) {
             sessionStorage.setItem('mostrar', true)// Verificamos si el estado es true
