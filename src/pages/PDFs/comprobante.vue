@@ -9,7 +9,7 @@
           <h3>Cliente</h3>
           <ul>
             <li>Nombre: {{nombreCompetidor}}</li>
-            <li>Email: {{ sessionStorage.getItem('email') }}</li>
+            <li>Email: {{ emailCompetidor }}</li>
           </ul>
         </section>
         <section class="items">
@@ -66,6 +66,7 @@ export default{
 
         return{
             nombreCompetidor: null,
+            emailCompetidor: sessionStorage.getItem('email'),
             pruebas3:[],
             pruebasRes:[],
             total:null,
