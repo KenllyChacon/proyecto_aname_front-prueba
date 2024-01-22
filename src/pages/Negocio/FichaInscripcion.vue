@@ -67,21 +67,22 @@
             </select>
           </div>
 
-            <div class="container" id="tabla2">
-              <table class="table-responsive table-hover table-bordered" id="tablaPruebas">
-                <tr>
-                  <!-- <td><label id="prueba" for="">Pruebas: </label></td> -->
-                  <td>
-                      <div class="">
-                          <div v-for="opcion2 in listaCampeonatos.pruebas" :key="opcion2" class="opcion-item">
-                              <input type="checkbox" :id="opcion2" :value="opcion2.id" v-model="pruebasSeleccionadas">
-                              <label :for="opcion2">{{ getNombrePrueba(opcion2.id) }}</label>
-                          </div>
-                      </div>
-                  </td>
-              </tr>
-              </table>
-            </div>
+
+          <table id="tablaPruebas">
+            <tr>
+                <!-- <td><label id="prueba" for="">Pruebas: </label></td> -->
+                <td>
+                    <div class="opciones-container">
+                        <div v-for="pruebaId in pruebasDelCampeonato" :key="pruebaId" class="opcion-item">
+                            <input type="checkbox"  :value="pruebaId" v-model="selectedPruebas">
+                            <label :for="pruebaId">{{ getNombrePrueba(pruebaId) }}</label>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <br>
+          </table>
+            
             <br>
             <label>Total a pagar: </label><input class="form-control">
             <br>
@@ -184,8 +185,6 @@ export default {
   methods: {
     async listarCampeonatos(){
       this.listaCampeonatos = await VerCampeonatosP();
-      console.log(listaCampeonatos);
-      console.log(listaCampeonatos.pruebas);
     },
     async listarPruebas(){
       this.listaPruebas = await listarPruebasFachada()
@@ -195,7 +194,6 @@ export default {
     },
     getNombrePrueba(pruebaID){
       const prueba = this.listaPruebas.find(prueba => prueba.id === pruebaID);
-      console.log(prueba.nombre);
       return prueba ? prueba.nombre : 'Nombre no econtrado';
     },
     cambiarPruebas(){
