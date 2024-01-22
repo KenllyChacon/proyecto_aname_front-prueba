@@ -74,7 +74,7 @@ const verSedes = async() => {
 const campIncritosUsers = async(email) => {
 
     try {
-        const response = await axios.get(url + `/competidor/inscritos/${email}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
+        const response = await axios.get(url + `/competidor/inscritos/usuario/${email}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
         return response.data;
     } catch (error) {
         console.error('Error en la solicitud:', error.response || error.message);
