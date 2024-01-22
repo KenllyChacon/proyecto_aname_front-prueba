@@ -20,6 +20,12 @@ export const verSedesP = async() =>{
     return await verSedes()
 }
 
+export const campIncritosUsersP = async(email) =>{
+    return await campIncritosUsers(email)
+}
+
+
+
 const CrearCampeonato = async(body) =>{
     try {
         const response = await axios.post(url + `/campeonato`, body, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
@@ -57,6 +63,18 @@ const verSedes = async() => {
 
     try {
         const response = await axios.get(url + `/campeonato/sedes`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
+        return response.data;
+    } catch (error) {
+        console.error('Error en la solicitud:', error.response || error.message);
+        throw error; // Re-lanzar el error para que se maneje en el componente que llama a esta función
+    }
+};
+
+
+const campIncritosUsers = async(email) => {
+
+    try {
+        const response = await axios.get(url + `/competidor/inscritos/${email}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
         return response.data;
     } catch (error) {
         console.error('Error en la solicitud:', error.response || error.message);

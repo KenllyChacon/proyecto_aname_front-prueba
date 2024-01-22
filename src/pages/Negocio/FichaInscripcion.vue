@@ -152,7 +152,7 @@
 <script>
 import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
-import { VerCampeonatosP , InscribirseCampeonatoP, verSedesP} from "@/assets/js/campeonato";
+import { VerCampeonatosP , InscribirseCampeonatoP, verSedesP, campIncritosUsersP} from "@/assets/js/campeonato";
 import { listarPruebasFachada } from "@/assets/js/Prueba";
 
 export default {
@@ -165,7 +165,8 @@ export default {
       listaPruebas:[],
       listaSedes:[],
       pruebasDelCampeonato:[],
-      selectedPruebas: []
+      selectedPruebas: [],
+      listaCampInscritosUser: []
     };
   },
   components: {
@@ -182,6 +183,9 @@ export default {
     },
     async listarSedes(){
       this.listaSedes = await verSedesP()
+    },
+    async listarCampInscritosUser(){
+      this.listaCampInscritosUser = await InscribirseCampeonatoP()
     },
     getNombrePrueba(pruebaID){
       const prueba = this.listaPruebas.find(prueba => prueba.id === pruebaID);
@@ -216,7 +220,8 @@ export default {
   mounted() {
     this.listarCampeonatos(),
     this.listarPruebas(),
-    this.listarSedes()
+    this.listarSedes(),
+    this.listarCampInscritosUser()
   },
 };
 </script>
