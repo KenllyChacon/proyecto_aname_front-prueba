@@ -29,9 +29,13 @@ const CrearCampeonato = async(body) =>{
 };
 
 const VerCampeonatos = async() =>{
- 
-        return await axios.get(url + `/campeonato`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
-
+    try {
+        const response = await axios.get(url + `/campeonato`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
+        return response.data;
+    } catch (error) {
+        console.error('Error en la solicitud:', error.response || error.message);
+        throw error; // Re-lanzar el error para que se maneje en el componente que llama a esta función
+    }
 };
 
 const InscribirseCampeonato = async(body) =>{
