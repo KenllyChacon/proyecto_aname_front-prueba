@@ -111,7 +111,7 @@
             <tbody>
               <tr v-for="c in listaCampInscritosUser" :key="c">
                 <td>{{ getNombreCampeonato(c.idCampeonato) }}</td>
-                <td><a @click="imprimirComprobante()">Descargar comprobante</a></td>
+                <td><router-link :to="{name: 'comprobanteImprimir', params:{miArray: this.selectedPruebas}}">Imprimir Comprobante</router-link></td>
                 <td><a href="" download>Descargar ficha de inscripción</a></td>
                 <td>
                   <form enctype="multipart/form-data">

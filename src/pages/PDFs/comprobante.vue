@@ -76,11 +76,7 @@ export default{
         }
 
     },
-    props:{
-        listaPruebas:{
-            type: Array
-        }
-    },
+    props:['listaPruebas'],
     methods:{
         descargar(){
             this.asignarValores()

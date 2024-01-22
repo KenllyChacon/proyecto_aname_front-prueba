@@ -58,9 +58,9 @@ const routes = [
     }
   },
   {
-    path: '/imprimir/comprobante/:listaPruebas',
+    path: '/imprimir/comprobante',
     name: 'comprobanteImprimir',
-    props: true,
+    props: (route) =>({miArray: route.params.miArray || [] }),
     component: () => import('../pages/PDFs/comprobante.vue'),
     meta: {
       requiresAuth: true,
