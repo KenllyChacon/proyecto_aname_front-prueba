@@ -62,14 +62,14 @@
       <div v-if="email" class="row">
         <div class="form-group">
           <label for="imageUpload" class="colorTexto fw-bold"> Seleccionar foto de perfil:</label>
-          <input type="file" @change="fotoPerfil" class="form-control-file" id="imageUpload">
+          <input type="file" @change="fotoPerfil" accept="image/png, image/jpeg" class="form-control-file" id="imageUpload">
         </div>
       </div>
       <br>
       <div v-if="email" class="row">
         <div class="form-group">
           <label for="imageUpload" class="colorTexto fw-bold">Seleccionar imagen del documento:</label>
-          <input type="file" @change="fotoDocumento" class="form-control-file" id="imageUpload">
+          <input type="file" @change="fotoDocumento" accept="application/pdf" class="form-control-file" id="imageUpload">
         </div>
       </div>
       <button type="submit" class="btn btn-danger">Registrar</button>
