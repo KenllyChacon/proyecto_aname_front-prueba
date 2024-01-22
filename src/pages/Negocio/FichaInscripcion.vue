@@ -57,17 +57,6 @@
               <h5><b>Pruebas</b></h5>
             </div>
             <br>
-
-
-          <div>
-            <select v-model="selectedPruebas" name="" id="" multiple>
-              <option v-for="pruebaId in pruebasDelCampeonato" :key="pruebaId" :value="pruebaId">
-                {{ getNombrePrueba(pruebaId) }}
-              </option>
-            </select>
-          </div>
-
-
           <table id="tablaPruebas">
             <tr>
                 <!-- <td><label id="prueba" for="">Pruebas: </label></td> -->
