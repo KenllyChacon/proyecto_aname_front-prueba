@@ -56,18 +56,17 @@
             <br>
             <div class="container" id="tabla2">
               <table class="table-responsive table-hover table-bordered" id="tablaPruebas">
-                <thead>
-                  <tr>
-                    <th scope="col" class="text-dark" id="encabezadoPruebas">Prueba</th>
-                    <th scope="col" class="text-dark" id="encabezadoPruebas">Seleccionar</th>
-                  </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                  <tr>
-                    <td scope="row">100 metros planos</td>
-                    <input class="form-check-input" type="checkbox" role="switch">
-                  </tr>
-                </tbody>
+                <tr>
+                  <!-- <td><label id="prueba" for="">Pruebas: </label></td> -->
+                  <td>
+                      <div class="">
+                          <div v-for="opcion2 in listaCampeonatos.pruebas" :key="opcion2" class="opcion-item">
+                              <input type="checkbox" :id="opcion2" :value="opcion2.id" v-model="pruebasSeleccionadas">
+                              <label :for="opcion2">{{ getNombrePrueba(opcion2.id) }}</label>
+                          </div>
+                      </div>
+                  </td>
+              </tr>
               </table>
             </div>
             <br>
@@ -157,7 +156,8 @@ export default {
       federacion: '',
       idCampeonato: null,
       listaCampeonatos:[],
-      listaPruebas:[]
+      listaPruebas:[],
+      pruebasSeleccionadas:[]
     };
   },
   components: {
@@ -171,6 +171,11 @@ export default {
     },
     async listarPruebas(){
       this.listaPruebas = await listarPruebasFachada()
+    },
+    getNombrePrueba(pruebaID){
+      const prueba = this.listaPruebas.find(prueba => prueba.id == pruebaID);
+      console.log(prueba.nombre);
+      return prueba ? prueba.nombre : 'Nombre no econtrado';
     }
   },
 
