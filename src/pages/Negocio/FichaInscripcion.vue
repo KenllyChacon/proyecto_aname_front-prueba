@@ -54,6 +54,16 @@
               <h5><b>Pruebas</b></h5>
             </div>
             <br>
+
+
+          <div>
+            <ul>
+              <li v-for="pruebaId in listaCampeonatos.pruebas" :key="pruebaId">
+                {{ getNombrePrueba(pruebaId) }}
+              </li>
+            </ul>
+          </div>
+
             <div class="container" id="tabla2">
               <table class="table-responsive table-hover table-bordered" id="tablaPruebas">
                 <tr>
