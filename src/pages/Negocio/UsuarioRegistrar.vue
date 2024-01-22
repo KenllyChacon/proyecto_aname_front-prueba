@@ -14,12 +14,7 @@
         <input type="text" class="form-control bordeCaja" id="" v-model="apellidos" required>
       </div>
 
-      <div class="card-body">
-        <div class="mb-3">
-          <label for="password" class="form-label">Contraseña</label>
-          <input type="password" class="form-control bordeCaja" id="password" name="password" v-model="password">
-        </div>
-      </div>
+
 
       <div class="form-group">
         <label for="">Dirección:</label>
@@ -36,6 +31,17 @@
         <input type="email" class="form-control bordeCaja" id="email" v-model="email" required>
       </div>
 
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control bordeCaja" id="password" name="password" v-model="password">
+        </div>
+      <div class="mb-3">
+        <label for="passwordConfirm" class="form-label">Confirmar Contraseña</label>
+        <input type="password" class="form-control bordeCaja" id="passwordConfirm" name="passwordConfirm" v-model="passwordConfirm">
+        </div>
+      </div>
+      
       <hr class="mb-4">
 
       <div class="row">
@@ -101,7 +107,8 @@ export default {
       foto: null,
       documento: null,
       fotoResponse: null,
-      documentoResponse: null
+      documentoResponse: null,
+      passwordConfirm: null,
     }
   },
   methods: {
@@ -148,6 +155,10 @@ export default {
       this.fotoResponse = await cargaArchivosFachada(this.foto, "fotografia", this.email);
     },
     registrarUsuario() {
+      if (this.password !== this.passwordConfirm) {
+        alert('Las contraseñas no coinciden');
+        return;
+      }
       const usuario = {
         id: 0,
         nombres: this.nombres,
