@@ -44,7 +44,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "FichaInscripcion" */ '@/pages/Negocio/FichaInscripcion.vue'),
     meta: {
       requiresAuth: true,
-      roles: ['ADM', 'JUN', 'ORG', 'ATL']
+      //roles: ['ATL']
     }
   },
 
