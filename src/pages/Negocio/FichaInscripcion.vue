@@ -42,8 +42,8 @@
             <!--Selección de campeonato-->
             <div  >
             <select class="form-select" aria-label="Seleccionar campeonato" 
-              style="background-color: #edf3f5; color: #000000;" v-for="opcion in listaCampeonatos" :key="opcion" v-model="idCampeonato" :id="opcion" :value="opcion.id">
-              <option :for="opcion">{{ opcion.nombre }}</option>
+              style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato" :id="opcion" :value="opcion.id">
+              <option  v-for="opcion in listaCampeonatos" :key="opcion" >{{ opcion.nombre }}</option>
             </select>
           </div>
             <br>
