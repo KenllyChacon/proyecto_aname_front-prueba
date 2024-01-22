@@ -105,7 +105,7 @@ const campIncritos = async(idCampeonato) => {
 const campIncritosUserEmail = async(email) => {
 
     try {
-        const response = await axios.get(url + `/porUsuario/${email}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
+        const response = await axios.get(url + `/competidor/porUsuario/${email}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
         return response.data;
     } catch (error) {
         console.error('Error en la solicitud:', error.response || error.message);
