@@ -76,7 +76,12 @@ export default{
         }
 
     },
-    props:['listaPruebas'],
+    props:{
+        listaPruebas:{
+            type: String,
+            required: true
+        }
+    },
     methods:{
         descargar(){
             this.asignarValores()
@@ -122,6 +127,17 @@ export default{
         this.asignarValores()
         this.random()
     },
+    computed:{
+    arrayPruebas() {
+      try {
+        // Intenta analizar la cadena JSON
+        return JSON.parse(decodeURIComponent(this.listaPruebas));
+      } catch (error) {
+        console.error('Error al analizar la cadena JSON:', error);
+        return [];
+      }
+    },
+  }
 }
 
 

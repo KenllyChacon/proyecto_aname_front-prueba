@@ -111,7 +111,7 @@
             <tbody>
               <tr v-for="c in listaCampInscritosUser" :key="c">
                 <td>{{ getNombreCampeonato(c.idCampeonato) }}</td>
-                <td><router-link :to="{name: 'comprobanteImprimir', params:{miArray: this.selectedPruebas}}">Imprimir Comprobante</router-link></td>
+                <td><a @click="imprimirComprobante()">Descargar comprobante</a></td>
                 <td><a href="" download>Descargar ficha de inscripción</a></td>
                 <td>
                   <form enctype="multipart/form-data">
@@ -222,7 +222,8 @@ export default {
     },
 
     imprimirComprobante(){
-      let route = this.$router.resolve({name: 'comprobanteImprimir', params:{listaPruebas:this.selectedPruebas}})
+      const listaIdPruebas = encodeURIComponent(JSON.stringify(this.selectedPruebas));
+      let route = this.$router.resolve({name: 'comprobanteImprimir', params:{listaPruebas:listaIdPruebas}})
       window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
     }
   },
@@ -233,6 +234,7 @@ export default {
     this.listarSedes(),
     this.listarCampInscritosUser()
   },
+
 };
 </script>
 
