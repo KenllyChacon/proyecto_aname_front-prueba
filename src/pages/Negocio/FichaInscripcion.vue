@@ -178,6 +178,7 @@ export default {
   methods: {
     async listarCampeonatos(){
       this.listaCampeonatos = await VerCampeonatosP();
+      console.log(listaCampeonatos);
       console.log(listaCampeonatos.pruebas);
     },
     async listarPruebas(){
