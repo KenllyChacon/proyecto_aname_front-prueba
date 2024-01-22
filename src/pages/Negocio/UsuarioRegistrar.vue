@@ -31,7 +31,7 @@
         <input type="email" class="form-control bordeCaja" id="email" v-model="email" required>
       </div>
 
-      <br>
+      <hr class="mb-4">
       
       <div class="card-body">
         <div class="mb-3">
