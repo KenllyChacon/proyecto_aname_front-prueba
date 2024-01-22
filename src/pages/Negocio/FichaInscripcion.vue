@@ -28,6 +28,7 @@
           <br>
 
           <form>
+          
             <div class="container" id="tabla1">
               <!--Datos del competidor-->
               <table class="table-responsive table-striped">
@@ -43,6 +44,10 @@
 
             <br>
             <!--Selección de campeonato-->
+            <div class="container" id="encabezado2">
+              <h5><b>Campeonato</b></h5>
+            </div>
+            <br>
             <div  >
             <select class="form-select" aria-label="Seleccionar campeonato" 
               style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato" @change="cambiarPruebas">
