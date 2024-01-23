@@ -118,32 +118,37 @@ export default {
 
       console.log("Id: " + this.idCampeonato);
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
       // Verificar si this.listaCampInscritosUserEmail existe
-      if (this.listaCampInscritosUserEmail) {
-        console.log("Lista de campeonatos:", this.listaCampInscritosUserEmail);
+      console.log("Tipo de this.idCampeonato:", typeof this.idCampeonato);
+      console.log("Valor de this.idCampeonato:", this.idCampeonato);
 
-        // Buscar el campeonato que coincide con idCampeonato
-        const campeonatoEncontrado = this.listaCampInscritosUserEmail.find(
-          (campeonato) => campeonato.idCampeonato === this.idCampeonato
-        );
+      // Convertir this.idCampeonato a número si es necesario
+      const idCampeonatoBuscado = Number(this.idCampeonato);
 
-        console.log("Campeonato encontrado:", campeonatoEncontrado);
+      console.log("Tipo de idCampeonatoBuscado:", typeof idCampeonatoBuscado);
+      console.log("Valor de idCampeonatoBuscado:", idCampeonatoBuscado);
 
-        if (campeonatoEncontrado) {
-          // Asignar las pruebas correspondientes a this.listaPruebas
-          this.listaPruebas = campeonatoEncontrado.pruebas;
-          console.log("Lista de pruebas asignada:", this.listaPruebas);
-        } else {
-          // Manejar el caso en el que no existe el campeonato
-          console.error("El campeonato no existe o no está inscrito");
-          // Opcional: Mostrar una alerta o realizar acciones adicionales según tus necesidades
-        }
+      // Buscar el campeonato que coincide con idCampeonato
+      const campeonatoEncontrado = this.listaCampInscritosUserEmail.find(
+        (campeonato) => campeonato.idCampeonato === idCampeonatoBuscado
+      );
+      console.log("Campeonato encontrado:", campeonatoEncontrado);
+
+      if (campeonatoEncontrado) {
+        // Asignar las pruebas correspondientes a this.listaPruebas
+        this.listaPruebas = campeonatoEncontrado.pruebas;
+        console.log("Lista de pruebas asignada:", this.listaPruebas);
       } else {
-        // Manejar el caso en el que this.listaCampInscritosUserEmail no está definido
-        console.error("La lista de campeonatos no está definida");
+        // Manejar el caso en el que no existe el campeonato
+        console.error("El campeonato no existe o no está inscrito");
         // Opcional: Mostrar una alerta o realizar acciones adicionales según tus necesidades
       }
 
+
+      ////////////////////////////////////////////////////////////////
       console.log(this.listaPruebas);
       this.random();
       console.log("Lista 3: " + this.pruebas3.length);
