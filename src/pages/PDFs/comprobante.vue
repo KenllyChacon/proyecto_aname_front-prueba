@@ -122,10 +122,10 @@ export default {
       if (this.listaCampInscritosUserEmail) {
         console.log("Lista de campamentos:", this.listaCampInscritosUserEmail);
         const campamentosArray = Object.values(this.listaCampInscritosUserEmail);
-
+        console.log("Array: " + campamentosArray);
         // Buscar el elemento que coincide con idCampeonato
         const campeonatoEncontrado = campamentosArray.find(camp => camp.idCampeonato === this.idCampeonato);
-        
+
         console.log("Campeonato encontrado:", campeonatoEncontrado);
 
         if (campeonatoEncontrado) {
