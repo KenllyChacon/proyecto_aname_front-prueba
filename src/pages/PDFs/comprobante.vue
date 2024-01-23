@@ -95,28 +95,29 @@ export default {
   },
   methods: {
     descargar() {
-      this.asignarValores();
-      var doc = new jsPDF("p", "pt", "A4");
-      var margins = 0;
-      console.log("entrada sexy");
-      var scale =
-        (doc.internal.pageSize.width - margins * 2) / document.body.scrollWidth;
-      doc.html(this.$refs.content, {
-        x: margins,
-        y: margins,
-        html2canvas: {
-          scale: scale,
-        },
-        callback: function (doc) {
-          doc.output("dataurlnewwindow", { filename: "fichero-pdf.pdf" });
-        },
-      });
-
-      doc.fromHTML(this.$refs.content, this.margins.left, this.margins.top, {
-        width: this.margins.width,
-      });
-      doc.save("Comprobante.pdf");
+ var doc = new jsPDF("p", "pt", "A4");
+ var margins = 0;
+ console.log("entrada sexy");
+ var scale =
+    (doc.internal.pageSize.width - margins * 2) / document.body.scrollWidth;
+ doc.html(this.$refs.content, {
+    x: margins,
+    y: margins,
+    html2canvas: {
+      scale: scale,
     },
+    callback: function (doc) {
+      doc.output("dataurlnewwindow", { filename: "fichero-pdf.pdf" });
+    },
+ });
+
+ // Usa 'margins' en lugar de 'this.margins'
+ doc.fromHTML(this.$refs.content, margins, margins, {
+    width: margins,
+ });
+ doc.save("Comprobante.pdf");
+},
+
     async asignarValores() {
       this.listaCompetidor = await campIncritosUsersP(
         sessionStorage.getItem("email")
