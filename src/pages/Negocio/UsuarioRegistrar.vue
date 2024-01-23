@@ -123,7 +123,6 @@ export default {
         this.cargaFoto();
 
         } else {
-         alert('El archivo seleccionado no es una iamgen jpg o png');
         console.log('El archivo seleccionado no es una imagen png o jpg');
         }
     },
@@ -139,7 +138,7 @@ export default {
         this.documento = file;
 
         } else {
-        alert('El archivo seleccionado no es un PDF');
+        console.log('El archivo seleccionado no es un PDF');
         }
 
       this.cargarArchivos();
