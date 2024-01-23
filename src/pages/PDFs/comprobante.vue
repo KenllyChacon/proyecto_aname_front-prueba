@@ -53,6 +53,17 @@
           </li>
         </ul>
       </section>
+<<<<<<< HEAD
+      <table>
+        <tr>
+          <td>
+            <button type="" class="" @onClick="descargar()">Descargar</button>
+          </td>
+        </tr>
+
+
+      </table>
+=======
       <table>
         <tr>
           <td>
@@ -62,6 +73,7 @@
 
 
       </table>
+>>>>>>> 75a50365818f2690fea10ae9708d61a2aeb20a9b
     </main>
   </div>
 </template>
