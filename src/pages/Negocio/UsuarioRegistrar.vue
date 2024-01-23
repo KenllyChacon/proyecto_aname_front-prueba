@@ -116,15 +116,14 @@ export default {
 
       // Verifica si el archivo es una imagen png o jpg
       if (file.type === 'image/png' || file.type === 'image/jpeg') {
-      alert('Archivo de imagen seleccionado:', file);
       
         // Realiza las operaciones que necesites con el archivo
-        alert('Archivo seleccionado:', file);
         this.foto = file;
 
         this.cargaFoto();
 
         } else {
+         alert('El archivo seleccionado no es una iamgen jpg o png');
         console.log('El archivo seleccionado no es una imagen png o jpg');
         }
     },
@@ -137,7 +136,6 @@ export default {
       console.log('Archivo PDF seleccionado:', file);
       
         // Realiza las operaciones que necesites con el archivo
-        alert('Archivo seleccionado:', file);
         this.documento = file;
 
         } else {
