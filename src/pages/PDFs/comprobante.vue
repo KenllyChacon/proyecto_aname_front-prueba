@@ -120,16 +120,17 @@ export default {
 
       // Verificar si this.listaCampInscritosUserEmail existe
       if (this.listaCampInscritosUserEmail) {
-        console.log("Lista de campamentos:", this.listaCampInscritosUserEmail);
-        const campamentosArray = Object.values(this.listaCampInscritosUserEmail);
-        console.log("Array: " + campamentosArray);
-        // Buscar el elemento que coincide con idCampeonato
-        const campeonatoEncontrado = campamentosArray.find(camp => camp.idCampeonato === this.idCampeonato);
+        console.log("Lista de campeonatos:", this.listaCampInscritosUserEmail);
+
+        // Buscar el campeonato que coincide con idCampeonato
+        const campeonatoEncontrado = this.listaCampInscritosUserEmail.find(
+          (campeonato) => campeonato.idCampeonato === this.idCampeonato
+        );
 
         console.log("Campeonato encontrado:", campeonatoEncontrado);
 
         if (campeonatoEncontrado) {
-          // Asignar el array correspondiente a this.listaPruebas
+          // Asignar las pruebas correspondientes a this.listaPruebas
           this.listaPruebas = campeonatoEncontrado.pruebas;
           console.log("Lista de pruebas asignada:", this.listaPruebas);
         } else {
@@ -139,7 +140,7 @@ export default {
         }
       } else {
         // Manejar el caso en el que this.listaCampInscritosUserEmail no está definido
-        console.error("La lista de campamentos no está definida");
+        console.error("La lista de campeonatos no está definida");
         // Opcional: Mostrar una alerta o realizar acciones adicionales según tus necesidades
       }
 
