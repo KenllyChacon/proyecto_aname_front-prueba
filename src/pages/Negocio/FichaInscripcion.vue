@@ -2,7 +2,6 @@
   <!--Barra navegacion-->
   <BarraNav />
   <div>
-   <my-component :key="componentKey" />
     <!--Pestañas-->
     <ul class="nav nav-tabs">
       <li class="nav-item">
@@ -169,7 +168,6 @@ export default {
       selectedPruebas: [],
       listaCampInscritosUser: [],
       listaCampInscritosUserEmail: [],
-      componentKey: 1
     };
   },
   components: {
@@ -221,11 +219,8 @@ export default {
 
       await InscribirseCampeonatoP(ficha);
       alert("Se ha inscrito correctamente")
-
-
-      if(alert("En Confirmacion de Inscripcion observara su proceso y comprobante de pago")){
-        this.componentKey += 1
-      }
+      alert("En Confirmacion de Inscripcion observara su proceso y comprobante de pago")
+      this.listarCampInscritosUserEmail()
       this.selectedTab = "tab2"
 
 
