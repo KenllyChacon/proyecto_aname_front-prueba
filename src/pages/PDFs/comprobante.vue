@@ -119,6 +119,7 @@ export default {
 },
 printDiv() {
   console.log("Alo");
+  
  // Obtén el div que quieres imprimir
  const printDiv = document.getElementById('divToPrint');
 
