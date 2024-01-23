@@ -53,7 +53,6 @@
           </li>
         </ul>
       </section>
-<<<<<<< HEAD
       <table>
         <tr>
           <td>
@@ -63,17 +62,6 @@
 
 
       </table>
-=======
-      <table>
-        <tr>
-          <td>
-            <button type="" class="" @click="descargar()">Enviar</button>
-          </td>
-        </tr>
-
-
-      </table>
->>>>>>> 75a50365818f2690fea10ae9708d61a2aeb20a9b
     </main>
   </div>
 </template>
