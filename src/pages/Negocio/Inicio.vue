@@ -150,13 +150,11 @@ export default {
     if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
       console.log("id: " + sessionStorage.getItem("id"))
       this.mostrarBarra = false;
-    }else{
-      this.mostrarBarra = true;
     }
   },
   data(){
     return{
-      mostrarBarra: null
+      mostrarBarra: true
     }
   }
 }
