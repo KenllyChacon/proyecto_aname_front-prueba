@@ -56,7 +56,7 @@
       <table>
         <tr>
           <td>
-            <button type="" class="" @onClick="descargar()">Descargar</button>
+            <button type="" class="" @click="descargar()">Descargar</button>
           </td>
         </tr>
 
