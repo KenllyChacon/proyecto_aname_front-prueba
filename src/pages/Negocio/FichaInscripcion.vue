@@ -221,8 +221,11 @@ export default {
 
       await InscribirseCampeonatoP(ficha);
       alert("Se ha inscrito correctamente")
-      alert("En Confirmacion de Inscripcion observara su proceso y comprobante de pago")
-      this.componentKey += 1
+
+
+      if(alert("En Confirmacion de Inscripcion observara su proceso y comprobante de pago")){
+        this.componentKey += 1
+      }
       this.selectedTab = "tab2"
 
 
