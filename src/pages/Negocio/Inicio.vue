@@ -1,6 +1,7 @@
 <template>
   <!--Carrusel-->
   <div class="container">
+    
     <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -145,7 +146,7 @@ export default {
     BarraNav,
   },
   mounted() {
-    console.log("listo 6");
+    console.log("listo NicoMachin sisisisisisis");
     console.log("ROL INICIO" + sessionStorage.getItem("rol"))
     if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
       console.log("id: " + sessionStorage.getItem("id"))
