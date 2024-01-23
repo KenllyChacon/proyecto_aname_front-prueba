@@ -75,6 +75,7 @@ export default {
       listaCompetidor: [],
       listaCampInscritosUserEmail: [],
       listaPruebas: [],
+      campEncontrado:[]
     };
   },
   props: {
@@ -119,14 +120,14 @@ export default {
 
       if (this.listaCampInscritosUserEmail) {
         // Buscar el elemento que coincide con idCampeonato
-        const campeonatoEncontrado = this.listaCampInscritosUserEmail.find(
+         this.campEncontrado = this.listaCampInscritosUserEmail.find(
           (camp) => camp.idCampeonato === this.idCampeonato
         );
-        console.log("Campeonato encontrado: "+ campeonatoEncontrado);
+        console.log("Campeonato encontrado: "+ this.campEncontrado);
 
-        if (campeonatoEncontrado) {
+        if (this.campEncontrado) {
           // Asignar el array correspondiente a this.listaPruebas
-          this.listaPruebas = campeonatoEncontrado.pruebas;
+          this.listaPruebas = this.campEncontrado.pruebas;
         } else {
           // Manejar el caso en el que no existe el campeonato
           console.error("El campeonato no existe o no está inscrito");
