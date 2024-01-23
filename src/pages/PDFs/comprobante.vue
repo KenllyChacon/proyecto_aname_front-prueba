@@ -53,6 +53,15 @@
           </li>
         </ul>
       </section>
+      <table>
+        <tr>
+          <td>
+            <button type="" class="" @click="descargar()">Enviar</button>
+          </td>
+        </tr>
+
+
+      </table>
     </main>
   </div>
 </template>
