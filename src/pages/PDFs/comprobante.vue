@@ -80,7 +80,7 @@ export default {
   },
   props: {
     idCampeonato: {
-      type: String,
+      type: Number,
       required: true,
     },
   },
