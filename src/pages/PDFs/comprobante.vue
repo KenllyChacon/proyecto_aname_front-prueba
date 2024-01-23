@@ -115,11 +115,14 @@ export default {
       );
       this.nombreCompetidor = this.listaCompetidor[0].nombres;
 
+      console.log("Id: " + this.idCampeonato);
+
       if (this.listaCampInscritosUserEmail) {
         // Buscar el elemento que coincide con idCampeonato
         const campeonatoEncontrado = this.listaCampInscritosUserEmail.find(
           (camp) => camp.idCampeonato === this.idCampeonato
         );
+        console.log("Campeonato encontrado: "+ campeonatoEncontrado);
 
         if (campeonatoEncontrado) {
           // Asignar el array correspondiente a this.listaPruebas
