@@ -1,6 +1,6 @@
 
 <template>
-  <div class="factura">
+  <div class="factura" id="divToPrint">
     <header>
       <h1>FACTURA</h1>
     </header>
@@ -53,17 +53,17 @@
           </li>
         </ul>
       </section>
+  </div>    
       <table>
         <tr>
           <td>
-            <button type="" class="" @click="descargar()">Descargar</button>
+            <button type="" class="" @click="printDiv()">Descargar</button>
           </td>
         </tr>
 
 
       </table>
     </main>
-  </div>
 </template>
 
 <script>
@@ -117,6 +117,24 @@ export default {
  });
  doc.save("Comprobante.pdf");
 },
+printDiv() {
+  console.log("Alo");
+ // Obtén el div que quieres imprimir
+ const printDiv = document.getElementById('divToPrint');
+
+ // Guarda el contenido original de la página
+ const originalContent = document.body.innerHTML;
+
+ // Reemplaza el cuerpo de la página con el contenido del div que quieres imprimir
+ document.body.innerHTML = printDiv.innerHTML;
+
+ // Abre el cuadro de diálogo de impresión
+ window.print();
+
+ // Restaura el contenido original de la página
+ document.body.innerHTML = originalContent;
+},
+
 
     async asignarValores() {
       this.listaCompetidor = await campIncritosUsersP(
