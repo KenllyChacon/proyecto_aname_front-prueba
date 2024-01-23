@@ -114,7 +114,7 @@ export default {
       this.listaCampInscritosUserEmail = await campIncritosUserEmailP(
         sessionStorage.getItem("email")
       );
-      this.nombreCompetidor = this.listaCompetidor[0].nombres;
+      this.nombreCompetidor = this.listaCampInscritosUserEmail[0].nombres;
 
       console.log("Id: " + this.idCampeonato);
 
