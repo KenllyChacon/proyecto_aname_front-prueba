@@ -114,7 +114,27 @@ export default {
         sessionStorage.getItem("email")
       );
       this.nombreCompetidor = this.listaCompetidor[0].nombres;
-      this.listaPruebas = this.listaCampInscritosUserEmail[0].pruebas;
+
+      if (this.listaCampInscritosUserEmail) {
+        // Buscar el elemento que coincide con idCampeonato
+        const campeonatoEncontrado = this.listaCampInscritosUserEmail.find(
+          (camp) => camp.idCampeonato === this.idCampeonato
+        );
+
+        if (campeonatoEncontrado) {
+          // Asignar el array correspondiente a this.listaPruebas
+          this.listaPruebas = campeonatoEncontrado.pruebas;
+        } else {
+          // Manejar el caso en el que no existe el campeonato
+          console.error("El campeonato no existe o no está inscrito");
+          // Opcional: Mostrar una alerta o realizar acciones adicionales según tus necesidades
+        }
+      } else {
+        // Manejar el caso en el que this.listaCampInscritosUserEmail no está definido
+        console.error("La lista de campamentos no está definida");
+        // Opcional: Mostrar una alerta o realizar acciones adicionales según tus necesidades
+      }
+
       console.log(this.listaPruebas);
       this.random();
       console.log("Lista 3: " + this.pruebas3.length);
