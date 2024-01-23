@@ -58,7 +58,7 @@
 
 <script>
 import jsPDF from 'jspdf'
-import { campIncritosUsersP } from '@/assets/js/campeonato'
+import { campIncritosUsersP, campIncritosUserEmailP } from '@/assets/js/campeonato'
 
 export default{
 
@@ -70,7 +70,9 @@ export default{
             pruebas3:[],
             pruebasRes:[],
             total:null,
-            listaCompetidor: null
+            listaCompetidor: [],
+            listaCampInscritosUserEmail: [],
+            listaPruebas: []
 
 
 
@@ -78,7 +80,7 @@ export default{
 
     },
     props:{
-        listaPruebas:{
+        idCampeonato:{
             type: String,
             required: true
         }
@@ -108,7 +110,10 @@ export default{
         },
         async asignarValores(){
             this.listaCompetidor = await campIncritosUsersP(sessionStorage.getItem('email'))
+            this.listaCampInscritosUserEmail = await campIncritosUserEmailP(sessionStorage.getItem("email"))
             this.nombreCompetidor = this.listaCompetidor[0].nombres
+            this.listaPruebas = this.listaCampInscritosUserEmail[0].pruebas
+            console.log(this.listaPruebas);
         },
         cerrar(){
             window.close()
@@ -128,17 +133,7 @@ export default{
         this.asignarValores()
         this.random()
     },
-    computed:{
-    arrayPruebas() {
-      try {
-        // Intenta analizar la cadena JSON
-        return JSON.parse(decodeURIComponent(this.listaPruebas));
-      } catch (error) {
-        console.error('Error al analizar la cadena JSON:', error);
-        return [];
-      }
-    },
-  }
+    
 }
 
 

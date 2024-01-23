@@ -58,7 +58,7 @@ const routes = [
     }
   },
   {
-    path: '/imprimir/comprobante/:listaPruebas',
+    path: '/imprimir/comprobante/:idCampeonato',
     name: 'comprobanteImprimir',
     props: true,
     component: () => import('../pages/PDFs/comprobante.vue'),

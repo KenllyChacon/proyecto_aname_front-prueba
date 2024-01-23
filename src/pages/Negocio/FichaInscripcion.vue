@@ -111,7 +111,7 @@
             <tbody>
               <tr v-for="c in listaCampInscritosUserEmail" :key="c">
                 <td>{{ getNombreCampeonato(c.idCampeonato) }}</td>
-                <td><a @click="imprimirComprobante()">Descargar comprobante</a></td>
+                <td><a @click="imprimirComprobante(c.idCampeonato)">Descargar comprobante</a></td>
                 <td><a href="" download>Descargar ficha de inscripción</a></td>
                 <td>
                   <form enctype="multipart/form-data">
@@ -226,10 +226,9 @@ export default {
 
     },
 
-    imprimirComprobante(){
-      const listaIdPruebas = encodeURIComponent(JSON.stringify(this.selectedPruebas));
+    imprimirComprobante(idCampeonatos){
       //let route = 
-      this.$router.push({name: 'comprobanteImprimir', params:{listaPruebas:listaIdPruebas}})
+      this.$router.push({name: 'comprobanteImprimir', params:{idCampeonato:idCampeonatos}})
       //window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
     }
   },
