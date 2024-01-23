@@ -166,6 +166,11 @@ export default {
         // Si listaPruebas tiene 3 o menos elementos, asegurarse de que pruebasRes esté vacío
         this.pruebasRes = [];
       }
+      if(this.pruebasRes > 1){
+        this.total = this.pruebas3.length*5
+      }else{
+        this.total = (this.pruebas3.length*5)+(this.pruebasRes.length*10)
+      }
     },
   },
   async mounted() {
