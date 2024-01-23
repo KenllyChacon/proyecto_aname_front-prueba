@@ -121,11 +121,11 @@ export default {
       // Verificar si this.listaCampInscritosUserEmail existe
       if (this.listaCampInscritosUserEmail) {
         console.log("Lista de campamentos:", this.listaCampInscritosUserEmail);
+        const campamentosArray = Object.values(this.listaCampInscritosUserEmail);
 
         // Buscar el elemento que coincide con idCampeonato
-        const campeonatoEncontrado = this.listaCampInscritosUserEmail.find(
-          (camp) => camp.idCampeonato === this.idCampeonato
-        );
+        const campeonatoEncontrado = campamentosArray.find(camp => camp.idCampeonato === this.idCampeonato);
+        
         console.log("Campeonato encontrado:", campeonatoEncontrado);
 
         if (campeonatoEncontrado) {
