@@ -34,6 +34,18 @@
                 <td><label for="" id="labelSup">Fecha fin de inscripción</label></td>
                 <td><input class="form-control" v-model="fFinI" required type="datetime-local"></td>
             </tr>
+            <tr>
+                <td><label for="" id="labelSup">Costo Socios</label></td>
+                <td><input class="form-control" v-model="costoSoc" required type="text"></td>
+            </tr>
+            <tr>
+                <td><label for="" id="labelSup">Costo No Socios</label></td>
+                <td><input class="form-control" v-model="costNoSoc" required type="text"></td>
+            </tr>
+            <tr>
+                <td><label for="" id="labelSup">Cuenta Bancaria</label></td>
+                <td><label>número de cuenta</label></td>
+            </tr>
         </table>
 
         <h4>Pruebas</h4>
@@ -84,7 +96,9 @@ export default {
             finicioI: null,
             fFinI: null,
             listaPruebas: [],
-            seleccionadas: []
+            seleccionadas: [],
+            costoSoc: null,
+            costNoSoc: null,
 
         }
     },
@@ -142,13 +156,13 @@ export default {
 
 
 #tablaPruebas {
-    background-color: #efca08;
+    background-color: #2660a4;
 }
 
 
 
 .form-control {
-    border: 2px solid #efca08;
+    border: 2px solid #2660a4;
 }
 
 h2 {

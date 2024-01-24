@@ -58,7 +58,7 @@ export default defineComponent({
 
 </script>
 
-<style>
+<style scoped>
 .navbar{
   background: #2660a4;
 }
