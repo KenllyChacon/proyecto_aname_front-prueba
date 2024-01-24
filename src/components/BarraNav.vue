@@ -24,8 +24,9 @@
           <router-link to="/registro" class="btn btn-dark ms-3">Registrarse</router-link>
         </div>
         <div v-else class="float-end">
+          <label for="" style="color: #edf3f5">{{email}}</label>
           <LogOutComp/>
-          <label for="">{{email}}</label>
+          
         </div>
       </div>
     </div>
@@ -62,8 +63,15 @@ export default defineComponent({
 
 .btn{
   background-color: #52bad1;
-  color: #1a1c1c;
+  color: #edf3f5;
   border-color: #003153;
 }
 
+.nav-link.active {
+  color: #eeb902;
+}
+
+.nav-link {
+  color: #edf3f5;
+}
 </style>
