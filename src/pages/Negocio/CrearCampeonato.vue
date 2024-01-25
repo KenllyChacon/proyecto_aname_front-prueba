@@ -36,11 +36,15 @@
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Costo Socios</label></td>
-                <td><input class="form-control" v-model="costoSoc" required type="text"></td>
+                <td><input class="form-control" v-model="costoSoc" required type="number"></td>
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Costo No Socios</label></td>
-                <td><input class="form-control" v-model="costNoSoc" required type="text"></td>
+                <td><input class="form-control" v-model="costNoSoc" required type="number"></td>
+            </tr>
+            <tr>
+                <td><label for="" id="labelSup">Costo Prueba Adicional</label></td>
+                <td><input class="form-control" v-model="costPAdic" required type="number"></td>
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Cuenta Bancaria</label></td>
@@ -99,6 +103,7 @@ export default {
             seleccionadas: [],
             costoSoc: null,
             costNoSoc: null,
+            costPAdic: null,
 
         }
     },
@@ -156,7 +161,7 @@ export default {
 
 
 #tablaPruebas {
-    background-color: #2660a4;
+    background-color: #52bad1;
 }
 
 

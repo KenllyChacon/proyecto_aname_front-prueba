@@ -27,7 +27,7 @@
           <router-link to="/registro" class="btn btn-danger ms-3">Registrarse</router-link>
         </div>
         <div v-else class="float-end">
-          <label for="">{{email}}</label>
+          <label for="" style="color: #edf3f5">{{email}}</label>
           <LogOutComp/>
         </div>
       </div>
