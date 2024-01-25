@@ -5,65 +5,63 @@
       <h1>FACTURA</h1>
     </header>
     <main>
-      <section class="datos-cliente">
-        <h3>Cliente</h3>
-        <ul>
-          <li>Nombre: {{ nombreCompetidor }}</li>
-          <li>Email: {{ emailCompetidor }}</li>
-        </ul>
-      </section>
-      <section class="items">
-        <table>
-          <thead>
+        <section class="datos-cliente">
+          <h3>Cliente</h3>
+          <ul>
+            <li>Nombre: {{ nombreCompetidor }}</li>
+            <li>Email: {{ emailCompetidor }}</li>
+          </ul>
+        </section>
+        <section class="items">
+          <table>
+            <thead>
+              <tr>
+                <th>PRUEBAS</th>
+                <th>PRECIO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="l in pruebas3" :key="l">
+                <td>{{ l.nombre }}</td>
+                <td><p>$5</p></td>
+              </tr>
+              <tr v-for="li in pruebasRes" :key="li">
+                <td>{{ li.nombre }}</td>
+                <td><p>$10</p></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="totales">
+          <ul>
+            <li>TOTAL: {{ total }}</li>
+          </ul>
+        </section>
+        <section class="informacion-pago">
+          <h3>Información para el pago</h3>
+          <ul>
+            <li>
+              <label for="banco">Institución financiera: Banco Pichincha</label>
+            </li>
+            <li>
+              <label for="titular-cuenta"
+                >Nombre del titular: Cristhian Cedeño</label
+              >
+            </li>
+            <li>
+              <label for="numero-cuenta">Número de cuenta: 2204446646</label>
+            </li>
+          </ul>
+        </section>
+          <table>
             <tr>
-              <th>PRUEBAS</th>
-              <th>PRECIO</th>
+              <td>
+                <button type="" class="" @click="printDiv()">Descargar</button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            <tr v-for="l in pruebas3" :key="l">
-              <td>{{ l.nombre }}</td>
-              <td><p>$5</p></td>
-            </tr>
-            <tr v-for="li in pruebasRes" :key="li">
-              <td>{{ li.nombre }}</td>
-              <td><p>$10</p></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-      <section class="totales">
-        <ul>
-          <li>TOTAL: {{ total }}</li>
-        </ul>
-      </section>
-      <section class="informacion-pago">
-        <h3>Información para el pago</h3>
-        <ul>
-          <li>
-            <label for="banco">Institución financiera: Banco Pichincha</label>
-          </li>
-          <li>
-            <label for="titular-cuenta"
-              >Nombre del titular: Cristhian Cedeño</label
-            >
-          </li>
-          <li>
-            <label for="numero-cuenta">Número de cuenta: 2204446646</label>
-          </li>
-        </ul>
-      </section>
-  </div>    
-      <table>
-        <tr>
-          <td>
-            <button type="" class="" @click="printDiv()">Descargar</button>
-          </td>
-        </tr>
-
-
-      </table>
-    </main>
+          </table>
+      </main>
+  </div>
 </template>
 
 <script>
