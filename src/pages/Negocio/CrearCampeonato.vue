@@ -12,11 +12,19 @@
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Federación que Organiza: </label></td>
-                <td><input class="form-control" v-model="organizador" required type="text"></td>
+                <td> <select class="form-select" aria-label="Seleccionar federación" style="background-color: #edf3f5; color: #000000;" 
+                    v-model="asociacion"> <option v-for="a in asociaciones" v-bind:key="a.id" :value="a.id">
+                        {{ a.nombre }}
+                    </option>
+                </select></td>
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Sede: </label></td>
                 <td><input class="form-control" v-model="sede" type="text" required></td>
+            </tr>
+            <tr>
+                <td><label for="" id="labelSup">Organizador: </label></td>
+                <td><input class="form-control" v-model="organizador" required type="text"></td>
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Fecha de inicio: </label></td>
@@ -36,19 +44,19 @@
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Costo Socios</label></td>
-                <td><input class="form-control" v-model="costoSoc" required type="number"></td>
+                <td><input class="form-control" v-model="costoSoc" required type="number" step="0.01"></td>
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Costo No Socios</label></td>
-                <td><input class="form-control" v-model="costNoSoc" required type="number"></td>
+                <td><input class="form-control" v-model="costNoSoc" required type="number" step="0.01"></td>
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Costo Prueba Adicional</label></td>
-                <td><input class="form-control" v-model="costPAdic" required type="number"></td>
+                <td><input class="form-control" v-model="costPAdic" required type="number" step="0.01"></td>
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Cuenta Bancaria</label></td>
-                <td><label>número de cuenta</label></td>
+                <td><input class="form-control" v-model="cuentaBancaria" required type="text" placeholder="XXXXXX-BANCO-TIPOCUENTA"></td>
             </tr>
         </table>
 
@@ -80,7 +88,7 @@
 <script>
 import BarraNav from "@/components/BarraNav.vue";
 import PiePagina from "@/components/PiePagina.vue";
-import { CrearCampeonatoP } from "@/assets/js/campeonato.js"
+import { CrearCampeonatoP, listaAsociacionesFachada } from "@/assets/js/campeonato.js"
 import { listarPruebasFachada } from '@/assets/js/Prueba';
 import router from '@/router';
 
@@ -101,14 +109,29 @@ export default {
             fFinI: null,
             listaPruebas: [],
             seleccionadas: [],
+            asociaciones:[],
             costoSoc: null,
             costNoSoc: null,
             costPAdic: null,
+            asociacion:null,
+            cuentaBancaria:null
 
         }
     },
 
-    methods: {
+    mounted()
+        {
+            console.log("Mounted*********")
+            this.listarAsociaciones();
+            this.listarPruebas();
+        } ,
+   methods: {
+
+        async listarAsociaciones(){
+            console.log("Lista asociaciones----------------------------------------------------")
+            this.asociaciones = await listaAsociacionesFachada()
+            console.log("Asociaciones: " + this.asociaciones)
+;        },
 
         async insertar() {
             console.log(this.seleccionadas);
@@ -121,7 +144,12 @@ export default {
                 fechaFin: this.fFin,
                 inscripcionInicio: this.finicioI,
                 inscripcionFin: this.fFinI,
-                pruebas: this.seleccionadas
+                pruebas: this.seleccionadas,
+                costoSocio: this.costoSoc,
+                costoNoSocio:this.costoNoSocio,
+                costoPruebaAdicional: this.costPAdic,
+                cuentaBancaria:this.cuentaBancaria,
+                idAsociacion: this.asociacion
             }
 
             await CrearCampeonatoP(campeonato);
@@ -133,20 +161,18 @@ export default {
                 this.finicioI = null,
                 this.fFinI = null,
                 this.seleccionadas = null
+                this.asociaciones = null
 
             alert("Se ha ingresado correctamente")
             router.push('/')
         },
-        async lista() {
+        async listarPruebas() {
             this.listaPruebas = await listarPruebasFachada()
         },
 
 
 
 
-    },
-    mounted() {
-        this.lista()
     },
 
 }

@@ -154,7 +154,9 @@ export default {
         alert('Las contraseñas no coinciden');
         return;
       }
-      const usuario = {
+
+      if(this.documentoResponse){
+        var usuario = {
         id: 0,
         nombres: this.nombres,
         apellidos: this.apellidos,
@@ -169,6 +171,25 @@ export default {
         documentoIdentidad: this.documentoResponse,
         fotografia: this.fotoResponse
       };
+      }else{
+        var usuario = {
+        id: 0,
+        nombres: this.nombres,
+        apellidos: this.apellidos,
+        email: this.email,
+        password: this.password,
+        rol: "ATL",
+        estado: true,
+        direccion: this.direccion,
+        sexo: this.genero,
+        fechaNacimiento: this.fechaNacimiento,
+        ciudad: this.ciudad,
+        documentoIdentidad: null,
+        fotografia: null
+      };
+      }
+      
+      
 
       registrarUsuarioFachada(usuario)
         .then((response) => {

@@ -11,6 +11,9 @@ export const VerCampeonatosP = async() =>{
     return await VerCampeonatos()
 }
 
+export const listarCampeonatosDisponiblesFachada = async() =>{
+    return await listarCampeonatosDisponibles()
+}
 
 export const InscribirseCampeonatoP = async(body) =>{
     return await InscribirseCampeonato(body)
@@ -18,6 +21,10 @@ export const InscribirseCampeonatoP = async(body) =>{
 
 export const verSedesP = async() =>{
     return await verSedes()
+}
+
+export const listaAsociacionesFachada = async() =>{
+    return await listaAsociaciones()
 }
 
 export const campIncritosUsersP = async(email) =>{
@@ -55,6 +62,17 @@ const VerCampeonatos = async() =>{
     }
 };
 
+
+const listarCampeonatosDisponibles = async() =>{
+    try {
+        const response = await axios.get(url + `/campeonato/disponibles`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
+        return response.data;
+    } catch (error) {
+        console.error('Error en la solicitud:', error.response || error.message);
+        throw error; // Re-lanzar el error para que se maneje en el componente que llama a esta función
+    }
+};
+
 const InscribirseCampeonato = async(body) =>{
     try {
         const response = await axios.post(url + `/competidor/inscripcionInicial`, body, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
@@ -71,6 +89,17 @@ const verSedes = async() => {
 
     try {
         const response = await axios.get(url + `/campeonato/sedes`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
+        return response.data;
+    } catch (error) {
+        console.error('Error en la solicitud:', error.response || error.message);
+        throw error; // Re-lanzar el error para que se maneje en el componente que llama a esta función
+    }
+};
+
+const listaAsociaciones = async() => {
+
+    try {
+        const response = await axios.get(url + `/campeonato/asociaciones`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
         return response.data;
     } catch (error) {
         console.error('Error en la solicitud:', error.response || error.message);

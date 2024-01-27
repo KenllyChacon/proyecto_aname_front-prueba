@@ -36,7 +36,7 @@
                   <td><label for="" id="labelSup">Federación: </label></td>
                   <td> <select class="form-select" aria-label="Seleccionar campeonato" 
                     style="background-color: #edf3f5; color: #000000;" v-model="federacion">
-                    <option  v-for="opcion3 in listaSedes" :key="opcion3.id" :value="opcion3.id" >{{ opcion3.nombre }}</option>
+                    <option  v-for="opcion3 in listaAsociaciones" :key="opcion3.id" :value="opcion3.id" >{{ opcion3.nombre }}</option>
                   </select></td>
                 </tr>
               </table>
@@ -50,7 +50,7 @@
             <br>
             <div  >
             <select class="form-select" aria-label="Seleccionar campeonato" 
-              style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato" @change="cambiarPruebas">
+              style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato" @change="listarPruebasDelCampeonato">
               <option  v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id" >{{ opcion.nombre }}</option>
             </select>
           </div>
@@ -67,9 +67,9 @@
                 <!-- <td><label id="prueba" for="">Pruebas: </label></td> -->
                 <td>
                     <div class="opciones-container">
-                        <div v-for="pruebaId in pruebasDelCampeonato" :key="pruebaId" class="opcion-item">
-                            <input type="checkbox"  :value="pruebaId" v-model="selectedPruebas">
-                            <label :for="pruebaId">{{ getNombrePrueba(pruebaId) }}</label>
+                        <div v-for="prueba in pruebasDelCampeonato" :key="prueba" class="opcion-item">
+                            <input type="checkbox"  :value="prueba.id" v-model="selectedPruebas">
+                            <label :for="prueba">{{ prueba.nombre }}</label>
                         </div>
                     </div>
                 </td>
@@ -135,7 +135,11 @@
                     <!-- <input type="submit" value="Enviar" /> -->
                   </form>
                 </td>
-                <td> </td>
+                <td> 
+                  <div>
+                    <label class="fw-bold" for="estado">{{c.estadoParticipacion}}</label>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -152,8 +156,9 @@
 <script>
 import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
-import { VerCampeonatosP , InscribirseCampeonatoP, verSedesP, campIncritosUsersP, campIncritosUserEmailP} from "@/assets/js/campeonato";
-import { listarPruebasFachada } from "@/assets/js/Prueba";
+import { listarCampeonatosDisponiblesFachada , InscribirseCampeonatoP, campIncritosUsersP, campIncritosUserEmailP} from "@/assets/js/campeonato";
+import { listarPruebasPorCampFachada } from "@/assets/js/Prueba";
+import {listaAsociacionesCompetidorFachada} from "@/assets/js/Competidor"
 
 export default {
   data() {
@@ -163,7 +168,7 @@ export default {
       idCampeonato: null,
       listaCampeonatos:[],
       listaPruebas:[],
-      listaSedes:[],
+      listaAsociaciones:[],
       pruebasDelCampeonato:[],
       selectedPruebas: [],
       listaCampInscritosUser: [],
@@ -174,42 +179,55 @@ export default {
     PiePagina,
     BarraNav,
   },
+  mounted() {
+    this.listarCampeonatos(),
+    //this.listarPruebas(),
+    this.listarAsociaciones(),
+   // this.listarCampInscritosUser(),
+    this.listarCampInscritosUserEmail()
+  },
 
   methods: {
     async listarCampeonatos(){
-      this.listaCampeonatos = await VerCampeonatosP();
+      this.listaCampeonatos = await listarCampeonatosDisponiblesFachada();
     },
-    async listarPruebas(){
-      this.listaPruebas = await listarPruebasFachada()
+    async listarPruebasDelCampeonato(){
+      console.log(this.idCampeonato)
+      this.pruebasDelCampeonato = await listarPruebasPorCampFachada(this.idCampeonato);
+      this.selectedPruebas = [];
     },
-    async listarSedes(){
-      this.listaSedes = await verSedesP()
+    async listarAsociaciones(){
+      this.listaAsociaciones = await listaAsociacionesCompetidorFachada()
     },
     async listarCampInscritosUserEmail(){
       this.listaCampInscritosUserEmail = await campIncritosUserEmailP(sessionStorage.getItem("email"))
       console.log(this.listaCampInscritosUserEmail)
     },
-    async listarCampInscritosUser(){
+   /* async listarCampInscritosUser(){
       this.listaCampInscritosUser = await campIncritosUsersP(sessionStorage.getItem("email"))
       console.log(this.listaCampInscritosUser);
     },
     getNombrePrueba(pruebaID){
       const prueba = this.listaPruebas.find(prueba => prueba.id === pruebaID);
       return prueba ? prueba.nombre : 'Nombre no econtrado';
-    },
+    },*/
     getNombreCampeonato(campeonatoID){
       const campeonatoId = this.listaCampeonatos.find(campeonatoId => campeonatoId.id === campeonatoID);
       return campeonatoId ? campeonatoId.nombre : 'Nombre no econtrado';
     },
-    cambiarPruebas(){
+    /*cambiarPruebas(){
       const pruebaIDs = this.listaCampeonatos.find(campeonato => campeonato.id === this.idCampeonato)?.pruebas || [];
 
       this.pruebasDelCampeonato = pruebaIDs.filter(pruebaId => this.listaPruebas.some(prueba => prueba.id === pruebaId))
 
-      this.selectedPruebas = [];
-    },
+      
+    },*/
 
     async inscribirse(){
+
+      console.log(this.idCampeonato)
+      console.log(this.federacion)
+      console.log("Preubas: "+this.selectedPruebas)
       const ficha = {
         email: sessionStorage.getItem("email"),
         idCampeonato: this.idCampeonato,
@@ -234,13 +252,7 @@ export default {
     }
   },
 
-  mounted() {
-    this.listarCampeonatos(),
-    this.listarPruebas(),
-    this.listarSedes(),
-    this.listarCampInscritosUser(),
-    this.listarCampInscritosUserEmail()
-  },
+
 
 };
 </script>
