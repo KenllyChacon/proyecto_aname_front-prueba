@@ -28,16 +28,17 @@
           <br>
 
           <form @submit.prevent="inscribirse()">
-          
+
             <div class="container" id="tabla1">
               <!--Datos del competidor-->
               <table class="table-responsive table-striped">
                 <tr>
                   <td><label for="" id="labelSup">Federación: </label></td>
-                  <td> <select class="form-select" aria-label="Seleccionar campeonato" 
-                    style="background-color: #edf3f5; color: #000000;" v-model="federacion">
-                    <option  v-for="opcion3 in listaAsociaciones" :key="opcion3.id" :value="opcion3.id" >{{ opcion3.nombre }}</option>
-                  </select></td>
+                  <td> <select class="form-select" aria-label="Seleccionar campeonato"
+                      style="background-color: #edf3f5; color: #000000;" v-model="federacion">
+                      <option v-for="opcion3 in listaAsociaciones" :key="opcion3.id" :value="opcion3.id">{{ opcion3.nombre
+                      }}</option>
+                    </select></td>
                 </tr>
               </table>
             </div>
@@ -48,36 +49,37 @@
               <h5><b>Campeonato</b></h5>
             </div>
             <br>
-            <div  >
-            <select class="form-select" aria-label="Seleccionar campeonato" 
-              style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato" @change="listarPruebasDelCampeonato">
-              <option  v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id" >{{ opcion.nombre }}</option>
-            </select>
-          </div>
+            <div>
+              <select class="form-select" aria-label="Seleccionar campeonato"
+                style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato"
+                @change="listarPruebasDelCampeonato">
+                <option v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id">{{ opcion.nombre }}
+                </option>
+              </select>
+            </div>
             <br>
 
-<<<<<<< HEAD
             <br>
             <!--Selección de pruebas-->
             <div class="container" id="encabezado2">
               <h5><b>Pruebas</b></h5>
             </div>
             <br>
-          <table id="tablaPruebas">
-            <tr>
+            <table id="tablaPruebas">
+              <tr>
                 <!-- <td><label id="prueba" for="">Pruebas: </label></td> -->
                 <td>
-                    <div class="opciones-container">
-                        <div v-for="prueba in pruebasDelCampeonato" :key="prueba" class="opcion-item">
-                            <input type="checkbox"  :value="prueba.id" v-model="selectedPruebas">
-                            <label :for="prueba">{{ prueba.nombre }}</label>
-                        </div>
+                  <div class="opciones-container">
+                    <div v-for="prueba in pruebasDelCampeonato" :key="prueba" class="opcion-item">
+                      <input type="checkbox" :value="prueba.id" v-model="selectedPruebas">
+                      <label :for="prueba">{{ prueba.nombre }}</label>
                     </div>
+                  </div>
                 </td>
-            </tr>
-            <br>
-          </table>
-          
+              </tr>
+              <br>
+            </table>
+
             <br>
             <!--<p align="justify">El valor de la inscripción hasta por 3 pruebas individuales es de $15 para socios
               y de $25 para no socios. Cada prueba individual adicional tendrá un costo de 10 doláres.
@@ -88,111 +90,6 @@
             </p>-->
             <button type="submit" class="btn btn-primary">Enviar</button>
           </form>
-=======
-        <br>
-        <!--Datos del competidor-->
-        <div class="table-responsive">
-          <table class="table-responsive table-bordered" id="datosComp">
-            <tr>
-              <th>Nombres: </th>
-              <td><label>nombresCompetidor</label></td>
-            </tr>
-            <tr>
-              <th>Apellidos: </th>
-              <td>apellidosCompetidor</td>
-            </tr>
-            <tr>
-              <th><label for="" id="labelSup">Asociación: </label></th>
-              <td>
-                <select class="form-select" aria-label="Seleccionar asociación"
-                  style="background-color: #edf3f5; color: #000000;" v-model="federacion">
-                  <option v-for="opcion3 in listaAsociaciones" :key="opcion3.id" :value="opcion3.id">{{ opcion3.nombre }}
-                  </option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>Dirección: </th>
-              <td><label>direccionCompetidor</label></td>
-            </tr>
-            <tr>
-              <th>Ciudad: </th>
-              <td><label>ciudadCompetidor</label></td>
-            </tr>
-            <tr>
-              <th>Email: </th>
-              <td><label>emailCompetidor</label></td>
-            </tr>
-            <tr>
-              <th>Sexo: </th>
-              <td><label>sexoCompetidor</label></td>
-            </tr>
-            <tr>
-              <th>Fecha de Nacimiento: </th>
-              <td><label>fechaNacimientoCompetidor</label></td>
-            </tr>
-            <tr>
-              <th>Categoría Actual: </th>
-              <td><label>categoriaCompetidor</label></td>
-            </tr>
-          </table>
-        </div>
-
-        <br>
-        <!--Selección de pruebas-->
-        <div class="container">
-          <h6 align="left"><b>Seleccione las pruebas en las que se inscribe</b></h6>
-        </div>
-        <br>
-        <table class="table-responsive table-bordered" id="tablaPruebas">
-          <tr>
-            <td>
-              <div class="opciones-container">
-                <div v-for="prueba in pruebasDelCampeonato" :key="prueba" class="opcion-item">
-                  <input type="checkbox" :value="prueba.id" v-model="selectedPruebas">
-                  <label :for="prueba">{{ prueba.nombre }}</label>
-                </div>
-              </div>
-            </td>
-          </tr>
-
-        </table>
-        <br>
-
-        <!--Descargo de responsabilidad-->
-        <div class="form-check" id="descargoResp">
-          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-          <label class="form-check-label" for="invalidCheck">
-            Acepto voluntariamente participar en este campeonato en fecha en sede xx, bajo
-            las reglas WA, WMA y ASUDAMA. Eximo de toda responsabilidad a los organizadores
-            y dirigentes por lesiones, pérdidas y daños a mi persona o bienes de mi propiedad
-            que ocurran durante el desarrollo del evento, y declaro estar en buenas condiciones
-            de salud y que no presento enfermedad alguna que ponga en riesgo mi vida.
-          </label>
-          <div class="invalid-feedback">
-            Debe aceptar el descargo de responsabilidad para proseguir con la inscripción.
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
-
-      </form>
-
-      <!--Líneas de firma-->
-      <div class="row g-3" id="firmas">
-        <div class="col-sm">
-          <br><br>
-          <hr>
-          <label>Firma del atleta</label>
-        </div>
-        <div class="col-sm">
-          <label> </label>
-          <label> </label>
-        </div>
-        <div class="col-sm">
-          <br><br>
-          <hr>
-          <label>Firma del administrador</label>
->>>>>>> 4caa97a5d945275219973ab63cc785ba7935baff
         </div>
       </div>
     </div>
@@ -241,9 +138,9 @@
                     <!-- <input type="submit" value="Enviar" /> -->
                   </form>
                 </td>
-                <td> 
+                <td>
                   <div>
-                    <label class="fw-bold" for="estado">{{c.estadoParticipacion}}</label>
+                    <label class="fw-bold" for="estado">{{ c.estadoParticipacion }}</label>
                   </div>
                 </td>
               </tr>
@@ -253,11 +150,6 @@
       </div>
     </div>
     <br>
-<<<<<<< HEAD
-=======
-
-    
->>>>>>> 4caa97a5d945275219973ab63cc785ba7935baff
   </div>
 
   <!-- Pie de página -->
@@ -267,9 +159,9 @@
 <script>
 import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
-import { listarCampeonatosDisponiblesFachada , InscribirseCampeonatoP, campIncritosUsersP, campIncritosUserEmailP} from "@/assets/js/campeonato";
+import { listarCampeonatosDisponiblesFachada, InscribirseCampeonatoP, campIncritosUsersP, campIncritosUserEmailP } from "@/assets/js/campeonato";
 import { listarPruebasPorCampFachada } from "@/assets/js/Prueba";
-import {listaAsociacionesCompetidorFachada} from "@/assets/js/Competidor"
+import { listaAsociacionesCompetidorFachada } from "@/assets/js/Competidor"
 
 export default {
   data() {
@@ -277,10 +169,10 @@ export default {
       selectedTab: 'tab1', // Pestaña seleccionada por defecto
       federacion: null,
       idCampeonato: null,
-      listaCampeonatos:[],
-      listaPruebas:[],
-      listaAsociaciones:[],
-      pruebasDelCampeonato:[],
+      listaCampeonatos: [],
+      listaPruebas: [],
+      listaAsociaciones: [],
+      pruebasDelCampeonato: [],
       selectedPruebas: [],
       listaCampInscritosUser: [],
       listaCampInscritosUserEmail: [],
@@ -292,36 +184,34 @@ export default {
   },
   mounted() {
     this.listarCampeonatos(),
-    this.listarAsociaciones(),
-    this.listarCampInscritosUserEmail()
+      //this.listarPruebas(),
+      this.listarAsociaciones(),
+      // this.listarCampInscritosUser(),
+      this.listarCampInscritosUserEmail()
   },
 
   methods: {
-    async listarCampeonatos(){
+    async listarCampeonatos() {
       this.listaCampeonatos = await listarCampeonatosDisponiblesFachada();
     },
-    async listarPruebasDelCampeonato(){
+    async listarPruebasDelCampeonato() {
       console.log(this.idCampeonato)
       this.pruebasDelCampeonato = await listarPruebasPorCampFachada(this.idCampeonato);
       this.selectedPruebas = [];
     },
-    async listarAsociaciones(){
+    async listarAsociaciones() {
       this.listaAsociaciones = await listaAsociacionesCompetidorFachada()
     },
-    async listarCampInscritosUserEmail(){
+    async listarCampInscritosUserEmail() {
       this.listaCampInscritosUserEmail = await campIncritosUserEmailP(sessionStorage.getItem("email"))
       console.log(this.listaCampInscritosUserEmail)
     },
-   
-    async inscribirse(){
+
+    async inscribirse() {
 
       console.log(this.idCampeonato)
       console.log(this.federacion)
-<<<<<<< HEAD
-      console.log("Preubas: "+this.selectedPruebas)
-=======
-      console.log("Pruebas: " + this.selectedPruebas)
->>>>>>> 4caa97a5d945275219973ab63cc785ba7935baff
+      console.log("Preubas: " + this.selectedPruebas)
       const ficha = {
         email: sessionStorage.getItem("email"),
         idCampeonato: this.idCampeonato,
@@ -339,12 +229,11 @@ export default {
 
     },
 
-    imprimirComprobante(idCampeonatos){
+    imprimirComprobante(idCampeonatos) {
       //let route = 
-      this.$router.push({name: 'comprobanteImprimir', params:{idCampeonato:idCampeonatos}})
+      this.$router.push({ name: 'comprobanteImprimir', params: { idCampeonato: idCampeonatos } })
       //window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
-    },  
-    
+    }, 
     descargarFicha(id){
       //let route = 
       this.$router.push({name: 'fichaInscripcion', params:{idCompetidor:id}})
@@ -431,22 +320,13 @@ h2 {
 }
 
 @media (min-width: 768px) {
-<<<<<<< HEAD
   #ficha1 {
-=======
-  #formFicha {
->>>>>>> 4caa97a5d945275219973ab63cc785ba7935baff
     width: 75%
   }
 }
 
-<<<<<<< HEAD
 @media (max-width: 767px) {
   #ficha1 {
-=======
-@media (min-width: 320px) and (max-width: 767px) {
-  #formFicha {
->>>>>>> 4caa97a5d945275219973ab63cc785ba7935baff
     width: 100%;
   }
 }
@@ -457,70 +337,13 @@ h2 {
   }
 }
 
-@media (min-width: 320px) and (max-width: 767px) {
+@media (max-width: 767px) {
   #ficha2 {
     width: 100%;
-<<<<<<< HEAD
-=======
-  }
-}
-
-@media (min-width: 768px) {
-  #firmas {
-    width: 75%
-  }
-}
-
-@media (min-width: 320px) and (max-width: 767px) {
-  #firmas {
-    width: 100%;
-  }
-}
-
-@media print {
-  .btn-primary {
-    display: none;
->>>>>>> 4caa97a5d945275219973ab63cc785ba7935baff
   }
 }
 
 /* Estilos de Subir documentos */
 #encabezadoCamp {
   background-color: #52bad1;
-}
-<<<<<<< HEAD
-=======
-
-/*Título Ficha*/
-#tituloFicha {
-  background-color: #52bad1;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-#formFicha {
-  padding-left: 2.5%;
-  padding-right: 2.5%;
-}
-
-#descargoResp {
-  background-color: rgba(38, 96, 164, 0.5);
-  /*color #2660a4 en hex, opacidad 50%*/
-  padding: 2.5%;
-}
-
-#firmas {
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-#datosComp {
-  border-collapse: collapse;
-  th, td {
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-  }
-}
-
->>>>>>> 4caa97a5d945275219973ab63cc785ba7935baff
-</style>
+}</style>
