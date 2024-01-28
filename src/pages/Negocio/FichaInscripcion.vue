@@ -124,6 +124,7 @@
             Debe aceptar el descargo de responsabilidad para proseguir con la inscripción.
           </div>
         </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
 
       </form>
 
@@ -205,7 +206,7 @@
     </div>
     <br>
 
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    
   </div>
 
   <!-- Pie de página -->
