@@ -108,7 +108,6 @@ export default {
     descargar() {
       var doc = new jsPDF("p", "pt", "A4");
       var margins = 0;
-      console.log("entrada sexy");
       var scale =
         (doc.internal.pageSize.width - margins * 2) / document.body.scrollWidth;
       doc.html(this.$refs.content, {

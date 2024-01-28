@@ -16,6 +16,10 @@ export const obtenerPreciosPorCampFachada = async(idCampeonato) =>{
     return await obtenerPreciosPorCamp(idCampeonato)
 }
 
+export const obtenerFichaInscripcionFachada = async(idCompetidor) =>{
+    return await obtenerFichaInscripcion(idCompetidor)
+}
+
 
 
 //conexiones api
@@ -47,6 +51,17 @@ const obtenerPreciosPorCamp = async(idCampeonato) => {
 
     try {
         const response = await axios.get(url + `/competidor/campeonato/${idCampeonato}/precios`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
+        return response.data;
+    } catch (error) {
+        console.error('Error en la solicitud:', error.response || error.message);
+        throw error; // Re-lanzar el error para que se maneje en el componente que llama a esta función
+    }
+};
+
+const obtenerFichaInscripcion = async(idCompetidor) => {
+
+    try {
+        const response = await axios.get(url + `/competidor/fichaInscripcion/${idCompetidor}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
         return response.data;
     } catch (error) {
         console.error('Error en la solicitud:', error.response || error.message);

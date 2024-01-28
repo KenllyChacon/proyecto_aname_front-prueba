@@ -62,7 +62,21 @@ const routes = [
     name: 'comprobanteImprimir',
     props: true,
     component: () => import('../pages/PDFs/comprobante.vue'),
+    meta: {
+      requiresAuth: true,
+      //roles: ['ADMIN']
+    }
+  },
 
+  {
+    path: '/imprimir/fichaInscripcion/:idCompetidor',
+    name: 'fichaInscripcion',
+    props: true,
+    component: () => import('../pages/PDFs/fichaInscripcion.vue'),
+    meta: {
+      requiresAuth: true,
+      //roles: ['ADMIN']
+    }
   }
 ]
 
