@@ -118,23 +118,22 @@
                 <td><a @click="descargarFicha(c.id)">Descargar Ficha de Inscripción</a></td>
                 <td>
                   <form enctype="multipart/form-data">
-                    <div>
-                      <label class="fw-bold" for="comprobantePago">Subir comprobante</label>
-                      <input type="file" id="comprobantePago">
+                    <div class="form-group">
+                      <label class="colorTexto fw-bold"> Subir comprobante de pago:</label>
+                      <input type="file" @change="pagoComprobante" accept="application/pdf" class="form-control-file">
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                    <!-- <input type="submit" value="Enviar" /> -->
+                    <button type="submit" class="btn btn-primary" @click="enviarPago(c.id)">Enviar</button>
                   </form>
                 </td>
                 <td>
                   <form enctype="multipart/form-data">
-                    <div>
-                      <label class="fw-bold" for="fichaInscripcion">Subir ficha</label>
-                      <input type="file" id="fichaInscripcion">
+                    <div class="form-group">
+                      <label class="colorTexto fw-bold"> Subir ficha de inscripción firmada:</label>
+                      <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="submit" class="btn btn-primary" @click="enviarFicha(c.id)">Enviar</button>
                     <!-- <input type="submit" value="Enviar" /> -->
                   </form>
                 </td>
@@ -161,7 +160,8 @@ import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
 import { listarCampeonatosDisponiblesFachada, InscribirseCampeonatoP, campIncritosUsersP, campIncritosUserEmailP } from "@/assets/js/campeonato";
 import { listarPruebasPorCampFachada } from "@/assets/js/Prueba";
-import { listaAsociacionesCompetidorFachada } from "@/assets/js/Competidor"
+import { listaAsociacionesCompetidorFachada, registrarPagoFachada, registrarFichaFachada } from "@/assets/js/Competidor"
+import {cargaArchivosFachada} from "@/assets/js/Archivo"
 
 export default {
   data() {
@@ -176,6 +176,10 @@ export default {
       selectedPruebas: [],
       listaCampInscritosUser: [],
       listaCampInscritosUserEmail: [],
+      comprobantePago: null,
+      comprobantePagoRes: null,
+      fichaInscripcion: null,
+      fichaInscripcionRes: null
     };
   },
   components: {
@@ -184,13 +188,103 @@ export default {
   },
   mounted() {
     this.listarCampeonatos(),
-      //this.listarPruebas(),
       this.listarAsociaciones(),
-      // this.listarCampInscritosUser(),
       this.listarCampInscritosUserEmail()
   },
 
   methods: {
+    pagoComprobante(event) {
+      // Accede al archivo seleccionado
+      const file = event.target.files[0];
+
+      // Verifica si el archivo es un pdf
+      if (file.type === 'application/pdf') {
+        console.log('Archivo PDF seleccionado:', file);
+
+        // Realiza las operaciones que necesites con el archivo
+        this.comprobantePago = file;
+
+      } else {
+        console.log('El archivo seleccionado no es un PDF');
+      }
+
+      this.cargarPago();
+    },
+
+    async cargarPago() {
+      this.comprobantePagoRes = await cargaArchivosFachada(this.comprobantePago, "comprobante-pago", sessionStorage.getItem("email"));
+      console.log(this.comprobantePagoRes)
+    },
+
+    fichaI(event) {
+      // Accede al archivo seleccionado
+      const file = event.target.files[0];
+
+      // Verifica si el archivo es un pdf
+      if (file.type === 'application/pdf') {
+        console.log('Archivo PDF seleccionado:', file);
+
+        // Realiza las operaciones que necesites con el archivo
+        this.fichaInscripcion = file;
+
+      } else {
+        console.log('El archivo seleccionado no es un PDF');
+      }
+
+      this.cargarFicha();
+    },
+
+    async cargarFicha() {
+      this.fichaInscripcionRes = await cargaArchivosFachada(this.fichaInscripcion, "ficha-inscripcion", sessionStorage.getItem("email"));
+      console.log(this.fichaInscripcionRes)
+    },
+
+    async enviarPago(idComp) {
+      const pago = {
+        idCompetidor: idComp,
+        nombre: this.comprobantePagoRes.nombre,
+        link: this.comprobantePagoRes.link,
+        extension: this.comprobantePagoRes.extension
+      };
+
+      console.log(pago)
+
+      try {
+        await registrarPagoFachada(pago);
+        alert('Pago enviado con éxito');
+      } catch (error) {
+        alert('No se pudo enviar el pago');
+      }
+
+      
+      this.comprobantePago=null
+      this.comprobantePagoRes=null
+      this.fichaInscripcion=null
+      this.fichaInscripcionRes= null
+    },
+
+    async enviarFicha(idComp) {
+      const ficha = {
+        idCompetidor: idComp,
+        nombre: this.fichaInscripcionRes.nombre,
+        link: this.fichaInscripcionRes.link,
+        extension: this.fichaInscripcionRes.extension
+      };
+
+      try {
+        await registrarFichaFachada(ficha);
+        alert('Ficha de inscripcion enviada con éxito');
+      } catch (error) {
+        alert('No se pudo enviar la ficha de inscripcion');
+      }
+
+      this.comprobantePago=null
+      this.comprobantePagoRes=null
+      this.fichaInscripcion=null
+      this.fichaInscripcionRes= null
+    },
+
+
     async listarCampeonatos() {
       this.listaCampeonatos = await listarCampeonatosDisponiblesFachada();
     },
@@ -233,10 +327,10 @@ export default {
       //let route = 
       this.$router.push({ name: 'comprobanteImprimir', params: { idCampeonato: idCampeonatos } })
       //window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
-    }, 
-    descargarFicha(id){
+    },
+    descargarFicha(id) {
       //let route = 
-      this.$router.push({name: 'fichaInscripcion', params:{idCompetidor:id}})
+      this.$router.push({ name: 'fichaInscripcion', params: { idCompetidor: id } })
       //window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
     }
   },
@@ -346,4 +440,5 @@ h2 {
 /* Estilos de Subir documentos */
 #encabezadoCamp {
   background-color: #52bad1;
-}</style>
+}
+</style>
