@@ -2,7 +2,7 @@
     <div id="divToPrint">
 
         <br>
-        <div id="tituloFicha">
+        <div id="tituloFicha" style="background-color: #52bad1">
             <img src="@/assets/img/logofin.png" alt="" width="40" height="40" align="left">
             <h3><b>Ficha de Inscripción de Atletas</b></h3>
         </div>
@@ -17,66 +17,69 @@
 
         <br>
         <!--Datos del competidor-->
-        <table class="table-responsive table-bordered">
-            <tr>
-                <th>Nombres: </th>
-                <td><label>{{ nombres }}</label></td>
-            </tr>
-            <tr>
-                <th>Apellidos: </th>
-                <td>{{ apellidos }}</td>
-            </tr>
+        <div class="table-responsive">
+            <table class="table-responsive table-bordered align-middle" id="tablaDatosComp">
+                <tr>
+                    <th>Nombres: </th>
+                    <td><label>{{ nombres }}</label></td>
+                </tr>
+                <tr>
+                    <th>Apellidos: </th>
+                    <td>{{ apellidos }}</td>
+                </tr>
 
-            <tr>
-                <th>Dirección: </th>
-                <td><label>{{ direccion }}</label></td>
-            </tr>
-            <tr>
-                <th>Ciudad: </th>
-                <td><label>{{ ciudad }}</label></td>
-            </tr>
-            <tr>
-                <th>Email: </th>
-                <td><label>{{ email }}</label></td>
-            </tr>
-            <tr>
-                <th>Sexo: </th>
-                <td><label>{{ sexo }}</label></td>
-            </tr>
-            <tr>
-                <th>Fecha de Nacimiento: </th>
-                <td><label>{{ fechaNacimiento }}</label></td>
-            </tr>
-            <tr>
-                <th>Categoría Actual: </th>
-                <td><label>{{ categoria }}</label></td>
-            </tr>
-        </table>
+                <tr>
+                    <th>Dirección: </th>
+                    <td><label>{{ direccion }}</label></td>
+                </tr>
+                <tr>
+                    <th>Ciudad: </th>
+                    <td><label>{{ ciudad }}</label></td>
+                </tr>
+                <tr>
+                    <th>Email: </th>
+                    <td><label>{{ email }}</label></td>
+                </tr>
+                <tr>
+                    <th>Sexo: </th>
+                    <td><label>{{ sexo }}</label></td>
+                </tr>
+                <tr>
+                    <th>Fecha de Nacimiento: </th>
+                    <td><label>{{ fechaNacimiento }}</label></td>
+                </tr>
+                <tr>
+                    <th>Categoría Actual: </th>
+                    <td><label>{{ categoria }}</label></td>
+                </tr>
+            </table>
+        </div>
 
         <br>
         <!--Selección de pruebas-->
-        <div class="container">
-            <h6 align="left"><b>Pruebas a las que se inscribe</b></h6>
-        </div>
+        
         <br>
-        <table class="table-bordered" id="tablaPruebas">
-            <tr v-for="prueba in pruebas" :key="prueba.id">
-                <td>
-                    <div>
+        <div class="table-responsive">
+            <table class="table-responsive table-bordered align-middle caption-top" id="tablaPruebas">
+                <caption><b>PRUEBAS A LAS QUE SE INSCRIBE</b></caption>
+                <tr v-for="prueba in pruebas" :key="prueba.id">
+                    <td>
+                        <div>
 
-                        <label :for="prueba.nombre">{{ prueba.nombre }}</label>
-                    </div>
-                </td>
-            </tr>
-        </table>
+                            <label :for="prueba.nombre">{{ prueba.nombre }}</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
 
+        </div>
         <br>
 
         <!--Descargo de responsabilidad-->
         <div class="form-check" id="descargoResp">
-            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-            <label class="form-check-label" for="invalidCheck">
-                Acepto voluntariamente participar en este campeonato en fecha en sede xx, bajo
+            <input class="form-check-input" type="checkbox" value="" id="descargoCheck" required>
+            <label class="form-check-label" for="invalidCheck" align="justify">
+                Al firmar acepto voluntariamente participar en este campeonato, bajo
                 las reglas WA, WMA y ASUDAMA. Eximo de toda responsabilidad a los organizadores
                 y dirigentes por lesiones, pérdidas y daños a mi persona o bienes de mi propiedad
                 que ocurran durante el desarrollo del evento, y declaro estar en buenas condiciones
@@ -116,6 +119,7 @@
 
     </div>
 </template>
+
 <script>
 import { obtenerFichaInscripcionFachada } from "@/assets/js/Competidor"
 export default {
@@ -203,10 +207,95 @@ export default {
     },
 }
 </script>
+
 <style>
 @media print {
     .btn-descarga {
         display: none;
     }
 }
+
+@media print {
+    #descargoCheck {
+        display: none;
+    }
+}
+
+#divToPrint {
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#tituloFicha {
+    background-color: #52bad1;
+    padding: 1%;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    #tablaDatosComp {
+        width: 100%;
+    }
+
+    #tablaPruebas {
+        width: 100%;
+    }
+
+    #firmas {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    #tablaDatosComp {
+        width: 80%;
+        vertical-align: middle;
+    }
+
+    #tablaPruebas {
+        width: 80%;
+        vertical-align: middle;
+    }
+
+    #firmas {
+        width: 80%;
+        vertical-align: middle;
+    }
+}
+
+#tablaDatosComp {
+    border-collapse: collapse;
+
+    th,
+    td {
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+}
+
+#tablaPruebas {
+    border-collapse: collapse;
+
+    th,
+    td {
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+}
+
+#descargoResp {
+    background-color: rgba(102, 153, 153, 0.5);
+    padding: 2.5%;
+}
+
+#descargoCheck {
+    margin-right: 5px;
+}
+
+
 </style>
