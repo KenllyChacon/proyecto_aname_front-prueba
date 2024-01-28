@@ -370,25 +370,25 @@ h2 {
 
 @media (min-width: 768px) {
   #ficha1 {
-    width: 75%
+    width: 100%
   }
 }
 
 @media (max-width: 767px) {
   #ficha1 {
-    width: 100%;
+    width: 70%;
   }
 }
 
 @media (min-width: 768px) {
   #ficha2 {
-    width: 75%
+    width: 100%
   }
 }
 
 @media (max-width: 767px) {
   #ficha2 {
-    width: 100%;
+    width: 70%;
   }
 }
 
