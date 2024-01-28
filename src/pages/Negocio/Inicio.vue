@@ -1,6 +1,6 @@
 <template>
   <!--Carrusel-->
-  <div class="container">
+  
     
     <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -51,7 +51,7 @@
         <span class="visually-hidden">Siguiente</span>
       </button>
     </div>
-  </div>
+
 
   <!--Barra navegacion-->
   <div v-if="mostrarBarra">

@@ -42,50 +42,52 @@
 
         <br>
         <!--Datos del competidor-->
-        <table class="table-responsive table-bordered">
-          <tr>
-            <th>Nombres: </th>
-            <td><label>nombresCompetidor</label></td>
-          </tr>
-          <tr>
-            <th>Apellidos: </th>
-            <td>apellidosCompetidor</td>
-          </tr>
-          <tr>
-            <th><label for="" id="labelSup">Asociación: </label></th>
-            <td>
-              <select class="form-select" aria-label="Seleccionar asociación"
-                style="background-color: #edf3f5; color: #000000;" v-model="federacion">
-                <option v-for="opcion3 in listaAsociaciones" :key="opcion3.id" :value="opcion3.id">{{ opcion3.nombre }}
-                </option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <th>Dirección: </th>
-            <td><label>direccionCompetidor</label></td>
-          </tr>
-          <tr>
-            <th>Ciudad: </th>
-            <td><label>ciudadCompetidor</label></td>
-          </tr>
-          <tr>
-            <th>Email: </th>
-            <td><label>emailCompetidor</label></td>
-          </tr>
-          <tr>
-            <th>Sexo: </th>
-            <td><label>sexoCompetidor</label></td>
-          </tr>
-          <tr>
-            <th>Fecha de Nacimiento: </th>
-            <td><label>fechaNacimientoCompetidor</label></td>
-          </tr>
-          <tr>
-            <th>Categoría Actual: </th>
-            <td><label>categoriaCompetidor</label></td>
-          </tr>
-        </table>
+        <div class="table-responsive">
+          <table class="table-responsive table-bordered" id="datosComp">
+            <tr>
+              <th>Nombres: </th>
+              <td><label>nombresCompetidor</label></td>
+            </tr>
+            <tr>
+              <th>Apellidos: </th>
+              <td>apellidosCompetidor</td>
+            </tr>
+            <tr>
+              <th><label for="" id="labelSup">Asociación: </label></th>
+              <td>
+                <select class="form-select" aria-label="Seleccionar asociación"
+                  style="background-color: #edf3f5; color: #000000;" v-model="federacion">
+                  <option v-for="opcion3 in listaAsociaciones" :key="opcion3.id" :value="opcion3.id">{{ opcion3.nombre }}
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>Dirección: </th>
+              <td><label>direccionCompetidor</label></td>
+            </tr>
+            <tr>
+              <th>Ciudad: </th>
+              <td><label>ciudadCompetidor</label></td>
+            </tr>
+            <tr>
+              <th>Email: </th>
+              <td><label>emailCompetidor</label></td>
+            </tr>
+            <tr>
+              <th>Sexo: </th>
+              <td><label>sexoCompetidor</label></td>
+            </tr>
+            <tr>
+              <th>Fecha de Nacimiento: </th>
+              <td><label>fechaNacimientoCompetidor</label></td>
+            </tr>
+            <tr>
+              <th>Categoría Actual: </th>
+              <td><label>categoriaCompetidor</label></td>
+            </tr>
+          </table>
+        </div>
 
         <br>
         <!--Selección de pruebas-->
@@ -104,7 +106,7 @@
               </div>
             </td>
           </tr>
-          
+
         </table>
         <br>
 
@@ -122,6 +124,9 @@
             Debe aceptar el descargo de responsabilidad para proseguir con la inscripción.
           </div>
         </div>
+
+        <br>
+        <button type="submit" class="btn btn-primary">Enviar</button>
       </form>
 
       <!--Líneas de firma-->
@@ -132,8 +137,8 @@
           <label>Firma del atleta</label>
         </div>
         <div class="col-sm">
-          <label>  </label>
-          <label>  </label>
+          <label> </label>
+          <label> </label>
         </div>
         <div class="col-sm">
           <br><br>
@@ -264,7 +269,7 @@ export default {
 
       console.log(this.idCampeonato)
       console.log(this.federacion)
-      console.log("Preubas: " + this.selectedPruebas)
+      console.log("Pruebas: " + this.selectedPruebas)
       const ficha = {
         email: sessionStorage.getItem("email"),
         idCampeonato: this.idCampeonato,
@@ -369,26 +374,44 @@ h2 {
 }
 
 @media (min-width: 768px) {
-  #ficha1 {
-    width: 100%
+  #formFicha {
+    width: 75%
   }
 }
 
-@media (max-width: 767px) {
-  #ficha1 {
-    width: 70%;
+@media (min-width: 320px) and (max-width: 767px) {
+  #formFicha {
+    width: 100%;
   }
 }
 
 @media (min-width: 768px) {
   #ficha2 {
-    width: 100%
+    width: 75%
   }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 320px) and (max-width: 767px) {
   #ficha2 {
-    width: 70%;
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  #firmas {
+    width: 75%
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  #firmas {
+    width: 100%;
+  }
+}
+
+@media print {
+  .btn-primary {
+    display: none;
   }
 }
 
@@ -410,7 +433,8 @@ h2 {
 }
 
 #descargoResp {
-  background-color: rgba(38, 96, 164, 0.5); /*color #2660a4 en hex, opacidad 50%*/
+  background-color: rgba(38, 96, 164, 0.5);
+  /*color #2660a4 en hex, opacidad 50%*/
   padding: 2.5%;
 }
 
@@ -418,4 +442,13 @@ h2 {
   margin-left: 5%;
   margin-right: 5%;
 }
+
+#datosComp {
+  border-collapse: collapse;
+  th, td {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+  }
+}
+
 </style>

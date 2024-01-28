@@ -12,7 +12,7 @@
     <br>
 
     
-    <div class="container" id="contAprobarInsc">
+    <div class="table-responsive" id="contAprobarInsc">
       <table class="table-responsive table-bordered bordeCaja" id="tabAprobar">
         <table>
           <thead>
