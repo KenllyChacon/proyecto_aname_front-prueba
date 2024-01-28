@@ -5,72 +5,74 @@
       <h1>FACTURA</h1>
     </header>
     <main>
-        <section class="datos-cliente">
-          <h3>Cliente</h3>
-          <ul>
-            <li>Nombre: {{ nombreCompetidor }}</li>
-            <li>Email: {{ emailCompetidor }}</li>
-          </ul>
-        </section>
-        <section class="items">
-          <table>
-            <thead>
-              <tr>
-                <th>PRUEBAS</th>
-                <th>PRECIO</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="l in pruebas3" :key="l">
-                <td>{{ l.nombre }}</td>
-                <td><p>$5</p></td>
-              </tr>
-              <tr v-for="li in pruebasRes" :key="li">
-                <td>{{ li.nombre }}</td>
-                <td><p>$10</p></td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-        <section class="totales">
-          <ul>
-            <li>TOTAL: {{ total }}</li>
-          </ul>
-        </section>
-        <section class="informacion-pago">
-          <h3>Información para el pago</h3>
-          <ul>
-            <li>
-              <label for="banco">Institución financiera: Banco Pichincha</label>
-            </li>
-            <li>
-              <label for="titular-cuenta"
-                >Nombre del titular: Cristhian Cedeño</label
-              >
-            </li>
-            <li>
-              <label for="numero-cuenta">Número de cuenta: 2204446646</label>
-            </li>
-          </ul>
-        </section>
-          <table>
+      <section class="datos-cliente">
+        <h3>Cliente</h3>
+        <ul>
+          <li>Nombre: {{ nombreCompetidor }}</li>
+          <li>Email: {{ emailCompetidor }}</li>
+        </ul>
+      </section>
+      <section class="items">
+        <table>
+          <thead>
             <tr>
+              <th>PRUEBAS</th>
+              <th>PRECIO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(l, index) in pruebas3" :key="l">
+              <td>{{ l.nombre }}</td>
               <td>
-                <button type="" class="" @click="printDiv()">Descargar</button>
+                <!-- Contenido de la segunda columna -->
+                <p v-if="index === 1" rowspan="3">{{ costoNoSocio }}</p>
+                <p v-else>{{ l.precio }}</p>
               </td>
             </tr>
-          </table>
-      </main>
+            <tr v-for="li in pruebasRes" :key="li">
+              <td>{{ li.nombre }}</td>
+              <td>
+                <!-- Contenido de la segunda columna para pruebas adicionales -->
+                <p>{{ costoPruebaAdicional }}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="totales">
+        <ul>
+          <li>TOTAL: {{ total }}</li>
+        </ul>
+      </section>
+      <section class="informacion-pago">
+        <h3>Información para el pago</h3>
+        <ul>
+          <li>
+            <label for="banco">Institución financiera: {{ institucionFinanciera }}</label>
+          </li>
+          <li>
+            <label for="titular-cuenta">Nombre del titular: {{ titularCuenta }}</label>
+          </li>
+          <li>
+            <label for="numero-cuenta">Número de cuenta: {{ cuentaBancaria }}</label>
+          </li>
+        </ul>
+      </section>
+      <table>
+        <tr>
+          <td>
+            <button type="" class="btn-descarga" @click="printDiv()">Descargar</button>
+          </td>
+        </tr>
+      </table>
+    </main>
   </div>
 </template>
 
 <script>
 import jsPDF from "jspdf";
-import {
-  campIncritosUsersP,
-  campIncritosUserEmailP,
-} from "@/assets/js/campeonato";
 
+import { obtenerCompetidorPorUseryCampFachada, obtenerPreciosPorCampFachada } from "@/assets/js/Competidor"
 export default {
   data() {
     return {
@@ -79,10 +81,15 @@ export default {
       pruebas3: [],
       pruebasRes: [],
       total: null,
-      listaCompetidor: [],
       listaCampInscritosUserEmail: [],
       listaPruebas: [],
-      campEncontrado: [],
+      compEncontrado: null,
+      costoSocio: null,
+      costoNoSocio: null,
+      costoPruebaAdicional: null,
+      cuentaBancaria: null,
+      titularCuenta: null,
+      institucionFinanciera: null,
     };
   },
   props: {
@@ -91,95 +98,89 @@ export default {
       required: true,
     },
   },
+
+  async mounted() {
+
+    this.obtenerPreciosCamp();
+    this.asignarValores();
+  },
   methods: {
     descargar() {
- var doc = new jsPDF("p", "pt", "A4");
- var margins = 0;
- console.log("entrada sexy");
- var scale =
-    (doc.internal.pageSize.width - margins * 2) / document.body.scrollWidth;
- doc.html(this.$refs.content, {
-    x: margins,
-    y: margins,
-    html2canvas: {
-      scale: scale,
+      var doc = new jsPDF("p", "pt", "A4");
+      var margins = 0;
+      console.log("entrada sexy");
+      var scale =
+        (doc.internal.pageSize.width - margins * 2) / document.body.scrollWidth;
+      doc.html(this.$refs.content, {
+        x: margins,
+        y: margins,
+        html2canvas: {
+          scale: scale,
+        },
+        callback: function (doc) {
+          doc.output("dataurlnewwindow", { filename: "fichero-pdf.pdf" });
+        },
+      });
+
+      // Usa 'margins' en lugar de 'this.margins'
+      doc.fromHTML(this.$refs.content, margins, margins, {
+        width: margins,
+      });
+      doc.save("Comprobante.pdf");
     },
-    callback: function (doc) {
-      doc.output("dataurlnewwindow", { filename: "fichero-pdf.pdf" });
+    printDiv() {
+
+      console.log("Alo");
+
+      // Obtén el div que quieres imprimir
+      const printDiv = document.getElementById('divToPrint');
+
+      // Guarda el contenido original de la página
+      const originalContent = document.body.innerHTML;
+
+      // Reemplaza el cuerpo de la página con el contenido del div que quieres imprimir
+      document.body.innerHTML = printDiv.innerHTML;
+
+      // Abre el cuadro de diálogo de impresión
+      window.print();
+
+      // Restaura el contenido original de la página
+      document.body.innerHTML = originalContent;
     },
- });
 
- // Usa 'margins' en lugar de 'this.margins'
- doc.fromHTML(this.$refs.content, margins, margins, {
-    width: margins,
- });
- doc.save("Comprobante.pdf");
-},
-printDiv() {
-  console.log("Alo");
-  
- // Obtén el div que quieres imprimir
- const printDiv = document.getElementById('divToPrint');
+    async obtenerPreciosCamp() {
+      const { costoSocio,
+        costoNoSocio,
+        costoPruebaAdicional,
+        cuentaBancaria,
+        titularCuenta,
+        institucionFinanciera } = await obtenerPreciosPorCampFachada(this.idCampeonato)
 
- // Guarda el contenido original de la página
- const originalContent = document.body.innerHTML;
-
- // Reemplaza el cuerpo de la página con el contenido del div que quieres imprimir
- document.body.innerHTML = printDiv.innerHTML;
-
- // Abre el cuadro de diálogo de impresión
- window.print();
-
- // Restaura el contenido original de la página
- document.body.innerHTML = originalContent;
-},
+      this.costoNoSocio = costoNoSocio
+      this.costoPruebaAdicional = costoPruebaAdicional
+      this.costoSocio = costoSocio
+      this.cuentaBancaria = cuentaBancaria
+      this.titularCuenta = titularCuenta
+      this.institucionFinanciera = institucionFinanciera
+    },
 
 
     async asignarValores() {
-      this.listaCompetidor = await campIncritosUsersP(
-        sessionStorage.getItem("email")
-      );
-      this.listaCampInscritosUserEmail = await campIncritosUserEmailP(
-        sessionStorage.getItem("email")
-      );
-      this.nombreCompetidor = this.listaCampInscritosUserEmail[0].nombres;
 
-      console.log("Id: " + this.idCampeonato);
+      //this.idCampeonato = Number(this.idCampeonato)
+      console.log(this.idCampeonato)
+      const { nombres, apellidos, pruebas } = await obtenerCompetidorPorUseryCampFachada(this.idCampeonato, sessionStorage.getItem("email"))
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+      console.log("competidor: " + pruebas)
+      this.nombreCompetidor = nombres + " " + apellidos;
+      this.listaPruebas = pruebas;
+      console.log("Lista de pruebas asignada:", this.listaPruebas);
 
-
-      // Verificar si this.listaCampInscritosUserEmail existe
-      console.log("Tipo de this.idCampeonato:", typeof this.idCampeonato);
-      console.log("Valor de this.idCampeonato:", this.idCampeonato);
-
-      // Convertir this.idCampeonato a número si es necesario
-      const idCampeonatoBuscado = Number(this.idCampeonato);
-
-      console.log("Tipo de idCampeonatoBuscado:", typeof idCampeonatoBuscado);
-      console.log("Valor de idCampeonatoBuscado:", idCampeonatoBuscado);
-
-      // Buscar el campeonato que coincide con idCampeonato
-      const campeonatoEncontrado = this.listaCampInscritosUserEmail.find(
-        (campeonato) => campeonato.idCampeonato === idCampeonatoBuscado
-      );
-      console.log("Campeonato encontrado:", campeonatoEncontrado);
-
-      if (campeonatoEncontrado) {
-        // Asignar las pruebas correspondientes a this.listaPruebas
-        this.listaPruebas = campeonatoEncontrado.pruebas;
-        console.log("Lista de pruebas asignada:", this.listaPruebas);
-      } else {
-        // Manejar el caso en el que no existe el campeonato
-        console.error("El campeonato no existe o no está inscrito");
-        // Opcional: Mostrar una alerta o realizar acciones adicionales según tus necesidades
-      }
-
-
-      ////////////////////////////////////////////////////////////////
       console.log(this.listaPruebas);
       this.random();
       console.log("Lista 3: " + this.pruebas3.length);
+
+
     },
     cerrar() {
       window.close();
@@ -194,23 +195,26 @@ printDiv() {
         // Si listaPruebas tiene 3 o menos elementos, asegurarse de que pruebasRes esté vacío
         this.pruebasRes = [];
       }
-      if(this.pruebasRes > 1){
-        this.total = this.pruebas3.length*5
-      }else{
-        this.total = (this.pruebas3.length*5)+(this.pruebasRes.length*10)
+      if (!this.pruebasRes.length >= 1) {
+        this.total = this.costoNoSocio
+      } else {
+        this.total = this.costoNoSocio + (this.pruebasRes.length * this.costoPruebaAdicional)
       }
     },
   },
-  async mounted() {
-    //setTimeout(this.cerrar, 1560)
-    //this.descargar()
-    this.asignarValores();
-  },
+
+
 };
 </script>
 
 
 <style scoped>
+@media print {
+  .btn-descarga {
+    display: none;
+  }
+}
+
 .factura {
   width: 800px;
   margin: 0 auto;

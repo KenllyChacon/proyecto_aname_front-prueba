@@ -78,13 +78,13 @@
           </table>
           
             <br>
-            <p align="justify">El valor de la inscripción hasta por 3 pruebas individuales es de $15 para socios
+            <!--<p align="justify">El valor de la inscripción hasta por 3 pruebas individuales es de $15 para socios
               y de $25 para no socios. Cada prueba individual adicional tendrá un costo de 10 doláres.
               El Pentatlon no se considera como una prueba individual y tendrá un costo de 10 dólares.
               Las postas no tendrán costo adicional, pero deben ser enviadas dentro del formato de inscripción,
               especificando integrantes y categorías. No se permitirá equipos conformados por atletas de varias
               provincias.
-            </p>
+            </p>-->
             <button type="submit" class="btn btn-primary">Enviar</button>
           </form>
         </div>
@@ -110,7 +110,7 @@
             </thead>
             <tbody>
               <tr v-for="c in listaCampInscritosUserEmail" :key="c">
-                <td>{{ getNombreCampeonato(c.idCampeonato) }}</td>
+                <td>{{ c.nombreCampeonato }}</td>
                 <td><a @click="imprimirComprobante(c.idCampeonato)">Descargar comprobante</a></td>
                 <td><a href="" download>Descargar ficha de inscripción</a></td>
                 <td>
@@ -203,26 +203,7 @@ export default {
       this.listaCampInscritosUserEmail = await campIncritosUserEmailP(sessionStorage.getItem("email"))
       console.log(this.listaCampInscritosUserEmail)
     },
-   /* async listarCampInscritosUser(){
-      this.listaCampInscritosUser = await campIncritosUsersP(sessionStorage.getItem("email"))
-      console.log(this.listaCampInscritosUser);
-    },
-    getNombrePrueba(pruebaID){
-      const prueba = this.listaPruebas.find(prueba => prueba.id === pruebaID);
-      return prueba ? prueba.nombre : 'Nombre no econtrado';
-    },*/
-    getNombreCampeonato(campeonatoID){
-      const campeonatoId = this.listaCampeonatos.find(campeonatoId => campeonatoId.id === campeonatoID);
-      return campeonatoId ? campeonatoId.nombre : 'Nombre no econtrado';
-    },
-    /*cambiarPruebas(){
-      const pruebaIDs = this.listaCampeonatos.find(campeonato => campeonato.id === this.idCampeonato)?.pruebas || [];
-
-      this.pruebasDelCampeonato = pruebaIDs.filter(pruebaId => this.listaPruebas.some(prueba => prueba.id === pruebaId))
-
-      
-    },*/
-
+   
     async inscribirse(){
 
       console.log(this.idCampeonato)

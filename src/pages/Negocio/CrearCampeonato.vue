@@ -56,7 +56,15 @@
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Cuenta Bancaria</label></td>
-                <td><input class="form-control" v-model="cuentaBancaria" required type="text" placeholder="XXXXXX-BANCO-TIPOCUENTA"></td>
+                <td><input class="form-control" v-model="cuentaBancaria" required type="text" ></td>
+            </tr>
+            <tr>
+                <td><label for="" id="labelSup">Institucion Financiera</label></td>
+                <td><input class="form-control" v-model="institucionF" required type="text"></td>
+            </tr>
+            <tr>
+                <td><label for="" id="labelSup">Titular de Cuenta Bancaria</label></td>
+                <td><input class="form-control" v-model="titularCuenta" required type="text"></td>
             </tr>
         </table>
 
@@ -69,7 +77,7 @@
                     <div class="opciones-container">
                         <div v-for="opcion in listaPruebas" :key="opcion" class="opcion-item">
                             <input type="checkbox" :id="opcion" :value="opcion.id" v-model="seleccionadas">
-                            <label :for="opcion">{{ opcion.nombre }}</label>
+                            <label>{{ opcion.nombre }}</label>
                         </div>
                     </div>
                 </td>
@@ -114,7 +122,9 @@ export default {
             costNoSoc: null,
             costPAdic: null,
             asociacion:null,
-            cuentaBancaria:null
+            cuentaBancaria:null,
+            institucionF:null,
+            titularCuenta:null,
 
         }
     },
@@ -134,8 +144,7 @@ export default {
 ;        },
 
         async insertar() {
-            console.log(this.seleccionadas);
-            console.log(sessionStorage.getItem('token'));
+            console.log(this.titularCuenta + " " + this.institucionF);
             const campeonato = {
                 nombre: this.nombre,
                 organizador: this.organizador,
@@ -146,11 +155,15 @@ export default {
                 inscripcionFin: this.fFinI,
                 pruebas: this.seleccionadas,
                 costoSocio: this.costoSoc,
-                costoNoSocio:this.costoNoSocio,
+                costoNoSocio:this.costNoSoc,
                 costoPruebaAdicional: this.costPAdic,
                 cuentaBancaria:this.cuentaBancaria,
-                idAsociacion: this.asociacion
+                institucionFinanciera:this.institucionF,
+                titularCuenta:this.titularCuenta,
+                idAsociacion: this.asociacion,
             }
+
+            console.log(campeonato)
 
             await CrearCampeonatoP(campeonato);
             this.nombre = null,
