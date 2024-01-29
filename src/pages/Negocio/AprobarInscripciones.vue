@@ -1,6 +1,11 @@
 <template>
   <!--Barra navegacion-->
-  <BarraNav />
+  <div v-if="mostrarBarra">
+    <BarraNav />
+  </div>
+  <div v-else>
+    <BarraNavPro/>
+  </div>
 
   <h2 class="fw-bold">Aprobar Inscripciones</h2>
 
@@ -74,6 +79,7 @@ import BarraNav from "@/components/BarraNav.vue";
 import { campIncritosP, VerCampeonatosP } from "@/assets/js/campeonato";
 import { confirmarPagoFachada, negarPagoFachada, aprobarInscripcionFachada, confirmarInscripcionFachada, negarInscripcionFachada } from "@/assets/js/Competidor"
 import { cargaArchivosFachada } from "@/assets/js/Archivo"
+import BarraNavPro from "@/components/BarraNavPro.vue";
 
 
 export default {
@@ -90,6 +96,7 @@ export default {
     };
   },
   components: {
+    BarraNavPro,
     PiePagina,
     BarraNav,
   },

@@ -15,9 +15,7 @@
           <li class="nav-item">
             <router-link to="/ficha" class="nav-link">Inscripción</router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/aprobarInscripciones" class="nav-link">Aprobar Inscripciones</router-link>
-          </li>
+
         </ul>
         <div v-if="!mostrar" class="float-end">
           <router-link to="/login" class="btn btn-dark">Iniciar Sesión</router-link>

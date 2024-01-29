@@ -1,6 +1,11 @@
 <template>
   <!--Barra navegacion-->
-  <BarraNav />
+  <div v-if="mostrarBarra">
+    <BarraNav />
+  </div>
+  <div v-else>
+    <BarraNavPro/>
+  </div>
 
 
 
@@ -24,6 +29,7 @@ import BarraNav from "@/components/BarraNav.vue";
 import router from "@/router/index";
 import { listarPruebasFachada } from "@/assets/js/Prueba";
 import {InscribirseCampeonatoP} from "@/assets/js/campeonato.js"
+import BarraNavPro from "@/components/BarraNavPro.vue";
 
 
 
@@ -37,6 +43,7 @@ export default {
   },
   methods: {},
   components: {
+    BarraNavPro,
     PiePagina,
     BarraNav,
   },

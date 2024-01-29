@@ -1,5 +1,11 @@
 <template>
+  <!--Barra navegacion-->
+  <div v-if="mostrarBarra">
     <BarraNav />
+  </div>
+  <div v-else>
+    <BarraNavPro/>
+  </div>
     <!-- <br> -->
     <h2>Crear Campeonato</h2>
     <!-- <br> -->
@@ -99,10 +105,12 @@ import PiePagina from "@/components/PiePagina.vue";
 import { CrearCampeonatoP, listaAsociacionesFachada } from "@/assets/js/campeonato.js"
 import { listarPruebasFachada } from '@/assets/js/Prueba';
 import router from '@/router';
+import BarraNavPro from "@/components/BarraNavPro.vue";
 
 
 export default {
     components: {
+      BarraNavPro,
         BarraNav,
         PiePagina
     },

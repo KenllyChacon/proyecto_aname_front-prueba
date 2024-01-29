@@ -1,6 +1,11 @@
 <template>
-    <!--Barra navegacion-->
+  <!--Barra navegacion-->
+  <div v-if="mostrarBarra">
     <BarraNav />
+  </div>
+  <div v-else>
+    <BarraNavPro/>
+  </div>
 
     <div class="container">
         <h2 class="fw-bold">Campeonatos</h2>
@@ -57,11 +62,13 @@
 <script>
 import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
+import BarraNavPro from "@/components/BarraNavPro.vue";
 
 
 export default {
     name: "CampeonatoCompetidor",
     components: {
+      BarraNavPro,
         PiePagina,
         BarraNav,
     },

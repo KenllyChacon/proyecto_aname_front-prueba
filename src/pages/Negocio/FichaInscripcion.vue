@@ -1,6 +1,11 @@
 <template>
   <!--Barra navegacion-->
-  <BarraNav />
+  <div v-if="mostrarBarra">
+    <BarraNav />
+  </div>
+  <div v-else>
+    <BarraNavPro/>
+  </div>
   <div>
     <!--Pestañas-->
     <ul class="nav nav-tabs">
@@ -162,6 +167,7 @@ import { listarCampeonatosDisponiblesFachada, InscribirseCampeonatoP, campIncrit
 import { listarPruebasPorCampFachada } from "@/assets/js/Prueba";
 import { listaAsociacionesCompetidorFachada, registrarPagoFachada, registrarFichaFachada } from "@/assets/js/Competidor"
 import { cargaArchivosFachada } from "@/assets/js/Archivo"
+import BarraNavPro from "@/components/BarraNavPro.vue";
 
 export default {
   data() {
@@ -183,6 +189,7 @@ export default {
     };
   },
   components: {
+    BarraNavPro,
     PiePagina,
     BarraNav,
   },
