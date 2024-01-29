@@ -93,6 +93,7 @@ export default {
       listaCampeonatos: [],
       fichaFirmadaRes: null,
       fichaFirmada: null,
+      mostrarBarra: true
     };
   },
   components: {
@@ -101,8 +102,11 @@ export default {
     BarraNav,
   },
   mounted() {
-    this.listarCampeonatos()
-
+    this.listarCampeonatos();
+    if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
+      console.log("id: " + sessionStorage.getItem("id"))
+      this.mostrarBarra = false;
+    }
   },
   methods: {
 

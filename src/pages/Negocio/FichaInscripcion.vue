@@ -1,7 +1,7 @@
 <template>
   <!--Barra navegacion-->
   <div v-if="mostrarBarra">
-    <BarraNav />
+    <BarraNav/>
   </div>
   <div v-else>
     <BarraNavPro/>
@@ -39,11 +39,13 @@
               <table class="table-responsive table-striped">
                 <tr>
                   <td><label for="" id="labelSup">Federación: </label></td>
-                  <td> <select class="form-select" aria-label="Seleccionar campeonato"
-                      style="background-color: #edf3f5; color: #000000;" v-model="federacion">
-                      <option v-for="opcion3 in listaAsociaciones" :key="opcion3.id" :value="opcion3.id">{{ opcion3.nombre
-                      }}</option>
-                    </select></td>
+                  <td><select class="form-select" aria-label="Seleccionar campeonato"
+                              style="background-color: #edf3f5; color: #000000;" v-model="federacion">
+                    <option v-for="opcion3 in listaAsociaciones" :key="opcion3.id" :value="opcion3.id">{{
+                        opcion3.nombre
+                      }}
+                    </option>
+                  </select></td>
                 </tr>
               </table>
             </div>
@@ -56,8 +58,8 @@
             <br>
             <div>
               <select class="form-select" aria-label="Seleccionar campeonato"
-                style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato"
-                @change="listarPruebasDelCampeonato">
+                      style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato"
+                      @change="listarPruebasDelCampeonato">
                 <option v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id">{{ opcion.nombre }}
                 </option>
               </select>
@@ -107,47 +109,47 @@
         <div class="table-responsive-sm" id="tabla3">
           <table class="table table-bordered table-responsive">
             <thead>
-              <tr>
-                <th scope="col" id="encabezadoCamp">Campeonato</th>
-                <th scope="col" id="encabezadoCamp">Comprobante de pago</th>
-                <th scope="col" id="encabezadoCamp">Ficha de inscripción</th>
-                <th scope="col" id="encabezadoCamp">Pago realizado</th>
-                <th scope="col" id="encabezadoCamp">Ficha de inscripción firmada</th>
-                <th scope="col" id="encabezadoCamp">Estado</th>
-              </tr>
+            <tr>
+              <th scope="col" id="encabezadoCamp">Campeonato</th>
+              <th scope="col" id="encabezadoCamp">Comprobante de pago</th>
+              <th scope="col" id="encabezadoCamp">Ficha de inscripción</th>
+              <th scope="col" id="encabezadoCamp">Pago realizado</th>
+              <th scope="col" id="encabezadoCamp">Ficha de inscripción firmada</th>
+              <th scope="col" id="encabezadoCamp">Estado</th>
+            </tr>
             </thead>
             <tbody>
-              <tr v-for="c in listaCampInscritosUserEmail" :key="c">
-                <td>{{ c.nombreCampeonato }}</td>
-                <td><a @click="imprimirComprobante(c.idCampeonato)">Descargar comprobante</a></td>
-                <td><a @click="descargarFicha(c.id)">Descargar Ficha de Inscripción</a></td>
-                <td>
-                  <form enctype="multipart/form-data">
-                    <div class="form-group">
-                      <label class="colorTexto fw-bold"> Subir comprobante de pago:</label>
-                      <input type="file" @change="pagoComprobante" accept="application/pdf" class="form-control-file">
-                    </div>
-                    <br>
-                    <button type="submit" class="btn btn-primary" @click="enviarPago(c.id)">Enviar</button>
-                  </form>
-                </td>
-                <td>
-                  <form enctype="multipart/form-data">
-                    <div class="form-group">
-                      <label class="colorTexto fw-bold"> Subir ficha de inscripción firmada:</label>
-                      <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">
-                    </div>
-                    <br>
-                    <button type="submit" class="btn btn-primary" @click="enviarFicha(c.id)">Enviar</button>
-                    <!-- <input type="submit" value="Enviar" /> -->
-                  </form>
-                </td>
-                <td>
-                  <div>
-                    <label class="fw-bold" for="estado">{{ c.estadoParticipacion }}</label>
+            <tr v-for="c in listaCampInscritosUserEmail" :key="c">
+              <td>{{ c.nombreCampeonato }}</td>
+              <td><a @click="imprimirComprobante(c.idCampeonato)">Descargar comprobante</a></td>
+              <td><a @click="descargarFicha(c.id)">Descargar Ficha de Inscripción</a></td>
+              <td>
+                <form enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label class="colorTexto fw-bold"> Subir comprobante de pago:</label>
+                    <input type="file" @change="pagoComprobante" accept="application/pdf" class="form-control-file">
                   </div>
-                </td>
-              </tr>
+                  <br>
+                  <button type="submit" class="btn btn-primary" @click="enviarPago(c.id)">Enviar</button>
+                </form>
+              </td>
+              <td>
+                <form enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label class="colorTexto fw-bold"> Subir ficha de inscripción firmada:</label>
+                    <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">
+                  </div>
+                  <br>
+                  <button type="submit" class="btn btn-primary" @click="enviarFicha(c.id)">Enviar</button>
+                  <!-- <input type="submit" value="Enviar" /> -->
+                </form>
+              </td>
+              <td>
+                <div>
+                  <label class="fw-bold" for="estado">{{ c.estadoParticipacion }}</label>
+                </div>
+              </td>
+            </tr>
             </tbody>
           </table>
         </div>
@@ -157,16 +159,21 @@
   </div>
 
   <!-- Pie de página -->
-  <PiePagina />
+  <PiePagina/>
 </template>
 
 <script>
 import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
-import { listarCampeonatosDisponiblesFachada, InscribirseCampeonatoP, campIncritosUsersP, campIncritosUserEmailP } from "@/assets/js/campeonato";
-import { listarPruebasPorCampFachada } from "@/assets/js/Prueba";
-import { listaAsociacionesCompetidorFachada, registrarPagoFachada, registrarFichaFachada } from "@/assets/js/Competidor"
-import { cargaArchivosFachada } from "@/assets/js/Archivo"
+import {
+  listarCampeonatosDisponiblesFachada,
+  InscribirseCampeonatoP,
+  campIncritosUsersP,
+  campIncritosUserEmailP
+} from "@/assets/js/campeonato";
+import {listarPruebasPorCampFachada} from "@/assets/js/Prueba";
+import {listaAsociacionesCompetidorFachada, registrarPagoFachada, registrarFichaFachada} from "@/assets/js/Competidor"
+import {cargaArchivosFachada} from "@/assets/js/Archivo"
 import BarraNavPro from "@/components/BarraNavPro.vue";
 
 export default {
@@ -185,7 +192,8 @@ export default {
       comprobantePago: null,
       comprobantePagoRes: null,
       fichaInscripcion: null,
-      fichaInscripcionRes: null
+      fichaInscripcionRes: null,
+      mostrarBarra: true
     };
   },
   components: {
@@ -195,8 +203,13 @@ export default {
   },
   mounted() {
     this.listarCampeonatos(),
-      this.listarAsociaciones(),
-      this.listarCampInscritosUserEmail()
+        this.listarAsociaciones(),
+        this.listarCampInscritosUserEmail(),
+        console.log("ROL INICIO" + sessionStorage.getItem("rol"))
+    if (sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
+      console.log("id: " + sessionStorage.getItem("id"))
+      this.mostrarBarra = false;
+    }
   },
 
   methods: {
@@ -264,7 +277,6 @@ export default {
         } catch (error) {
           alert('No se pudo enviar el pago');
         }
-
 
 
         this.comprobantePago = null
@@ -343,21 +355,19 @@ export default {
       this.selectedTab = "tab2"
 
 
-
     },
 
     imprimirComprobante(idCampeonatos) {
       //let route = 
-      this.$router.push({ name: 'comprobanteImprimir', params: { idCampeonato: idCampeonatos } })
+      this.$router.push({name: 'comprobanteImprimir', params: {idCampeonato: idCampeonatos}})
       //window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
     },
     descargarFicha(id) {
       //let route = 
-      this.$router.push({ name: 'fichaInscripcion', params: { idCompetidor: id } })
+      this.$router.push({name: 'fichaInscripcion', params: {idCompetidor: id}})
       //window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
     }
   },
-
 
 
 };

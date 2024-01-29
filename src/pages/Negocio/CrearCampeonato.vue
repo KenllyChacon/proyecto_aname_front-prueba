@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <td><label for="" id="labelSup">Federación que Organiza: </label></td>
-                <td> <select class="form-select" aria-label="Seleccionar federación" style="background-color: #edf3f5; color: #000000;" 
+                <td> <select class="form-select" aria-label="Seleccionar federación" style="background-color: #edf3f5; color: #000000;"
                     v-model="asociacion"> <option v-for="a in asociaciones" v-bind:key="a.id" :value="a.id">
                         {{ a.nombre }}
                     </option>
@@ -133,7 +133,7 @@ export default {
             cuentaBancaria:null,
             institucionF:null,
             titularCuenta:null,
-
+          mostrarBarra: true
         }
     },
 
@@ -142,6 +142,10 @@ export default {
             console.log("Mounted*********")
             this.listarAsociaciones();
             this.listarPruebas();
+          if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
+            console.log("id: " + sessionStorage.getItem("id"))
+            this.mostrarBarra = false;
+          }
         } ,
    methods: {
 
