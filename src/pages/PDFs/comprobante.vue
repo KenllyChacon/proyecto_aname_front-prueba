@@ -2,69 +2,89 @@
 <template>
   <div class="factura" id="divToPrint">
     <header>
-      <h1>FACTURA</h1>
+      <img src="@/assets/img/logofin.png" alt="" width="40" height="40" align="left">
+      <h1 align="left">FACTURA</h1>
     </header>
+    <br>
+
     <main>
-      <section class="datos-cliente">
-        <h3>Cliente</h3>
-        <ul>
-          <li>Nombre: {{ nombreCompetidor }}</li>
-          <li>Email: {{ emailCompetidor }}</li>
-        </ul>
-      </section>
-      <section class="items">
-        <table>
-          <thead>
+      <section id="datos-cliente">
+        <h5 align="left" color="#1a1c1c">CLIENTE</h5>
+
+        <div class="table-responsive">
+          <table class="table-responsive table-borderless align-middle" id="tablaDatosCliente">
             <tr>
-              <th>PRUEBAS</th>
-              <th>PRECIO</th>
+              <th>Nombres: </th>
+              <td><label>{{ nombreCompetidor }}</label></td>
             </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(l, index) in pruebas3" :key="l">
-              <td>{{ l.nombre }}</td>
-              <td>
-                <!-- Contenido de la segunda columna -->
-                <p v-if="index === 1" rowspan="3">{{ costoNoSocio }}</p>
-                <p v-else>{{ l.precio }}</p>
-              </td>
+            <tr>
+              <th>E-mail: </th>
+              <td><label>{{ emailCompetidor }}</label></td>
             </tr>
-            <tr v-for="li in pruebasRes" :key="li">
-              <td>{{ li.nombre }}</td>
-              <td>
-                <!-- Contenido de la segunda columna para pruebas adicionales -->
-                <p>{{ costoPruebaAdicional }}</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          </table>
+        </div>
       </section>
-      <section class="totales">
-        <ul>
-          <li>TOTAL: {{ total }}</li>
-        </ul>
+
+
+      <section id="items" vertical-align="middle">
+        <h5 align="left" color="#1a1c1c">DETALLE</h5>
+        <div class="table-responsive" >
+          <table class="table table-responsive table-borderless align-middle" id="tablaDetalle">
+            <thead>
+              <tr>
+                <th>PRUEBAS</th>
+                <th>PRECIO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(l, index) in pruebas3" :key="l">
+                <td>{{ l.nombre }}</td>
+                <td >
+                  <!-- Contenido de la segunda columna -->
+                  <p v-if="index === 1" rowspan="3">{{ costoNoSocio }}</p>
+                  <p v-else>{{ l.precio }}</p>
+                </td>
+              </tr>
+              <tr v-for="li in pruebasRes" :key="li">
+                <td>{{ li.nombre }}</td>
+                <td>
+                  <!-- Contenido de la segunda columna para pruebas adicionales -->
+                  <p>{{ costoPruebaAdicional }}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
-      <section class="informacion-pago">
-        <h3>Información para el pago</h3>
-        <ul>
-          <li>
-            <label for="banco">Institución financiera: {{ institucionFinanciera }}</label>
-          </li>
-          <li>
-            <label for="titular-cuenta">Nombre del titular: {{ titularCuenta }}</label>
-          </li>
-          <li>
-            <label for="numero-cuenta">Número de cuenta: {{ cuentaBancaria }}</label>
-          </li>
-        </ul>
+
+
+
+      <section id="totales">
+        <div class="container" id="contenedorTotales">
+          <label>TOTAL A PAGAR: ${{ total }}</label>
+        </div>
       </section>
-      <table>
-        <tr>
-          <td>
-            <button type="" class="btn-descarga" @click="printDiv()">Descargar</button>
-          </td>
-        </tr>
-      </table>
+      <br>
+
+      <section id="informacion-pago" vertical-align="middle">
+        <label><b>Información para el pago</b></label>
+        <br>
+        <label for="banco">Institución financiera: {{ institucionFinanciera }}</label><br>
+        <label for="titular-cuenta">Nombre del titular: {{ titularCuenta }}</label><br>
+        <label for="numero-cuenta">Número de cuenta: {{ cuentaBancaria }}</label><br>
+      </section>
+      <br>
+
+      <!--Botón de descarga-->
+      <div class="container" vertical-align="middle">
+        <button class="btn btn-primary rounded" id="btn-descarga" @click="printDiv()">Descargar</button>
+      </div>
+      <br>
+
+      <!--Botón de regresar-->
+      <div class="container" vertical-align="middle">
+        <a href="/ficha"><button class="btn btn-primary rounded" id="btn-regresar">Regresar</button></a>
+      </div>
     </main>
   </div>
 </template>
@@ -73,8 +93,10 @@
 import jsPDF from "jspdf";
 
 import { obtenerCompetidorPorUseryCampFachada, obtenerPreciosPorCampFachada } from "@/assets/js/Competidor"
+import "@/router/index.js"
 export default {
   data() {
+
     return {
       nombreCompetidor: null,
       emailCompetidor: sessionStorage.getItem("email"),
@@ -104,6 +126,8 @@ export default {
     this.obtenerPreciosCamp();
     this.asignarValores();
   },
+
+
   methods: {
     descargar() {
       var doc = new jsPDF("p", "pt", "A4");
@@ -127,6 +151,11 @@ export default {
       });
       doc.save("Comprobante.pdf");
     },
+    /*
+        goBack() {
+          window.history.pushState({}, '', document.referrer);
+        },*/
+
     printDiv() {
 
       console.log("Alo");
@@ -209,52 +238,94 @@ export default {
 
 <style scoped>
 @media print {
-  .btn-descarga {
+  #btn-descarga {
     display: none;
   }
+
+  #btn-regresar {
+    display: none;
+  }
+}
+
+.btn-primary.active {
+  background-color: #1a1c1c;
+  /* Color de fondo del botón activo */
+  border-color: #2a2b2e;
+  /*Color de borde del botón activo*/
+}
+
+.btn-primary:not(.active) {
+  background-color: #003153;
+  /* Color de fondo del botón inactivo */
+  border-color: #003153;
+  /*Color de borde del botón inactivo*/
+  color: #edf3f5;
 }
 
 .factura {
   width: 800px;
   margin: 0 auto;
-  border: 1px solid #ccc;
+  /*border: 1px solid #1a1a1c;*/
   padding: 20px;
 }
 
 header {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  /*justify-content: space-between;*/
+  padding: 20px;
+  background-color: #52bad1;
 }
 
 h1 {
   font-size: 2em;
 }
 
-h2 {
-  font-size: 1.5em;
-}
-
-.datos-cliente {
+#datos-cliente {
   margin-bottom: 20px;
 }
 
-.items {
+#items {
   margin-bottom: 20px;
 }
 
-table {
+#tablaDatosCliente {
   width: 100%;
   border-collapse: collapse;
+  background-color: rgba(102, 153, 153, 0.5);
+
+  th,
+  td {
+    padding: 10px;
+  }
+
 }
 
-th,
-td {
-  border: 1px solid #ccc;
-  padding: 10px;
+#tablaDetalle {
+  border-collapse: collapse;
+  
+
+  th {
+    background-color: rgba(102, 153, 153, 0.5);
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
 }
 
-.totales {
+
+#totales {
+  background-color: #eeb902;
   margin-bottom: 20px;
+}
+
+#informacion-pago {
+  background-color: #edf3f5;
+  padding: 2%;
+}
+
+#contenedorTotales {
+  padding: 2%;
 }
 </style>

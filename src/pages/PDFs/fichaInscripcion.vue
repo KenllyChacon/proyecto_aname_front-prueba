@@ -57,7 +57,7 @@
 
         <br>
         <!--Selección de pruebas-->
-        
+
         <br>
         <div class="table-responsive">
             <table class="table-responsive table-bordered align-middle caption-top" id="tablaPruebas">
@@ -108,20 +108,25 @@
                 <label>Firma del administrador</label>
             </div>
         </div>
-        <table>
-            <tr>
-                <td>
-                    <button type="" class="btn-descarga" @click="printDiv()">Descargar</button>
-                </td>
-            </tr>
-        </table>
+        <br>
 
+        <!--Botón de descarga-->
+        <div class="container" vertical-align="middle">
+            <button class="btn btn-primary rounded" id="btn-descarga" @click="printDiv()">Descargar</button>
+        </div>
+        <br>
+
+        <!--Botón de regresar-->
+      <div class="container" vertical-align="middle">
+        <a href="/ficha"><button class="btn btn-primary rounded" id="btn-regresar">Regresar</button></a>
+      </div>
 
     </div>
 </template>
 
 <script>
 import { obtenerFichaInscripcionFachada } from "@/assets/js/Competidor"
+import "@/router/index.js"
 export default {
 
     data() {
@@ -184,6 +189,10 @@ export default {
 
             console.log(nombreCampeonato)
         },
+/*
+        goBack() {
+            window.history.pushState({}, '', document.referrer);
+        },*/
 
         printDiv() {
 
@@ -210,9 +219,12 @@ export default {
 
 <style>
 @media print {
-    .btn-descarga {
+    #btn-descarga {
         display: none;
     }
+    #btn-regresar {
+        display: none;
+      }
 }
 
 @media print {
@@ -220,6 +232,21 @@ export default {
         display: none;
     }
 }
+
+.btn-primary.active {
+    background-color: #1a1c1c;
+    /* Color de fondo del botón activo */
+    border-color: #2a2b2e;
+    /*Color de borde del botón activo*/
+  }
+  
+  .btn-primary:not(.active) {
+    background-color: #003153;
+    /* Color de fondo del botón inactivo */
+    border-color: #003153;
+    /*Color de borde del botón inactivo*/
+    color: #edf3f5;
+  }
 
 #divToPrint {
     margin-top: 2.5%;
@@ -296,6 +323,4 @@ export default {
 #descargoCheck {
     margin-right: 5px;
 }
-
-
 </style>
