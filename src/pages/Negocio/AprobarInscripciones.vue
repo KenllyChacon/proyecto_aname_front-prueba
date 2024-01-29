@@ -1,6 +1,11 @@
 <template>
   <!--Barra navegacion-->
-  <BarraNav />
+  <div v-if="mostrarBarra">
+    <BarraNav />
+  </div>
+  <div v-else>
+    <BarraNavPro/>
+  </div>
   <div class="container">
     <h2 class="fw-bold">Aprobar Inscripciones</h2>
     <div>
@@ -67,6 +72,7 @@ import BarraNav from "@/components/BarraNav.vue";
 import { campIncritosP, VerCampeonatosP } from "@/assets/js/campeonato";
 import { confirmarPagoFachada, negarPagoFachada, aprobarInscripcionFachada, confirmarInscripcionFachada, negarInscripcionFachada } from "@/assets/js/Competidor"
 import { cargaArchivosFachada } from "@/assets/js/Archivo"
+import BarraNavPro from "@/components/BarraNavPro.vue";
 
 
 export default {
@@ -80,15 +86,20 @@ export default {
       listaCampeonatos: [],
       fichaFirmadaRes: null,
       fichaFirmada: null,
+      mostrarBarra: true
     };
   },
   components: {
+    BarraNavPro,
     PiePagina,
     BarraNav,
   },
   mounted() {
     this.listarCampeonatos()
-
+    if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
+      console.log("id: " + sessionStorage.getItem("id"))
+      this.mostrarBarra = false;
+    }
   },
   methods: {
 
