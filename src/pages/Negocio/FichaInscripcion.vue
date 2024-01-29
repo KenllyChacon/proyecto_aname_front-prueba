@@ -313,8 +313,7 @@ export default {
 
     },
 
-    async enviarFicha(event, idComp) {
-      event.preventDefault();
+    async enviarFicha(idComp) {
 
       if (this.fichaInscripcionRes) {
         const ficha = {
