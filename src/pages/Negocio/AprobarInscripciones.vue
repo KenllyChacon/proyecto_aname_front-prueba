@@ -46,7 +46,7 @@
             </td>
 
             <td>
-              <button class="btn btn-primary" @click="confirmarInscripcion(c.id)">Aprobar Inscripción</button>
+              <button class="btn btn-primary" @click="confirmarInscripcion(c.id)">Aprobar Inscripción</button><br>
               <button class="btn btn-primary" @click="negarInscripcion(c.id)">Denegar Inscripción</button>
             </td>
           </tr>
