@@ -161,7 +161,7 @@ import BarraNav from "@/components/BarraNav.vue";
 import { listarCampeonatosDisponiblesFachada, InscribirseCampeonatoP, campIncritosUsersP, campIncritosUserEmailP } from "@/assets/js/campeonato";
 import { listarPruebasPorCampFachada } from "@/assets/js/Prueba";
 import { listaAsociacionesCompetidorFachada, registrarPagoFachada, registrarFichaFachada } from "@/assets/js/Competidor"
-import {cargaArchivosFachada} from "@/assets/js/Archivo"
+import { cargaArchivosFachada } from "@/assets/js/Archivo"
 
 export default {
   data() {
@@ -240,48 +240,61 @@ export default {
     },
 
     async enviarPago(idComp) {
-      const pago = {
-        idCompetidor: idComp,
-        nombre: this.comprobantePagoRes.nombre,
-        link: this.comprobantePagoRes.link,
-        extension: this.comprobantePagoRes.extension
-      };
 
-      console.log(pago)
+      if (this.comprobantePagoRes) {
+        const pago = {
+          idCompetidor: idComp,
+          nombre: this.comprobantePagoRes.nombre,
+          link: this.comprobantePagoRes.link,
+          extension: this.comprobantePagoRes.extension
+        };
 
-      try {
-        await registrarPagoFachada(pago);
-        alert('Pago enviado con éxito');
-      } catch (error) {
-        alert('No se pudo enviar el pago');
+        console.log(pago)
+
+        try {
+          await registrarPagoFachada(pago);
+          alert('Pago enviado con éxito');
+        } catch (error) {
+          alert('No se pudo enviar el pago');
+        }
+
+
+        this.comprobantePago = null
+        this.comprobantePagoRes = null
+        this.fichaInscripcion = null
+        this.fichaInscripcionRes = null
+      } else {
+        alert('Ningún documento cargado');
       }
 
-      
-      this.comprobantePago=null
-      this.comprobantePagoRes=null
-      this.fichaInscripcion=null
-      this.fichaInscripcionRes= null
     },
 
     async enviarFicha(idComp) {
-      const ficha = {
-        idCompetidor: idComp,
-        nombre: this.fichaInscripcionRes.nombre,
-        link: this.fichaInscripcionRes.link,
-        extension: this.fichaInscripcionRes.extension
-      };
 
-      try {
-        await registrarFichaFachada(ficha);
-        alert('Ficha de inscripcion enviada con éxito');
-      } catch (error) {
-        alert('No se pudo enviar la ficha de inscripcion');
+      if (this.fichaInscripcionRes) {
+        const ficha = {
+          idCompetidor: idComp,
+          nombre: this.fichaInscripcionRes.nombre,
+          link: this.fichaInscripcionRes.link,
+          extension: this.fichaInscripcionRes.extension
+        };
+
+        try {
+          await registrarFichaFachada(ficha);
+          alert('Ficha de inscripcion enviada con éxito');
+        } catch (error) {
+          alert('No se pudo enviar la ficha de inscripcion');
+        }
+
+        this.comprobantePago = null
+        this.comprobantePagoRes = null
+        this.fichaInscripcion = null
+        this.fichaInscripcionRes = null
+      } else {
+        alert('Ningún documento cargado');
+
       }
 
-      this.comprobantePago=null
-      this.comprobantePagoRes=null
-      this.fichaInscripcion=null
-      this.fichaInscripcionRes= null
     },
 
 
