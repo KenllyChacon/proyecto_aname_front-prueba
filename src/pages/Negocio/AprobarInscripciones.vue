@@ -1,25 +1,17 @@
 <template>
   <!--Barra navegacion-->
-  <div v-if="mostrarBarra">
-    <BarraNav />
-  </div>
-  <div v-else>
-    <BarraNavPro/>
-  </div>
-
-  <h2 class="fw-bold">Aprobar Inscripciones</h2>
-
-  <br>
-  <label for="" id="labelSup">Seleccione campeonato</label>
-  <select class="bordeCaja" required v-model="idCampeonato" @change="listarCampIsnscritos">
-    <option v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id">{{ opcion.nombre }}</option>
-  </select>
-  <br>
-
-
-  <div class="table-responsive" id="contAprobarInsc">
-    <table class="table-responsive table-bordered bordeCaja" id="tabAprobar">
-      <table>
+  <BarraNav />
+  <div class="container">
+    <h2 class="fw-bold">Aprobar Inscripciones</h2>
+    <div>
+      <label for="" id="labelSup">Seleccione campeonato:</label>
+      <select required v-model="idCampeonato" @change="listarCampIsnscritos">
+        <option v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id">{{ opcion.nombre }}</option>
+      </select>
+    </div>
+    <br>
+    <div class="table-responsive-sm" id="contAprobarInsc">
+      <table class="table table-bordered table-responsive" id="tabAprobar">
         <thead>
           <tr>
             <th id="tablaInsc">Competidor</th>
@@ -33,19 +25,18 @@
         </thead>
         <tbody>
           <tr v-for="c in listaCampInscritos" :key="c">
-            <td>{{ c.nombres + " " +c.apellidos }}</td>
+            <td>{{ c.nombres + " " + c.apellidos }}</td>
             <td>{{ c.estadoParticipacion }}</td>
             <td><a :href="buscarComprobantePago(c.documentos)" download>Descargar Pago</a></td>
             <td><a :href="buscarFichaInscripcion(c.documentos)" download>Descargar Ficha</a></td>
             <td>
-              <button @click="aprobarPago(c.id)">Aprobar Pago</button>
-              <button @click="denegarPago(c.id)">Denegar Pago</button>
-
+              <button class="btn btn-primary" @click="aprobarPago(c.id)">Aprobar Pago</button><br>
+              <button class="btn btn-primary" @click="denegarPago(c.id)">Denegar Pago</button>
             </td>
             <td>
               <form enctype="multipart/form-data">
                 <div class="form-group">
-                  <label class="colorTexto fw-bold"> Subir ficha de inscripción firmada:</label>
+                  <label class="fw-bold"> Subir ficha de inscripción firmada:</label>
                   <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">
                 </div>
                 <br>
@@ -55,19 +46,16 @@
             </td>
 
             <td>
-              <button @click="confirmarInscripcion(c.id)">Aprobar Inscripción</button>
-              <button @click="negarInscripcion(c.id)">Denegar Inscripción</button>
-
+              <button class="btn btn-primary" @click="confirmarInscripcion(c.id)">Aprobar Inscripción</button><br>
+              <button class="btn btn-primary" @click="negarInscripcion(c.id)">Denegar Inscripción</button>
             </td>
           </tr>
 
-
         </tbody>
       </table>
-    </table>
+    </div>
+    <br>
   </div>
-
-  <br>
 
   <!-- Pie de página -->
   <PiePagina />
@@ -79,7 +67,6 @@ import BarraNav from "@/components/BarraNav.vue";
 import { campIncritosP, VerCampeonatosP } from "@/assets/js/campeonato";
 import { confirmarPagoFachada, negarPagoFachada, aprobarInscripcionFachada, confirmarInscripcionFachada, negarInscripcionFachada } from "@/assets/js/Competidor"
 import { cargaArchivosFachada } from "@/assets/js/Archivo"
-import BarraNavPro from "@/components/BarraNavPro.vue";
 
 
 export default {
@@ -93,20 +80,15 @@ export default {
       listaCampeonatos: [],
       fichaFirmadaRes: null,
       fichaFirmada: null,
-      mostrarBarra: true
     };
   },
   components: {
-    BarraNavPro,
     PiePagina,
     BarraNav,
   },
   mounted() {
-    this.listarCampeonatos();
-    if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
-      console.log("id: " + sessionStorage.getItem("id"))
-      this.mostrarBarra = false;
-    }
+    this.listarCampeonatos()
+
   },
   methods: {
 
@@ -256,35 +238,31 @@ export default {
 }
 
 
-
+/* 
 .form-control {
   border: 2px solid #2660a4;
-}
+} */
 
 h2 {
   color: #003153;
-  font-weight: bold;
+  /* font-weight: bold; */
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-h4 {
-  color: #003153;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 
-table {
+/*table {
   margin: 0 auto;
-}
+}*/
 
+/* 
 .opciones-container {
   display: flex;
   flex-wrap: wrap;
   margin: 30px;
-}
+} */
 
+/* */
 .opcion-item {
   flex-basis: calc(23.33% - 10px);
   /* Ajusta el tamaño de cada columna según tus necesidades */
@@ -292,20 +270,23 @@ table {
   box-sizing: border-box;
 }
 
-.bordeCaja {
+
+/* .bordeCaja {
   border: 2px solid #edf3f5;
-}
+} */
 
 
-@media (min-width: 768px) {
+/*el siguiente bloque los comento porque sino no se centra bien las tabla */
+/* @media (min-width: 768px) {
   #contAprobarInsc {
     width: 75%
   }
-}
+} */
 
-@media (max-width: 767px) {
+/*el siguiente bloque no afecta si esta activo o no, no hay cambio alguno */
+/* @media (max-width: 767px) {
   #contAprobarInsc {
     width: 100%;
   }
-}
+} */
 </style>
