@@ -482,17 +482,20 @@ h2 {
   }
 }
 
-@media (min-width: 768px) {
+/*el siguiente bloque los comento porque sino no se centra bien las tabla */
+/* @media (min-width: 768px) {
   #ficha2 {
     width: 75%
   }
-}
+} */
 
-@media (max-width: 767px) {
+/*el siguiente bloque no afecta si esta activo o no, no hay cambio alguno */
+/* @media (max-width: 767px) {
   #ficha2 {
     width: 100%;
   }
-}
+} */
+
 
 /* Estilos de Subir documentos */
 #encabezadoCamp {
