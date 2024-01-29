@@ -28,8 +28,8 @@
         </thead>
         <tbody>
           <tr v-for="c in listaCampInscritos" :key="c">
-            <td>{{ c.nombres }}</td>
-            <td>{{c.estadoParticipacion}}</td>
+            <td>{{ c.nombres + " " +c.apellidos }}</td>
+            <td>{{ c.estadoParticipacion }}</td>
             <td><a :href="buscarComprobantePago(c.documentos)" download>Descargar Pago</a></td>
             <td><a :href="buscarFichaInscripcion(c.documentos)" download>Descargar Ficha</a></td>
             <td>
@@ -107,27 +107,37 @@ export default {
     },
 
     buscarComprobantePago(documentos) {
-      // Utilizando un bucle for...of
-      for (const documento of documentos) {
-        if (documento.nombre && documento.nombre.startsWith("comprobante-pago")) {
-          return documento.link;
-        }
-      }
 
-      // Si no se encuentra, puedes retornar null o cualquier valor que indique que no se encontró
-      return null;
+      if (documentos == null) {
+        return "No encontrado"
+      } else {
+        for (const documento of documentos) {
+          if (documento.nombre && documento.nombre.startsWith("comprobante-pago")) {
+            return documento.link;
+          }
+        }
+
+        // Si no se encuentra, puedes retornar null o cualquier valor que indique que no se encontró
+        return "No encontrado";
+      }
+      // Utilizando un bucle for...of
+
     },
 
     buscarFichaInscripcion(documentos) {
       // Utilizando un bucle for...of
-      for (const documento of documentos) {
-        if (documento.nombre && documento.nombre.startsWith("ficha-inscripcion")) {
-          return documento.link;
+      if (documentos == null) {
+        return null
+      } else {
+        for (const documento of documentos) {
+          if (documento.nombre && documento.nombre.startsWith("ficha-inscripcion")) {
+            return documento.link;
+          }
         }
-      }
 
-      // Si no se encuentra, puedes retornar null o cualquier valor que indique que no se encontró
-      return "No encontrado";
+        // Si no se encuentra, puedes retornar null o cualquier valor que indique que no se encontró
+        return "No encontrado";
+      }
     },
 
     async aprobarPago(id) {

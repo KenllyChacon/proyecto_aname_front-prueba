@@ -259,10 +259,12 @@ export default {
         }
 
 
+
         this.comprobantePago = null
         this.comprobantePagoRes = null
         this.fichaInscripcion = null
         this.fichaInscripcionRes = null
+        this.listarCampInscritosUserEmail()
       } else {
         alert('Ningún documento cargado');
       }
@@ -290,6 +292,7 @@ export default {
         this.comprobantePagoRes = null
         this.fichaInscripcion = null
         this.fichaInscripcionRes = null
+        this.listarCampInscritosUserEmail()
       } else {
         alert('Ningún documento cargado');
 
