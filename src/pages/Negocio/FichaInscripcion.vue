@@ -130,7 +130,8 @@
                     <input type="file" @change="pagoComprobante" accept="application/pdf" class="form-control-file">
                   </div>
                   <br>
-                  <button type="submit" class="btn btn-primary" @click="enviarPago(c.id)">Enviar</button>
+                  <button type="submit" class="btn btn-primary" :disabled="cargando" @click="enviarPago(c.id)">Enviar</button>
+                  <div class="loader" v-if="cargando"></div>
                 </form>
               </td>
               <td>
@@ -140,7 +141,8 @@
                     <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">
                   </div>
                   <br>
-                  <button type="submit" class="btn btn-primary" @click="enviarFicha(c.id)">Enviar</button>
+                  <button type="submit" class="btn btn-primary" :disabled="cargando" @click="enviarFicha(c.id)">Enviar</button>
+                  <div class="loader" v-if="cargando"></div>
                   <!-- <input type="submit" value="Enviar" /> -->
                 </form>
               </td>
@@ -193,7 +195,8 @@ export default {
       comprobantePagoRes: null,
       fichaInscripcion: null,
       fichaInscripcionRes: null,
-      mostrarBarra: true
+      mostrarBarra: true,
+      cargando: false,
     };
   },
   components: {
@@ -232,11 +235,22 @@ export default {
     },
 
     async cargarPago() {
-      this.comprobantePagoRes = await cargaArchivosFachada(this.comprobantePago, "comprobante-pago", sessionStorage.getItem("email"));
-      console.log(this.comprobantePagoRes)
-    },
+        this.cargando = true; // Muestra el cargador antes de que inicie la carga
+
+        try {
+          this.comprobantePagoRes = await cargaArchivosFachada(this.comprobantePago, "comprobante-pago", sessionStorage.getItem("email"));
+          console.log(this.comprobantePagoRes)
+        } catch (error) {
+          console.error("Error al cargar el archivo de pago:", error);
+          alert("Error al cargar el comprobante de pago");
+        } finally {
+          this.cargando = false; // Oculta el cargador después de que termine la carga (incluso si hay un error)
+        }
+      },
+
 
     fichaI(event) {
+
       // Accede al archivo seleccionado
       const file = event.target.files[0];
 
@@ -255,8 +269,17 @@ export default {
     },
 
     async cargarFicha() {
-      this.fichaInscripcionRes = await cargaArchivosFachada(this.fichaInscripcion, "ficha-inscripcion", sessionStorage.getItem("email"));
-      console.log(this.fichaInscripcionRes)
+
+      this.cargando = true; // Muestra el cargador antes de que inicie la carga
+      try {
+        this.fichaInscripcionRes = await cargaArchivosFachada(this.fichaInscripcion, "ficha-inscripcion", sessionStorage.getItem("email"));
+        console.log(this.fichaInscripcionRes)
+      } catch (error) {
+        console.error("Error loading registration file:", error);
+        alert("Error cargando la ficha de inscripción");
+      } finally {
+        this.cargando = false; // Oculta el cargador después de que termine la carga (incluso si hay un error)
+      }
     },
 
     async enviarPago(idComp) {
@@ -290,7 +313,8 @@ export default {
 
     },
 
-    async enviarFicha(idComp) {
+    async enviarFicha(event, idComp) {
+      event.preventDefault();
 
       if (this.fichaInscripcionRes) {
         const ficha = {
@@ -474,4 +498,18 @@ h2 {
 #encabezadoCamp {
   background-color: #52bad1;
 }
+
+.loader {
+  width: 120px;
+  height: 20px;
+  -webkit-mask: linear-gradient(90deg,#000 70%,#0000 0) left/20% 100%;
+  background:
+      linear-gradient(#000 0 0) left -25% top 0 /20% 100% no-repeat
+      #ddd;
+  animation: l7 1s infinite steps(6);
+}
+@keyframes l7 {
+  100% {background-position: right -25% top 0}
+}
+
 </style>
