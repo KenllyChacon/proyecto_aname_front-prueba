@@ -117,9 +117,9 @@
         <br>
 
         <!--Botón de regresar-->
-      <div class="container" vertical-align="middle">
-        <a href="/ficha"><button class="btn btn-primary rounded" id="btn-regresar">Regresar</button></a>
-      </div>
+        <div class="container" vertical-align="middle">
+            <a href="/ficha"><button class="btn btn-primary rounded" id="btn-regresar">Regresar</button></a>
+        </div>
 
     </div>
 </template>
@@ -189,14 +189,20 @@ export default {
 
             console.log(nombreCampeonato)
         },
-/*
-        goBack() {
-            window.history.pushState({}, '', document.referrer);
-        },*/
+        /*
+                goBack() {
+                    window.history.pushState({}, '', document.referrer);
+                },*/
 
         printDiv() {
-
             console.log("Alo");
+
+            // Verificar si el checkbox está seleccionado
+            const checkbox = document.getElementById('descargoCheck');
+            if (!checkbox.checked) {
+                console.log("Debes seleccionar el checkbox antes de imprimir.");
+                return;
+            }
 
             // Obtén el div que quieres imprimir
             const printDiv = document.getElementById('divToPrint');
@@ -213,6 +219,7 @@ export default {
             // Restaura el contenido original de la página
             document.body.innerHTML = originalContent;
         },
+
     },
 }
 </script>
@@ -222,9 +229,10 @@ export default {
     #btn-descarga {
         display: none;
     }
+
     #btn-regresar {
         display: none;
-      }
+    }
 }
 
 @media print {
@@ -238,15 +246,15 @@ export default {
     /* Color de fondo del botón activo */
     border-color: #2a2b2e;
     /*Color de borde del botón activo*/
-  }
-  
-  .btn-primary:not(.active) {
+}
+
+.btn-primary:not(.active) {
     background-color: #003153;
     /* Color de fondo del botón inactivo */
     border-color: #003153;
     /*Color de borde del botón inactivo*/
     color: #edf3f5;
-  }
+}
 
 #divToPrint {
     margin-top: 2.5%;
