@@ -62,6 +62,19 @@
         </select>
       </div>
 
+      <hr class="mb-4">
+
+      <div>
+        <label for="" id="labelSup">Federación: </label>
+        <select class="form-select bordeCaja" aria-label="Seleccionar campeonato" style="color: #000000;"
+          v-model="federacion">
+          <option v-for="opcion3 in listaAsociaciones" :key="opcion3.id" :value="opcion3.id">{{
+            opcion3.nombre
+          }}
+          </option>
+        </select>
+      </div>
+
       <br>
       <div v-if="email" class="row">
         <div class="form-group">
