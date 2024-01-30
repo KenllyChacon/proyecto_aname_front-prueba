@@ -178,9 +178,32 @@ export default {
     async cargaFoto() {
       this.fotoResponse = await cargaArchivosFachada(this.foto, "fotografia", this.email);
     },
+
+    calcularEdad(fechaNacimiento) {
+      const hoy = new Date();
+      const cumpleanos = new Date(fechaNacimiento);
+      let edad = hoy.getFullYear() - cumpleanos.getFullYear();
+      const mes = hoy.getMonth() - cumpleanos.getMonth();
+
+      if (mes < 0 || (mes === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+      }
+
+      return edad;
+    },
+
     registrarUsuario() {
       if (this.password !== this.passwordConfirm) {
         alert('Las contraseñas no coinciden');
+        return;
+      }
+      
+      const fechaNacimiento = new Date(this.fechaNacimiento);
+      const edad = this.calcularEdad(fechaNacimiento);
+
+      // Verifica si el usuario es menor de 30 años
+      if (edad < 30) {
+        alert('Lo sentimos, solo se permiten registros para usuarios mayores de 30 años.');
         return;
       }
 
