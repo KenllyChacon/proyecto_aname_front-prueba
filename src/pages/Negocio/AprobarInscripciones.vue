@@ -45,7 +45,8 @@
                   <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary" @click="enviarFicha(c.id)">Enviar Ficha firmada</button>
+                <button type="submit" class="btn btn-primary" :disabled="cargando">Enviar Ficha firmada</button>
+                <div class="loader" v-if="cargando"></div>
 
               </form>
             </td>
@@ -86,7 +87,8 @@ export default {
       listaCampeonatos: [],
       fichaFirmadaRes: null,
       fichaFirmada: null,
-      mostrarBarra: true
+      mostrarBarra: true,
+      cargando: false,
     };
   },
   components: {
@@ -181,12 +183,24 @@ export default {
     },
 
     async cargarFicha() {
-      this.fichaFirmadaRes = await cargaArchivosFachada(this.fichaFirmada, "inscripcion-firmada", sessionStorage.getItem("email"));
+
+      this.cargando = true;
+
+      try {
+        this.fichaFirmadaRes = await cargaArchivosFachada(this.fichaFirmada, "inscripcion-firmada", sessionStorage.getItem("email"));
+        console.log(this.fichaFirmadaRes)
+      } catch (error) {
+        console.error("Error al cargar el archivo de pago:", error);
+        alert("Error al cargar el comprobante de pago");
+      } finally {
+        this.cargando = false; // Oculta el cargador después de que termine la carga (incluso si hay un error)
+      }
+
+
       console.log("Ficha: " + this.fichaFirmadaRes)
     },
 
     async enviarFicha(idComp) {
-
       if (this.fichaFirmadaRes) {
         const ficha = {
           idCompetidor: idComp,
@@ -281,6 +295,18 @@ h2 {
   box-sizing: border-box;
 }
 
+.loader {
+  width: 120px;
+  height: 20px;
+  -webkit-mask: linear-gradient(90deg,#000 70%,#0000 0) left/20% 100%;
+  background:
+      linear-gradient(#000 0 0) left -25% top 0 /20% 100% no-repeat
+      #ddd;
+  animation: l7 1s infinite steps(6);
+}
+@keyframes l7 {
+  100% {background-position: right -25% top 0}
+}
 
 /* .bordeCaja {
   border: 2px solid #edf3f5;
