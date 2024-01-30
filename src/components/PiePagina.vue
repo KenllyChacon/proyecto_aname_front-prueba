@@ -5,8 +5,8 @@
             <h6>Contacto</h6>
             <!-- <p>Calle principal, #, Calle Secundaria</p> -->
             <!-- <p>Sector</p> -->
-            <p style="align: left">099 440 0437</p>
-            <p style="align: left">caaguilar30@hotmail.com</p>
+            <p style="align: left">098 765 4321</p>
+            <p style="align: left">correo@aname.org</p>
         </div>
 
         <div>
