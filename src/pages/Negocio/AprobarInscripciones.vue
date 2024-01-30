@@ -39,7 +39,7 @@
               <button class="btn btn-primary" @click="denegarPago(c.id)">Denegar Pago</button>
             </td>
             <td>
-              <form enctype="multipart/form-data">
+              <form enctype="multipart/form-data" @submit.prevent="enviarFicha(c.id)">
                 <div class="form-group">
                   <label class="fw-bold"> Subir ficha de inscripción firmada:</label>
                   <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">

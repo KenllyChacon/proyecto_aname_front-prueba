@@ -28,18 +28,19 @@
       <div class="card-body">
         <div class="mb-3">
           <label for="email">Email:</label>
-        <input type="email" class="form-control bordeCaja" id="email" v-model="email" required>
+          <input type="email" class="form-control bordeCaja" id="email" v-model="email" required>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Contraseña</label>
           <input type="password" class="form-control bordeCaja" id="password" name="password" v-model="password">
         </div>
-      <div class="mb-3">
-        <label for="passwordConfirm" class="form-label">Confirmar Contraseña</label>
-        <input type="password" class="form-control bordeCaja" id="passwordConfirm" name="passwordConfirm" v-model="passwordConfirm">
+        <div class="mb-3">
+          <label for="passwordConfirm" class="form-label">Confirmar Contraseña</label>
+          <input type="password" class="form-control bordeCaja" id="passwordConfirm" name="passwordConfirm"
+                 v-model="passwordConfirm">
         </div>
       </div>
-      
+
       <hr class="mb-4">
 
       <div class="row">
@@ -49,7 +50,7 @@
         <div class="form-group">
           <label for="year">Año</label>
           <input v-model="fechaNacimiento" type="datetime-local" class="form-control bordeCaja" id="year" name="year"
-            required>
+                 required>
         </div>
       </div>
       <div class="form-group">
@@ -66,11 +67,11 @@
 
       <div>
         <label for="" id="labelSup">Federación: </label>
-        <select class="form-select bordeCaja" aria-label="Seleccionar campeonato" style="color: #000000;"
-          v-model="federacion">
-          <option v-for="opcion3 in listaAsociaciones" :key="opcion3.id" :value="opcion3.id">{{
-            opcion3.nombre
-          }}
+        <select class="form-select bordeCaja" aria-label="Seleccionar federacion" style="color: #000000;"
+                v-model="idfederacion">
+          <option v-for="f in federaciones" :key="f.id" :value="f.id">{{
+              f.nombre
+            }}
           </option>
         </select>
       </div>
@@ -79,14 +80,16 @@
       <div v-if="email" class="row">
         <div class="form-group">
           <label for="imageUpload" class="colorTexto fw-bold"> Seleccionar foto de perfil:</label>
-          <input type="file" @change="fotoPerfil" accept="image/png, image/jpeg" class="form-control-file" id="imageUpload">
+          <input type="file" @change="fotoPerfil" accept="image/png, image/jpeg" class="form-control-file"
+                 id="imageUpload">
         </div>
       </div>
       <br>
       <div v-if="email" class="row">
         <div class="form-group">
           <label for="imageUpload" class="colorTexto fw-bold">Seleccionar imagen del documento:</label>
-          <input type="file" @change="fotoDocumento" accept="application/pdf" class="form-control-file" id="imageUpload">
+          <input type="file" @change="fotoDocumento" accept="application/pdf" class="form-control-file"
+                 id="imageUpload">
         </div>
       </div>
       <button type="submit" class="btn btn-danger">Registrar</button>
@@ -97,9 +100,11 @@
 </template>
 
 <script>
-import { registrarUsuarioFachada } from '@/assets/js/Usuario'
-import { enviarSimpleFachada } from '@/assets/js/Email'
-import { cargaArchivosFachada } from '@/assets/js/Archivo'
+import {registrarUsuarioFachada} from '@/assets/js/Usuario'
+import {enviarSimpleFachada} from '@/assets/js/Email'
+import {cargaArchivosFachada} from '@/assets/js/Archivo'
+import {listaAsociacionesCompetidorFachada} from "@/assets/js/Competidor";
+
 export default {
 
   data() {
@@ -120,24 +125,35 @@ export default {
       fotoResponse: null,
       documentoResponse: null,
       passwordConfirm: null,
+      federaciones: [],
+      idfederacion: null,
     }
   },
+
+  mounted() {
+    this.listarFederaciones();
+  },
+
   methods: {
+    async listarFederaciones() {
+      this.federaciones = await listaAsociacionesCompetidorFachada();
+      console.log(this.federaciones)
+    },
     fotoPerfil(event) {
       // Accede al archivo seleccionado
       const file = event.target.files[0];
 
       // Verifica si el archivo es una imagen png o jpg
       if (file.type === 'image/png' || file.type === 'image/jpeg') {
-      
+
         // Realiza las operaciones que necesites con el archivo
         this.foto = file;
 
         this.cargaFoto();
 
-        } else {
+      } else {
         console.log('El archivo seleccionado no es una imagen png o jpg');
-        }
+      }
     },
     fotoDocumento(event) {
       // Accede al archivo seleccionado
@@ -145,14 +161,14 @@ export default {
 
       // Verifica si el archivo es un pdf
       if (file.type === 'application/pdf') {
-      console.log('Archivo PDF seleccionado:', file);
-      
+        console.log('Archivo PDF seleccionado:', file);
+
         // Realiza las operaciones que necesites con el archivo
         this.documento = file;
 
-        } else {
+      } else {
         console.log('El archivo seleccionado no es un PDF');
-        }
+      }
 
       this.cargarArchivos();
     },
@@ -168,82 +184,85 @@ export default {
         return;
       }
 
-      if(this.documentoResponse){
+      if (this.documentoResponse) {
         var usuario = {
-        id: 0,
-        nombres: this.nombres,
-        apellidos: this.apellidos,
-        email: this.email,
-        password: this.password,
-        rol: "ATL",
-        estado: true,
-        direccion: this.direccion,
-        sexo: this.genero,
-        fechaNacimiento: this.fechaNacimiento,
-        ciudad: this.ciudad,
-        documentoIdentidad: this.documentoResponse,
-        fotografia: this.fotoResponse
-      };
-      }else{
+          id: 0,
+          nombres: this.nombres,
+          apellidos: this.apellidos,
+          email: this.email,
+          password: this.password,
+          rol: "ATL",
+          estado: true,
+          direccion: this.direccion,
+          sexo: this.genero,
+          fechaNacimiento: this.fechaNacimiento,
+          ciudad: this.ciudad,
+          documentoIdentidad: this.documentoResponse,
+          fotografia: this.fotoResponse,
+          idAsociacion: this.idfederacion
+        };
+      } else {
         var usuario = {
-        id: 0,
-        nombres: this.nombres,
-        apellidos: this.apellidos,
-        email: this.email,
-        password: this.password,
-        rol: "ATL",
-        estado: true,
-        direccion: this.direccion,
-        sexo: this.genero,
-        fechaNacimiento: this.fechaNacimiento,
-        ciudad: this.ciudad,
-        documentoIdentidad: null,
-        fotografia: null
-      };
+          id: 0,
+          nombres: this.nombres,
+          apellidos: this.apellidos,
+          email: this.email,
+          password: this.password,
+          rol: "ATL",
+          estado: true,
+          direccion: this.direccion,
+          sexo: this.genero,
+          fechaNacimiento: this.fechaNacimiento,
+          ciudad: this.ciudad,
+          documentoIdentidad: null,
+          fotografia: null,
+          idAsociacion: this.idfederacion
+        };
       }
-      
-      
+
 
       registrarUsuarioFachada(usuario)
-        .then((response) => {
-          try {
-            console.log(response.status);
-            if (response.status === 410) {
-              alert("Ya existe un usuario con el email:" + this.email)
-            } else {
-            
-              const body = {
-                toUser: this.email,
-                subject: "Registro Usuario",
-                message: "Usuario registrado con éxito"
+          .then(async (response) => {
+            try {
+              console.log(response.status);
+              if (response.status === 410) {
+                alert("Ya existe un usuario con el email:" + this.email)
+              } else {
+
+                const body = {
+                  toUser: this.email,
+                  subject: "Registro Usuario",
+                  message: "Usuario registrado con éxito"
+                }
+                enviarSimpleFachada(body);
+                alert("Usuario registrado con éxito")
+                this.id = null;
+                this.nombres = null;
+                this.apellidos = null;
+                this.email = null;
+                this.password = null;
+                this.perfil = null;
+                this.estado = null;
+                this.direccion = null;
+                this.genero = null;
+                this.fechaNacimiento = null;
+                this.ciudad = null;
+                this.foto = null;
+                this.documento = null;
+                this.fotoResponse = null;
+                this.documentoResponse = null;
+                this.idfederacion = null;
+                this.federaciones = await this.listarFederaciones()
               }
-              enviarSimpleFachada(body);
-              alert("Usuario registrado con éxito")
-              this.id = null;
-              this.nombres = null;
-              this.apellidos = null;
-              this.email = null;
-              this.password = null;
-              this.perfil = null;
-              this.estado = null;
-              this.direccion = null;
-              this.genero = null;
-              this.fechaNacimiento = null;
-              this.ciudad = null;
-              this.foto = null;
-              this.documento = null;
-              this.fotoResponse = null;
-              this.documentoResponse = null;
+            } catch (error) {
+              alert("Ha ocurrido un error al procesar la respuesta del servidor")
+              console.log(error);
             }
-          } catch (error) {
-            alert("Ha ocurrido un error al procesar la respuesta del servidor")
+          })
+          .catch((error) => {
+            alert("Ha ocurrido un error al guardar, prueba a cambiar el nombre de usuario")
             console.log(error);
-          }
-        })
-        .catch((error) => {
-          alert("Ha ocurrido un error al guardar, prueba a cambiar el nombre de usuario")
-          console.log(error);
-        });
+          });
     }
   },
 }
@@ -267,7 +286,7 @@ export default {
   }
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
   #cont {
     width: 95%;
   }

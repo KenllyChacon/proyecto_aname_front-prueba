@@ -55,7 +55,7 @@ export const aprobarInscripcionFachada = async (body) => {
 const listaAsociacionesCompetidores = async () => {
 
     try {
-        const response = await axios.get(url + `/competidor/asociaciones`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
+        const response = await axios.get(url + `/competidor/asociaciones`);
         return response.data;
     } catch (error) {
         console.error('Error en la solicitud:', error.response || error.message);

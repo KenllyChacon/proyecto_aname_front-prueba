@@ -34,22 +34,6 @@
 
           <form @submit.prevent="inscribirse()">
 
-            <div class="container" id="tabla1">
-              <!--Datos del competidor-->
-              <table class="table-responsive table-striped">
-                <tr>
-                  <td><label for="" id="labelSup">Federación: </label></td>
-                  <td><select class="form-select" aria-label="Seleccionar campeonato"
-                              style="background-color: #edf3f5; color: #000000;" v-model="federacion">
-                    <option v-for="opcion3 in listaAsociaciones" :key="opcion3.id" :value="opcion3.id">{{
-                        opcion3.nombre
-                      }}
-                    </option>
-                  </select></td>
-                </tr>
-              </table>
-            </div>
-
             <br>
             <!--Selección de campeonato-->
             <div class="container" id="encabezado2">
@@ -124,24 +108,25 @@
               <td><a @click="imprimirComprobante(c.idCampeonato)">Descargar comprobante</a></td>
               <td><a @click="descargarFicha(c.id)">Descargar Ficha de Inscripción</a></td>
               <td>
-                <form enctype="multipart/form-data">
+                <form enctype="multipart/form-data"  @submit.prevent="enviarPago(c.id)">
                   <div class="form-group">
                     <label class="colorTexto fw-bold"> Subir comprobante de pago:</label>
                     <input type="file" @change="pagoComprobante" accept="application/pdf" class="form-control-file">
                   </div>
                   <br>
-                  <button type="submit" class="btn btn-primary" :disabled="cargando" @click="enviarPago(c.id)">Enviar</button>
+                  <button type="submit" class="btn btn-primary" :disabled="cargando">Enviar</button>
                   <div class="loader" v-if="cargando"></div>
                 </form>
               </td>
               <td>
-                <form enctype="multipart/form-data">
+<!--                                           <form @submit.prevent="inscribirse()">-->
+                <form enctype="multipart/form-data" @submit.prevent="enviarFicha(c.id)">
                   <div class="form-group">
                     <label class="colorTexto fw-bold"> Subir ficha de inscripción firmada:</label>
                     <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">
                   </div>
                   <br>
-                  <button type="submit" class="btn btn-primary" :disabled="cargando" @click="enviarFicha(c.id)">Enviar</button>
+                  <button type="submit" class="btn btn-primary" :disabled="cargando">Enviar</button>
                   <div class="loader" v-if="cargando"></div>
                   <!-- <input type="submit" value="Enviar" /> -->
                 </form>
@@ -182,11 +167,9 @@ export default {
   data() {
     return {
       selectedTab: 'tab1', // Pestaña seleccionada por defecto
-      federacion: null,
       idCampeonato: null,
       listaCampeonatos: [],
       listaPruebas: [],
-      listaAsociaciones: [],
       pruebasDelCampeonato: [],
       selectedPruebas: [],
       listaCampInscritosUser: [],
@@ -206,7 +189,6 @@ export default {
   },
   mounted() {
     this.listarCampeonatos(),
-        this.listarAsociaciones(),
         this.listarCampInscritosUserEmail(),
         console.log("ROL INICIO" + sessionStorage.getItem("rol"))
     if (sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
@@ -351,9 +333,7 @@ export default {
       this.pruebasDelCampeonato = await listarPruebasPorCampFachada(this.idCampeonato);
       this.selectedPruebas = [];
     },
-    async listarAsociaciones() {
-      this.listaAsociaciones = await listaAsociacionesCompetidorFachada()
-    },
+
     async listarCampInscritosUserEmail() {
       this.listaCampInscritosUserEmail = await campIncritosUserEmailP(sessionStorage.getItem("email"))
       console.log(this.listaCampInscritosUserEmail)
