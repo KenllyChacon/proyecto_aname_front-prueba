@@ -1,12 +1,12 @@
 <template>
     <!-- Pie de página -->
-    <footer class="container text-center" style="background-color: #003153; color: #edf3f5; display: flex; justify-content: space-around;">
+    <footer class="container text-center" style="background-color: #003153; color: #edf3f5; display: flex; justify-content: space-around; padding: 20px;">
         <div>
             <h6>Contacto</h6>
             <!-- <p>Calle principal, #, Calle Secundaria</p> -->
             <!-- <p>Sector</p> -->
-            <p style="align: left">099 440 0437</p>
-            <p style="align: left">caaguilar30@hotmail.com</p>
+            <p style="align: left">098 765 4321</p>
+            <p style="align: left">correo@aname.org</p>
         </div>
 
         <div>
@@ -26,13 +26,13 @@
 
 <style>
 @media (min-width: 768px) {
-    .footer {
+    footer {
       width: 40%;
     }
   }
   
   @media (max-width: 767px){
-    .footer {
+    footer {
       width: 100%;
     }
   }
