@@ -17,6 +17,9 @@
             <router-link to="/campeonato/crear" class="nav-link">Crear Campeonato</router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/admitirAtletas" class="nav-link">Admitir Atletas</router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/aprobarInscripciones" class="nav-link">Aprobar Inscripciones</router-link>
           </li>
         </ul>
