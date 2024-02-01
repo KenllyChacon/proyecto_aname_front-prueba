@@ -309,7 +309,7 @@ export default {
           await registrarFichaFachada(ficha);
           alert('Ficha de inscripcion enviada con éxito');
         } catch (error) {
-          alert('No se pudo enviar la ficha de inscripcion');
+          alert('No se pudo enviar la ficha de inscripción');
         }
 
         this.comprobantePago = null
@@ -343,7 +343,7 @@ export default {
 
       console.log(this.idCampeonato)
       console.log(this.federacion)
-      console.log("Preubas: " + this.selectedPruebas)
+      console.log("Pruebas: " + this.selectedPruebas)
       const ficha = {
         email: sessionStorage.getItem("email"),
         idCampeonato: this.idCampeonato,
@@ -353,7 +353,7 @@ export default {
 
       await InscribirseCampeonatoP(ficha);
       alert("Se ha inscrito correctamente")
-      alert("En Confirmacion de Inscripcion observara su proceso y comprobante de pago")
+      alert("En Confirmación de Inscripción observará su proceso y comprobante de pago")
       this.listarCampInscritosUserEmail()
       this.selectedTab = "tab2"
 
