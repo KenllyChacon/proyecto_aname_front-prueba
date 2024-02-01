@@ -189,10 +189,7 @@ export default {
 
             console.log(nombreCampeonato)
         },
-        /*
-                goBack() {
-                    window.history.pushState({}, '', document.referrer);
-                },*/
+        
 
         printDiv() {
             console.log("Alo");
@@ -201,6 +198,7 @@ export default {
             const checkbox = document.getElementById('descargoCheck');
             if (!checkbox.checked) {
                 console.log("Debes seleccionar el checkbox antes de imprimir.");
+                alert("Debe aceptar el descargo de responsabilidad para imprimir")
                 return;
             }
 
