@@ -1,6 +1,6 @@
 <template>
     <!-- Pie de página -->
-    <footer class="text-center fixed-bottom" style="background-color: #003153; color: #edf3f5; display: flex; justify-content: space-around; padding: 20px;">
+    <footer class="text-center fixed-bottom" style="background-color: #003153; color: #edf3f5; display: flex; justify-content: space-around; padding: 0.5%;">
         <div>
             <h6>Contacto</h6>
             <!-- <p>Calle principal, #, Calle Secundaria</p> -->
@@ -37,6 +37,5 @@
       width: 40%;
     }
   }
-
 
 </style>
