@@ -2,15 +2,18 @@
   <div>
     <div class="container" id="encabezadoMail">
       <img src="@/assets/img/logofin.png" alt="" width="50" height="50" align="left">
-      <h3><b>¡Bienvenido a ANAME!</b></h3>
+      <h3><b>Estado de Inscripción ANAME</b></h3>
     </div>
     <br>
     <div class="container" id="cuerpoMail">
-      <p align="left">Su usuario <label>xx</label> ha sido registrado exitosamente.</p>
-      <p align="left">Para iniciar sesión, haga clic <a href="/login">AQUÍ</a>.</p>
+      <p align="left">Estimado usuario <label>xx</label>:</p>
+      <p align="left">Le informamos que su inscripción al campeonato
+        <label>xx</label> ha sido <label>xx</label>.
+      </p>
+
     </div>
 
-    <div class="container-fluid fixed-bottom" id="piePag">
+    <div class=" container-fluid fixed-bottom" id="piePag">
       <div class="position-absolute">
         <a href="https://www.facebook.com/p/ANAME-Asociaci%C3%B3n-Nacional-de-Atletismo-Master-del-Ecuador-100064841912450/?paipv=0&eav=AfaSv9pzpI9ergJbpLVMMNEX0dEx9-1RJWBzc4GFil1sb49W38fNLM9QEMSUzDbZtN0&_rdr"
           style="color: #eeb902; align:center;">Página Oficial de ANAME en Facebook</a>
@@ -18,10 +21,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import "@/router/index.js"
-</script>
 
 <style>
 #encabezadoMail {
@@ -61,7 +60,6 @@ import "@/router/index.js"
   align-content: center;
   padding-top: 25px;
   padding-bottom: 25px;
-  width: auto;
+  padding-left: 20px;
 }
-</style> 
-
+</style>
