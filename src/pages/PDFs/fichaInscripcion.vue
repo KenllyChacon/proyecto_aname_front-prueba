@@ -189,7 +189,7 @@ export default {
 
             console.log(nombreCampeonato)
         },
-        
+
 
         printDiv() {
             console.log("Alo");

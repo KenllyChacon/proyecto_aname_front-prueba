@@ -37,7 +37,7 @@
         <div class="mb-3">
           <label for="passwordConfirm" class="form-label">Confirmar Contraseña</label>
           <input type="password" class="form-control bordeCaja" id="passwordConfirm" name="passwordConfirm"
-                 v-model="passwordConfirm">
+            v-model="passwordConfirm">
         </div>
       </div>
 
@@ -49,8 +49,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="year">Año</label>
-          <input v-model="fechaNacimiento" type="date" class="form-control bordeCaja" id="year" name="year"
-                 required>
+          <input v-model="fechaNacimiento" type="date" class="form-control bordeCaja" id="year" name="year" required>
         </div>
       </div>
       <div class="form-group">
@@ -68,10 +67,10 @@
       <div>
         <label for="" id="labelSup">Federación: </label>
         <select class="form-select bordeCaja" aria-label="Seleccionar federacion" style="color: #000000;"
-                v-model="idfederacion">
+          v-model="idfederacion">
           <option v-for="f in federaciones" :key="f.id" :value="f.id">{{
-              f.nombre
-            }}
+            f.nombre
+          }}
           </option>
         </select>
       </div>
@@ -81,29 +80,34 @@
         <div class="form-group">
           <label for="imageUpload" class="colorTexto fw-bold"> Seleccionar foto de perfil:</label>
           <input type="file" @change="fotoPerfil" accept="image/png, image/jpeg" class="form-control-file"
-                 id="imageUpload">
+            id="imageUpload">
         </div>
       </div>
       <br>
       <div v-if="email" class="row">
         <div class="form-group">
           <label for="imageUpload" class="colorTexto fw-bold">Seleccionar imagen del documento:</label>
-          <input type="file" @change="fotoDocumento" accept="application/pdf" class="form-control-file"
-                 id="imageUpload">
+          <input type="file" @change="fotoDocumento" accept="application/pdf" class="form-control-file" id="imageUpload">
         </div>
       </div>
       <button type="submit" class="btn btn-danger">Registrar</button>
 
     </form>
+    <!--Regresar a la página de inicio-->
+    <div class="container" vertical-align="middle">
+      <a href="/"><button class="btn btn-primary rounded" id="btn-cancelar">Cancelar</button></a>
+    </div>
 
   </div>
 </template>
 
 <script>
-import {registrarUsuarioFachada} from '@/assets/js/Usuario'
-import {enviarSimpleFachada} from '@/assets/js/Email'
-import {cargaArchivosFachada} from '@/assets/js/Archivo'
-import {listaAsociacionesCompetidorFachada} from "@/assets/js/Competidor";
+import "@/router/index.js"
+import { registrarUsuarioFachada } from '@/assets/js/Usuario'
+import { enviarSimpleFachada } from '@/assets/js/Email'
+import { cargaArchivosFachada } from '@/assets/js/Archivo'
+import { listaAsociacionesCompetidorFachada } from "@/assets/js/Competidor";
+
 
 export default {
 
@@ -197,7 +201,7 @@ export default {
         alert('Las contraseñas no coinciden');
         return;
       }
-      
+
       const fechaNacimiento = new Date(this.fechaNacimiento);
       const edad = this.calcularEdad(fechaNacimiento);
 
@@ -245,47 +249,47 @@ export default {
 
 
       registrarUsuarioFachada(usuario)
-          .then(async (response) => {
-            try {
-              console.log(response.status);
-              if (response.status === 410) {
-                alert("Ya existe un usuario con el email:" + this.email)
-              } else {
+        .then(async (response) => {
+          try {
+            console.log(response.status);
+            if (response.status === 410) {
+              alert("Ya existe un usuario con el email:" + this.email)
+            } else {
 
-                const body = {
-                  toUser: this.email,
-                  subject: "Registro Usuario",
-                  message: "Usuario registrado con éxito"
-                }
-                enviarSimpleFachada(body);
-                alert("Usuario registrado con éxito")
-                this.id = null;
-                this.nombres = null;
-                this.apellidos = null;
-                this.email = null;
-                this.password = null;
-                this.perfil = null;
-                this.estado = null;
-                this.direccion = null;
-                this.genero = null;
-                this.fechaNacimiento = null;
-                this.ciudad = null;
-                this.foto = null;
-                this.documento = null;
-                this.fotoResponse = null;
-                this.documentoResponse = null;
-                this.idfederacion = null;
-                this.federaciones = await this.listarFederaciones()
+              const body = {
+                toUser: this.email,
+                subject: "Registro Usuario",
+                message: "Usuario registrado con éxito"
               }
-            } catch (error) {
-              alert("Ha ocurrido un error al procesar la respuesta del servidor")
-              console.log(error);
+              enviarSimpleFachada(body);
+              alert("Usuario registrado con éxito")
+              this.id = null;
+              this.nombres = null;
+              this.apellidos = null;
+              this.email = null;
+              this.password = null;
+              this.perfil = null;
+              this.estado = null;
+              this.direccion = null;
+              this.genero = null;
+              this.fechaNacimiento = null;
+              this.ciudad = null;
+              this.foto = null;
+              this.documento = null;
+              this.fotoResponse = null;
+              this.documentoResponse = null;
+              this.idfederacion = null;
+              this.federaciones = await this.listarFederaciones()
             }
-          })
-          .catch((error) => {
-            alert("Ha ocurrido un error al guardar, prueba a cambiar el nombre de usuario")
+          } catch (error) {
+            alert("Ha ocurrido un error al procesar la respuesta del servidor")
             console.log(error);
-          });
+          }
+        })
+        .catch((error) => {
+          alert("Ha ocurrido un error al guardar, prueba a cambiar el nombre de usuario")
+          console.log(error);
+        });
     }
   },
 }
@@ -333,5 +337,4 @@ h2 {
   margin: 10px 40%;
   border-color: #1a1c1c;
 }
-
 </style>

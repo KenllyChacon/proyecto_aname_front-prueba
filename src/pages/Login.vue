@@ -9,21 +9,30 @@
 
         <label for="password" class="form-label"> Contraseña:</label>
         <div class="input-group mb-3">
-          <input id="password" placeholder="Ingrese la contraseña" class="form-control" type="password" v-model="password" required>
+          <input id="password" placeholder="Ingrese la contraseña" class="form-control" type="password" v-model="password"
+            required>
           <!--    <button class="btn btn-outline-secondary" type="button" id="btnMostrar">
           <i class="bi bi-eye-fill"></i>
         </button>-->
         </div>
 
         <button type="submit" class="btn btn-dark">Iniciar sesión</button>
-        <div class="loader" v-if="loading"></div> </form>
+        <div class="loader" v-if="loading"></div>
+      </form>
+
+      <!--Regresar a la página de inicio-->
+      <div class="container" vertical-align="middle">
+        <a href="/"><button class="btn btn-primary rounded" id="btn-cancelar">Cancelar</button></a>
+      </div>
     </div>
+
   </div>
 </template>
 
 
 <script>
 import axios from 'axios'
+import "@/router/index.js"
 
 export default {
   data() {
@@ -55,7 +64,7 @@ export default {
           sessionStorage.setItem('email', this.email)
           sessionStorage.setItem('estado', estado)
           sessionStorage.setItem('id', id)
-         // Guardamos el estado
+          // Guardamos el estado
           if (estado) {
             sessionStorage.setItem('mostrar', true)// Verificamos si el estado es true
             this.$router.push('/')// redirigir a la página principal
@@ -142,7 +151,7 @@ export default {
 #login {
   width: auto;
   margin: auto;
-  background-color:white;
+  background-color: white;
   /* margin: 70px auto; */
   /* background-color: #efca08; */
   border: 7px solid #003153;
@@ -172,7 +181,7 @@ h2 {
   }
 }
 
-@media (max-width: 767px){
+@media (max-width: 767px) {
   #fondoPag {
     width: 100%;
   }
@@ -210,12 +219,15 @@ h2 {
   aspect-ratio: 1;
   border-radius: 50%;
   background:
-      radial-gradient(farthest-side,#ffa516 94%,#0000) top/8px 8px no-repeat,
-      conic-gradient(#0000 30%,#ffa516);
-  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    radial-gradient(farthest-side, #ffa516 94%, #0000) top/8px 8px no-repeat,
+    conic-gradient(#0000 30%, #ffa516);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
   animation: l13 1s infinite linear;
 }
-@keyframes l13{
-  100%{transform: rotate(1turn)}
+
+@keyframes l13 {
+  100% {
+    transform: rotate(1turn)
+  }
 }
 </style>
