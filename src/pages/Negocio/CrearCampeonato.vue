@@ -10,93 +10,95 @@
     <h2>Crear Campeonato</h2>
     <!-- <br> -->
 
-    <form @submit.prevent="insertar()">
-        <table class="table">
-            <tr>
-                <td><label for="" id="labelSup">Nombre: </label></td>
-                <td><input class="form-control" v-model="nombre" required type="text"></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Federación que Organiza: </label></td>
-                <td> <select class="form-select" aria-label="Seleccionar federación" style="background-color: #edf3f5; color: #000000;"
-                    v-model="asociacion"> <option v-for="a in asociaciones" v-bind:key="a.id" :value="a.id">
-                        {{ a.nombre }}
-                    </option>
-                </select></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Sede: </label></td>
-                <td><input class="form-control" v-model="sede" type="text" required></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Organizador: </label></td>
-                <td><input class="form-control" v-model="organizador" required type="text"></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Fecha de inicio: </label></td>
-                <td><input class="form-control" v-model="fInicio" required type="datetime-local"></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Fecha de finalización</label></td>
-                <td><input class="form-control" v-model="fFin" required type="datetime-local"></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Fecha inicio de inscripción: </label></td>
-                <td><input class="form-control" v-model="finicioI" required type="datetime-local"></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Fecha fin de inscripción</label></td>
-                <td><input class="form-control" v-model="fFinI" required type="datetime-local"></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Costo Socios</label></td>
-                <td><input class="form-control" v-model="costoSoc" required type="number" step="0.01"></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Costo No Socios</label></td>
-                <td><input class="form-control" v-model="costNoSoc" required type="number" step="0.01"></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Costo Prueba Adicional</label></td>
-                <td><input class="form-control" v-model="costPAdic" required type="number" step="0.01"></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Cuenta Bancaria</label></td>
-                <td><input class="form-control" v-model="cuentaBancaria" required type="text" ></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Institucion Financiera</label></td>
-                <td><input class="form-control" v-model="institucionF" required type="text"></td>
-            </tr>
-            <tr>
-                <td><label for="" id="labelSup">Titular de Cuenta Bancaria</label></td>
-                <td><input class="form-control" v-model="titularCuenta" required type="text"></td>
-            </tr>
-        </table>
-
-        <h4>Pruebas</h4>
-
-        <table id="tablaPruebas">
-            <tr>
-                <!-- <td><label id="prueba" for="">Pruebas: </label></td> -->
-                <td>
-                    <div class="opciones-container">
-                        <div v-for="opcion in listaPruebas" :key="opcion" class="opcion-item">
-                            <input type="checkbox" :id="opcion" :value="opcion.id" v-model="seleccionadas">
-                            <label>{{ opcion.nombre }}</label>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <br>
-            <table>
+    <div class="page-content">
+        <form @submit.prevent="insertar()">
+            <table class="table">
                 <tr>
-                    <td><button type="submit" class="btn btn-danger">Crear Campeonato</button></td>
+                    <td><label for="" id="labelSup">Nombre: </label></td>
+                    <td><input class="form-control" v-model="nombre" required type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Federación que Organiza: </label></td>
+                    <td> <select class="form-select" aria-label="Seleccionar federación" style="background-color: #edf3f5; color: #000000;"
+                        v-model="asociacion"> <option v-for="a in asociaciones" v-bind:key="a.id" :value="a.id">
+                            {{ a.nombre }}
+                        </option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Sede: </label></td>
+                    <td><input class="form-control" v-model="sede" type="text" required></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Organizador: </label></td>
+                    <td><input class="form-control" v-model="organizador" required type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Fecha de inicio: </label></td>
+                    <td><input class="form-control" v-model="fInicio" required type="datetime-local"></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Fecha de finalización</label></td>
+                    <td><input class="form-control" v-model="fFin" required type="datetime-local"></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Fecha inicio de inscripción: </label></td>
+                    <td><input class="form-control" v-model="finicioI" required type="datetime-local"></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Fecha fin de inscripción</label></td>
+                    <td><input class="form-control" v-model="fFinI" required type="datetime-local"></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Costo Socios</label></td>
+                    <td><input class="form-control" v-model="costoSoc" required type="number" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Costo No Socios</label></td>
+                    <td><input class="form-control" v-model="costNoSoc" required type="number" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Costo Prueba Adicional</label></td>
+                    <td><input class="form-control" v-model="costPAdic" required type="number" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Cuenta Bancaria</label></td>
+                    <td><input class="form-control" v-model="cuentaBancaria" required type="text" ></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Institucion Financiera</label></td>
+                    <td><input class="form-control" v-model="institucionF" required type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="labelSup">Titular de Cuenta Bancaria</label></td>
+                    <td><input class="form-control" v-model="titularCuenta" required type="text"></td>
                 </tr>
             </table>
-            <br>
-        </table>
-    </form>
+    
+            <h4>Pruebas</h4>
+    
+            <table id="tablaPruebas">
+                <tr>
+                    <!-- <td><label id="prueba" for="">Pruebas: </label></td> -->
+                    <td>
+                        <div class="opciones-container">
+                            <div v-for="opcion in listaPruebas" :key="opcion" class="opcion-item">
+                                <input type="checkbox" :id="opcion" :value="opcion.id" v-model="seleccionadas">
+                                <label>{{ opcion.nombre }}</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <br>
+                <table>
+                    <tr>
+                        <td><button type="submit" class="btn btn-danger">Crear Campeonato</button></td>
+                    </tr>
+                </table>
+                <br>
+            </table>
+        </form>
+    </div>
     <PiePagina />
 </template>
 <script>
@@ -252,8 +254,7 @@ table {
     box-sizing: border-box;
 }
 
-/* #prueba{
-
-    padding-left: 20px;
-} */
+.page-content {
+    padding-bottom: 50%;
+}
 </style>

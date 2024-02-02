@@ -8,7 +8,7 @@
   </div>
 
   <!--Contenido-->
-  <div>
+  <div class="page-content">
     <h2><b>Admitir Atletas</b></h2>
 
     <select>Filtrar por asociación</select>
@@ -88,6 +88,10 @@ export default {
   /* Color de fondo del botón inactivo */
   border-color: #003153;
   /*Color de borde del botón inactivo*/
+}
+
+.page-content {
+  padding-bottom: 50%;
 }
 
 </style>

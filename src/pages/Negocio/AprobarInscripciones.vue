@@ -6,7 +6,7 @@
   <div v-else>
     <BarraNavPro/>
   </div>
-  <div class="container">
+  <div class="page-content">
     <h2 class="fw-bold">Aprobar Inscripciones</h2>
     <div>
       <label for="" id="labelSup">Seleccione campeonato:</label>
@@ -326,4 +326,9 @@ h2 {
     width: 100%;
   }
 } */
+
+.page-content {
+  padding-bottom: 50%;
+}
+
 </style>

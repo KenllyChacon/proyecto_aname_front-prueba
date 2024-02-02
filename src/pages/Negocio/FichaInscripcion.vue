@@ -6,7 +6,7 @@
   <div v-else>
     <BarraNavPro/>
   </div>
-  <div>
+  <div class="page-content">
     <!--Pestañas-->
     <ul class="nav nav-tabs">
       <li class="nav-item">
@@ -461,19 +461,7 @@ h2 {
   }
 }
 
-/*el siguiente bloque los comento porque sino no se centra bien las tabla */
-/* @media (min-width: 768px) {
-  #ficha2 {
-    width: 75%
-  }
-} */
 
-/*el siguiente bloque no afecta si esta activo o no, no hay cambio alguno */
-/* @media (max-width: 767px) {
-  #ficha2 {
-    width: 100%;
-  }
-} */
 
 
 /* Estilos de Subir documentos */
@@ -492,6 +480,10 @@ h2 {
 }
 @keyframes l7 {
   100% {background-position: right -25% top 0}
+}
+
+.page-content {
+  padding-bottom: 50%;
 }
 
 </style>

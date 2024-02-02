@@ -8,36 +8,36 @@
           <img src="@/assets/img/img-slide-01.jpg" class="d-block w-100" alt="">
         </div>
         <div class="carousel-caption d-none d-md-block">
-          <h3 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h3>
+          <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
         </div>
         <div class="carousel-item">
           <img src="@/assets/img/img-slide-02.jpg" class="d-block w-100" alt="">
         </div>
         <div class="carousel-caption d-none d-md-block">
-          <h3 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h3>
+          <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
         </div>
         <div class="carousel-item">
           <img src="@/assets/img/img-slide-03.jpg" class="d-block w-100" alt="">
         </div>
         <div class="carousel-caption d-none d-md-block">
-          <h3 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h3>
+          <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
         </div>
         <div class="carousel-item">
           <img src="@/assets/img/img-slide-04.jpg" class="d-block w-100" alt="">
         </div>
         <div class="carousel-caption d-none d-md-block">
-          <h3 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h3>
+          <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
         </div>
         <div class="carousel-item">
           <img src="@/assets/img/img-slide-05.jpg" class="d-block w-100" alt="">
         </div>
         <div class="carousel-caption d-none d-md-block">
-          <h3 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h3>
+          <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
         </div>
       </div>
       <!--botón anterior-->
@@ -60,7 +60,7 @@
   <div v-else>
     <BarraNavPro/>
   </div>
-  <div>
+  <div class="page-content">
     <!-- Contenido -->
     <main>
       <div class="container" id="contenido">
@@ -127,10 +127,10 @@
 
       </div>
     </main>
-
+  </div>
     <!-- Pie de página -->
     <PiePagina />
-  </div>
+  
 </template>
 
 <script>
@@ -226,5 +226,9 @@ export default {
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+
+.page-content {
+  padding-bottom: 50%;
 }
 </style>
