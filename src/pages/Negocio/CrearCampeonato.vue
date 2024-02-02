@@ -35,19 +35,19 @@
                 </tr>
                 <tr>
                     <td><label for="" id="labelSup">Fecha de inicio: </label></td>
-                    <td><input class="form-control" v-model="fInicio" required type="datetime-local"></td>
+                    <td><input class="form-control" v-model="fInicio" required type="date"></td>
                 </tr>
                 <tr>
                     <td><label for="" id="labelSup">Fecha de finalización</label></td>
-                    <td><input class="form-control" v-model="fFin" required type="datetime-local"></td>
+                    <td><input class="form-control" v-model="fFin" required type="date"></td>
                 </tr>
                 <tr>
                     <td><label for="" id="labelSup">Fecha inicio de inscripción: </label></td>
-                    <td><input class="form-control" v-model="finicioI" required type="datetime-local"></td>
+                    <td><input class="form-control" v-model="finicioI" required type="date"></td>
                 </tr>
                 <tr>
                     <td><label for="" id="labelSup">Fecha fin de inscripción</label></td>
-                    <td><input class="form-control" v-model="fFinI" required type="datetime-local"></td>
+                    <td><input class="form-control" v-model="fFinI" required type="date"></td>
                 </tr>
                 <tr>
                     <td><label for="" id="labelSup">Costo Socios</label></td>

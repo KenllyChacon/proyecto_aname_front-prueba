@@ -49,7 +49,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="year">Año</label>
-          <input v-model="fechaNacimiento" type="datetime-local" class="form-control bordeCaja" id="year" name="year"
+          <input v-model="fechaNacimiento" type="date" class="form-control bordeCaja" id="year" name="year"
                  required>
         </div>
       </div>
