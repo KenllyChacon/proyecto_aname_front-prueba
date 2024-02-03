@@ -28,7 +28,7 @@
 
       <section id="items" vertical-align="middle">
         <h5 align="left" color="#1a1c1c">DETALLE</h5>
-        <div class="table-responsive" >
+        <div class="table-responsive">
           <table class="table table-responsive table-borderless align-middle" id="tablaDetalle">
             <thead>
               <tr>
@@ -37,14 +37,22 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(l, index) in pruebas3" :key="l">
+              <!-- <tr v-for="(l, index) in pruebas3" :key="l">
                 <td>{{ l.nombre }}</td>
                 <td >
-                  <!-- Contenido de la segunda columna -->
                   <p v-if="index === 1" rowspan="3">{{ costoNoSocio }}</p>
                   <p v-else>{{ l.precio }}</p>
                 </td>
+              </tr> -->
+              <tr v-for="(l, index) in pruebas3" :key="l">
+                <td>{{ l.nombre }}</td>
+                <td>
+                  <!-- Contenido de la segunda columna -->
+                  <p v-if="index < 3">{{ costoNoSocio / pruebas3.length }}</p>
+                  <!-- <tr v-if="index < 3">{{ costoNoSocio/pruebas3.length }}</tr> -->
+                </td>
               </tr>
+
               <tr v-for="li in pruebasRes" :key="li">
                 <td>{{ li.nombre }}</td>
                 <td>
@@ -302,7 +310,7 @@ h1 {
 
 #tablaDetalle {
   border-collapse: collapse;
-  
+
 
   th {
     background-color: rgba(102, 153, 153, 0.5);

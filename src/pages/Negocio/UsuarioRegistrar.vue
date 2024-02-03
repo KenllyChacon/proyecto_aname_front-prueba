@@ -48,8 +48,8 @@
       </div>
       <div class="col-md-12">
         <div class="form-group">
-          <label for="year">Año</label>
-          <input v-model="fechaNacimiento" type="date" class="form-control bordeCaja" id="year" name="year" required>
+          <label for="year">Rango de edad permitido: 30 - 94 años</label>
+          <input v-model="fechaNacimiento" type="date" class="form-control bordeCaja" min="1929-12-31" max="1993-12-31" id="year" name="year" required>
         </div>
       </div>
       <div class="form-group">
