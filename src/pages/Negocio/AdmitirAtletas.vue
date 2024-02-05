@@ -13,7 +13,7 @@
     <h2><b>Admitir Atletas</b></h2>
 
     <!-- <select>Filtrar por asociación</select> -->
-    <div>
+    <!-- <div>
       <label for="" id="labelSup">Federación: </label>
       <select class="form-select bordeCaja" aria-label="Seleccionar federacion" style="color: #000000;"
         v-model="idfederacion">
@@ -23,8 +23,8 @@
         </option>
       </select>
     </div>
+    <br> -->
     <br>
-
     <div class="table-responsive">
         <table class="table table-responsive table-bordered">
             <thead>
@@ -63,26 +63,26 @@
 import BarraNav from "@/components/BarraNav.vue";
 import BarraNavPro from "@/components/BarraNavPro.vue";
 import PiePagina from "@/components/PiePagina.vue";
-import { listaAsociacionesCompetidorFachada } from "@/assets/js/Competidor";
+// import { listaAsociacionesCompetidorFachada } from "@/assets/js/Competidor";
 
 export default {
   data () {
     return {
-      federaciones: [],
-      idfederacion: null,
+      // federaciones: [],
+      // idfederacion: null,
     };
   },
 
-  mounted() {
-    this.listarFederaciones();
-  },
+  // mounted() {
+  //   this.listarFederaciones();
+  // },
 
-  methods: {
-    async listarFederaciones() {
-      this.federaciones = await listaAsociacionesCompetidorFachada();
-      console.log(this.federaciones)
-    },
-  },
+  // methods: {
+  //   async listarFederaciones() {
+  //     this.federaciones = await listaAsociacionesCompetidorFachada();
+  //     console.log(this.federaciones)
+  //   },
+  // },
 
   components: {
     BarraNavPro,
