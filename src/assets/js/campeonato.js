@@ -31,8 +31,8 @@ export const campIncritosUsersP = async(email) =>{
     return await campIncritosUsers(email)
 }
 
-export const campIncritosP = async(idCampeonato) =>{
-    return await campIncritos(idCampeonato)
+export const campIncritosP = async(idCampeonato, idAsociacion) =>{
+    return await campIncritos(idCampeonato, idAsociacion)
 }
 
 export const campIncritosUserEmailP = async(email) =>{
@@ -119,10 +119,10 @@ const campIncritosUsers = async(email) => {
     }
 }
 
-const campIncritos = async(idCampeonato) => {
+const campIncritos = async(idCampeonato, idAsociacion) => {
 
     try {
-        const response = await axios.get(url + `/competidor/inscritos/campeonato/${idCampeonato}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
+        const response = await axios.get(url + `/competidor/inscritos/campeonato/${idCampeonato}?idAsociacion=${idAsociacion}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });
         return response.data;
     } catch (error) {
         console.error('Error en la solicitud:', error.response || error.message);

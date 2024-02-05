@@ -279,6 +279,7 @@ export default {
               this.fotoResponse = null;
               this.documentoResponse = null;
               this.idfederacion = null;
+              this.passwordConfirm=null;
               this.federaciones = await this.listarFederaciones()
             }
           } catch (error) {

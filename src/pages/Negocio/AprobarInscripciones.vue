@@ -71,8 +71,14 @@
 import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
 import { campIncritosP, VerCampeonatosP } from "@/assets/js/campeonato";
-import { confirmarPagoFachada, negarPagoFachada, aprobarInscripcionFachada, confirmarInscripcionFachada, negarInscripcionFachada } from "@/assets/js/Competidor"
+import { confirmarPagoFachada, 
+  negarPagoFachada, 
+  aprobarInscripcionFachada, 
+  confirmarInscripcionFachada, 
+  negarInscripcionFachada,
+ } from "@/assets/js/Competidor"
 import { cargaArchivosFachada } from "@/assets/js/Archivo"
+import {buscarAsociacionUsuarioFachada}from "@/assets/js/Usuario"
 import BarraNavPro from "@/components/BarraNavPro.vue";
 
 
@@ -89,6 +95,7 @@ export default {
       fichaFirmada: null,
       mostrarBarra: true,
       cargando: false,
+      idAsociacion:null,
     };
   },
   components: {
@@ -96,17 +103,20 @@ export default {
     PiePagina,
     BarraNav,
   },
-  mounted() {
+  async mounted() {
     this.listarCampeonatos()
     if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
       console.log("id: " + sessionStorage.getItem("id"))
       this.mostrarBarra = false;
     }
+
+    this.idAsociacion= await buscarAsociacionUsuarioFachada(sessionStorage.getItem("email"))
+    console.log(this.idAsociacion)
   },
   methods: {
 
     async listarCampIsnscritos() {
-      this.listaCampInscritos = await campIncritosP(this.idCampeonato)
+      this.listaCampInscritos = await campIncritosP(this.idCampeonato, this.idAsociacion)
     },
     async listarCampeonatos() {
       this.listaCampeonatos = await VerCampeonatosP();

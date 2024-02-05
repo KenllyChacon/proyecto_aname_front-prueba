@@ -1,10 +1,10 @@
 <template>
-    <!--Barra navegacion-->
+  <!--Barra navegacion-->
   <div v-if="mostrarBarra">
     <BarraNav />
   </div>
   <div v-else>
-    <BarraNavPro/>
+    <BarraNavPro />
   </div>
 
   <!--Contenido-->
@@ -26,32 +26,43 @@
     <br> -->
     <br>
     <div class="table-responsive">
-        <table class="table table-responsive table-bordered">
-            <thead>
-                <tr>
-                    <th id="encTablaAdm">Usuario</th>
-                    <th id="encTablaAdm">Documento de identidad</th>
-                    <th id="encTablaAdm">Aprobar usuario</th>
-                    <th id="encTablaAdm">Comprobante de pago</th>
-                    <th id="encTablaAdm">Aprobar pago de asociación</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Nombre usuario</td>
-                    <td><a href="" download>Descargar documento de identidad</a></td>
-                    <td>
-                      <button class="btn btn-primary">Aprobar usuario</button>
-                      <button class="btn btn-primary">Denegar usuario</button>
-                    </td>
-                    <td><a href="" download>Descargar comprobante de pago</a></td>
-                    <td>
-                      <button class="btn btn-primary">Aprobar pago</button>
-                      <button class="btn btn-primary">Denegar pago</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+      <table class="table table-responsive table-bordered">
+        <thead>
+          <tr>
+            <th id="encTablaAdm">Usuario</th>
+            <th id="encTablaAdm">Nombres</th>
+            <th id="encTablaAdm">Fecha de nacimiento</th>
+            <th id="encTablaAdm">Estado</th>
+            <th id="encTablaAdm">¿Es socio?</th>
+            <th id="encTablaAdm">Documento de identidad</th>
+            <th id="encTablaAdm">Aprobar usuario</th>
+            <th id="encTablaAdm">Comprobante de pago</th>
+            <th id="encTablaAdm">Aprobar pago de asociación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="u in listaUsuarios" :key="u">
+            <td>{{ u.email }}</td>
+            <td>{{ u.nombres + " " + u.apellidos }}</td>
+            <td>{{ new Date(u.fechaNacimiento).toLocaleDateString() }}</td>
+
+            <td>{{ u.estado ? 'Activado' : 'Desactivado' }}</td>
+            <td>{{ u.socio ? 'Socio' : 'No asociado' }}</td>
+
+            <td><a :href="u.documentoIdentidad" download>Descargar Documento de Identidad</a></td>            
+            
+            <td>
+              <button class="btn btn-primary" @click="aprobarRegistroUsuario(u.email)">Aprobar usuario</button>
+              <button class="btn btn-primary" @click="negarRegistroUsuario(u.email)">Denegar usuario</button>
+            </td>
+            <td><a :href="u.pagoAsociacion" download>Descargar comprobante de pago</a></td>            
+            <td>
+              <button class="btn btn-primary" @click="aprobarUsuarioAsociado(u.email)">Aprobar pago</button>
+              <button class="btn btn-primary" @click="negarUsuarioAsociado(u.email)">Denegar pago</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -64,30 +75,78 @@ import BarraNav from "@/components/BarraNav.vue";
 import BarraNavPro from "@/components/BarraNavPro.vue";
 import PiePagina from "@/components/PiePagina.vue";
 // import { listaAsociacionesCompetidorFachada } from "@/assets/js/Competidor";
+import {buscarAsociacionUsuarioFachada, 
+  buscarUsuariosPorAsociacionFachada,
+  aprobarRegistroUsuarioFachada,
+  negarRegistroUsuarioFachada,
+  aprobarUsuarioAsociadoFachada,
+  negarUsuarioAsociadoFachada
+}from "@/assets/js/Usuario"
 
 export default {
-  data () {
+  data() {
     return {
-      // federaciones: [],
-      // idfederacion: null,
+      listaUsuarios:[],
+      idAsociacion:null,
     };
   },
 
-  // mounted() {
-  //   this.listarFederaciones();
-  // },
-
-  // methods: {
-  //   async listarFederaciones() {
-  //     this.federaciones = await listaAsociacionesCompetidorFachada();
-  //     console.log(this.federaciones)
-  //   },
-  // },
 
   components: {
     BarraNavPro,
     PiePagina,
     BarraNav,
+  },
+
+  async mounted() {
+    this.idAsociacion = await buscarAsociacionUsuarioFachada(sessionStorage.getItem("email"))
+    this.buscarUsuarios()
+  },
+
+  methods: {
+   async buscarUsuarios(){
+      this.listaUsuarios = await buscarUsuariosPorAsociacionFachada(this.idAsociacion)
+    },
+
+    async aprobarRegistroUsuario(email) {
+      try {
+        await aprobarRegistroUsuarioFachada(email);
+        alert("Registro de usuario aprobado")
+      } catch (error) {
+        alert("Error al aprobar el registro")
+      }
+      await this.buscarUsuarios()
+    },
+
+    async negarRegistroUsuario(email) {
+      try {
+        await negarRegistroUsuarioFachada(email);
+        alert("Registro de usuario denegado")
+      } catch (error) {
+        alert("Error al denegar el registro")
+      }
+      await this.buscarUsuarios()
+    },
+
+    async aprobarUsuarioAsociado(email) {
+      try {
+        await aprobarUsuarioAsociadoFachada(email);
+        alert("Pago aprobado")
+      } catch (error) {
+        alert("Error al aprobar el pago")
+      }
+      await this.buscarUsuarios()
+    },
+
+    async negarUsuarioAsociado(email) {
+      try {
+        await negarUsuarioAsociadoFachada(email);
+        alert("Pago denegado")
+      } catch (error) {
+        alert("Error al denegar el pago")
+      }
+      await this.buscarUsuarios()
+    },
   },
 };
 </script>
@@ -118,5 +177,4 @@ export default {
 .page-content {
   padding-bottom: 50%;
 }
-
 </style>
