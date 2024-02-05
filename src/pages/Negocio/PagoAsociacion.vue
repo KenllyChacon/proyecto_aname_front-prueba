@@ -47,7 +47,7 @@ import PiePagina from "@/components/PiePagina.vue";
 export default {
   data () {
     return {
-
+      mostrarBarra: true
     };
   },
 
