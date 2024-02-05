@@ -9,33 +9,45 @@
 
   <!--Contenido-->
   <div class="page-content">
+    <br>
     <h2><b>Admitir Atletas</b></h2>
 
-    <select>Filtrar por asociación</select>
-
+    <!-- <select>Filtrar por asociación</select> -->
+    <!-- <div>
+      <label for="" id="labelSup">Federación: </label>
+      <select class="form-select bordeCaja" aria-label="Seleccionar federacion" style="color: #000000;"
+        v-model="idfederacion">
+        <option v-for="f in federaciones" :key="f.id" :value="f.id">{{
+          f.nombre
+        }}
+        </option>
+      </select>
+    </div>
+    <br> -->
+    <br>
     <div class="table-responsive">
         <table class="table table-responsive table-bordered">
             <thead>
                 <tr>
                     <th id="encTablaAdm">Usuario</th>
                     <th id="encTablaAdm">Documento de identidad</th>
-                    <th id="encTablaAdm">Verificar edad</th>
+                    <th id="encTablaAdm">Aprobar usuario</th>
                     <th id="encTablaAdm">Comprobante de pago</th>
-                    <th id="encTablaAdm">Admitir atleta</th>
+                    <th id="encTablaAdm">Aprobar pago de asociación</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Nombre usuario</td>
-                    <td>Descargar documento de identidad</td>
+                    <td><a href="" download>Descargar documento de identidad</a></td>
                     <td>
-                      <button class="btn btn-primary">Edad corresponde</button>
-                      <button class="btn btn-primary">Edad no corresponde</button>
+                      <button class="btn btn-primary">Aprobar usuario</button>
+                      <button class="btn btn-primary">Denegar usuario</button>
                     </td>
-                    <td>Descargar comprobante de pago</td>
+                    <td><a href="" download>Descargar comprobante de pago</a></td>
                     <td>
-                      <button class="btn btn-primary">Admitir atleta</button>
-                      <button class="btn btn-primary">Rechazar atleta</button>
+                      <button class="btn btn-primary">Aprobar pago</button>
+                      <button class="btn btn-primary">Denegar pago</button>
                     </td>
                 </tr>
             </tbody>
@@ -51,13 +63,26 @@
 import BarraNav from "@/components/BarraNav.vue";
 import BarraNavPro from "@/components/BarraNavPro.vue";
 import PiePagina from "@/components/PiePagina.vue";
+// import { listaAsociacionesCompetidorFachada } from "@/assets/js/Competidor";
 
 export default {
   data () {
     return {
-
+      // federaciones: [],
+      // idfederacion: null,
     };
   },
+
+  // mounted() {
+  //   this.listarFederaciones();
+  // },
+
+  // methods: {
+  //   async listarFederaciones() {
+  //     this.federaciones = await listaAsociacionesCompetidorFachada();
+  //     console.log(this.federaciones)
+  //   },
+  // },
 
   components: {
     BarraNavPro,

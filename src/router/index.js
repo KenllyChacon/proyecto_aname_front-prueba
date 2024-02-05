@@ -61,6 +61,19 @@ const routes = [
   },
 
   {
+    path: "/pagoAso",
+    name: "pagoAso",
+    component: () =>
+      import(
+        /* webpackChunkName: "PagoAsociacion" */ "@/pages/Negocio/PagoAsociacion.vue"
+      ),
+    meta: {
+      requiresAuth: true,
+      //roles: ['ATL']
+    },
+  },
+
+  {
     path: "/admitirAtletas",
     name: "admitirAtletas",
     component: () =>

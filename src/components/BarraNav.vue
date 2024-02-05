@@ -15,6 +15,9 @@
           <li class="nav-item">
             <router-link to="/ficha" class="nav-link">Inscripción</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/pagoAso" class="nav-link">Pago de Asociación</router-link>
+          </li>
 
         </ul>
         <div v-if="!mostrar" class="float-end">
