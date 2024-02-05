@@ -87,7 +87,7 @@
       <div v-if="email" class="row">
         <div class="form-group">
           <label for="imageUpload" class="colorTexto fw-bold">Seleccionar imagen del documento:</label>
-          <input type="file" @change="fotoDocumento" accept="application/pdf" class="form-control-file" id="imageUpload">
+          <input type="file" @change="fotoDocumento" accept="application/pdf" class="form-control-file" id="imageUpload" required>
         </div>
       </div>
       <button type="submit" class="btn btn-danger">Registrar</button>
@@ -211,7 +211,7 @@ export default {
         return;
       }
 
-      if (this.documentoResponse) {
+      if (this.fotoResponse) {
         var usuario = {
           id: 0,
           nombres: this.nombres,
@@ -222,7 +222,7 @@ export default {
           estado: true,
           direccion: this.direccion,
           sexo: this.genero,
-          fechaNacimiento: this.fechaNacimiento,
+          fechaNacimiento: this.transformarFecha(this.fechaNacimiento),
           ciudad: this.ciudad,
           documentoIdentidad: this.documentoResponse,
           fotografia: this.fotoResponse,
@@ -239,9 +239,9 @@ export default {
           estado: true,
           direccion: this.direccion,
           sexo: this.genero,
-          fechaNacimiento: this.fechaNacimiento,
+          fechaNacimiento:  this.transformarFecha(this.fechaNacimiento),
           ciudad: this.ciudad,
-          documentoIdentidad: null,
+          documentoIdentidad: this.documentoResponse,
           fotografia: null,
           idAsociacion: this.idfederacion
         };
@@ -258,8 +258,8 @@ export default {
 
               const body = {
                 toUser: this.email,
-                subject: "Registro Usuario",
-                message: "Usuario registrado con éxito"
+                subject: "ANAME: Registro Inicial de Usuario",
+                message: `El usuario ${this.email} ha completado el registro inicial con éxito, un administrador revisará la solicitud para asociarse a la federación seleccionada`
               }
               enviarSimpleFachada(body);
               alert("Usuario registrado con éxito")
@@ -290,7 +290,13 @@ export default {
           alert("Ha ocurrido un error al guardar, prueba a cambiar el nombre de usuario")
           console.log(error);
         });
-    }
+    },
+
+    transformarFecha(fecha) {
+      // La fecha viene en el formato 'YYYY-MM-DD' desde el input date
+      // Agrega la hora y minutos necesarios para formar un LocalDateTime
+      return `${fecha}T00:00:00`;
+    },
   },
 }
 </script>
