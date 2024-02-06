@@ -47,7 +47,7 @@
             <td>{{ new Date(u.fechaNacimiento).toLocaleDateString() }}</td>
 
             <td>{{ u.estado ? 'Activado' : 'Desactivado' }}</td>
-            <td>{{ u.socio ? 'Socio' : 'No asociado' }}</td>
+            <td>{{ u.socio ? 'Socio' : 'Asociado' }}</td>
 
             <td><a :href="u.documentoIdentidad" download>Descargar Documento de Identidad</a></td>            
             
