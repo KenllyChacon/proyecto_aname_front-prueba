@@ -86,7 +86,7 @@
       <br>
       <div v-if="email" class="row">
         <div class="form-group">
-          <label for="imageUpload" class="colorTexto fw-bold">Seleccionar imagen del documento:</label>
+          <label for="imageUpload" class="colorTexto fw-bold">Seleccionar documento de identidad:</label>
           <input type="file" @change="fotoDocumento" accept="application/pdf" class="form-control-file" id="imageUpload" required>
         </div>
       </div>
