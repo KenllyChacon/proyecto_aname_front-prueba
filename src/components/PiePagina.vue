@@ -13,7 +13,7 @@
             <h6>Información</h6>
             <a href="https://asudama.org/" style="color: #eeb902; align: left;">asudama.org</a>
             <p style="align: left"></p>
-            <a href="https://www.featle.org.ec/" style="color: #eeb902; align: left;">featle.org.ec</a>
+            
         </div>
 
         <div>
