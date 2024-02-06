@@ -48,7 +48,7 @@
                 <td>{{ l.nombre }}</td>
                 <td>
                   <!-- Contenido de la segunda columna -->
-                  <p v-if="index < 3">{{ costoNoSocio / pruebas3.length }}</p>
+                  <p v-if="index < 3">{{ (costoNoSocio / pruebas3.length).toFixed(2) }}</p>
                   <!-- <tr v-if="index < 3">{{ costoNoSocio/pruebas3.length }}</tr> -->
                 </td>
               </tr>
