@@ -16,7 +16,7 @@
             <router-link to="/ficha" class="nav-link">Inscripción</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/pagoAso" class="nav-link">Pago de Asociación</router-link>
+            <router-link to="/pagoAso" class="nav-link">Pago de Membresía</router-link>
           </li>
 
         </ul>
