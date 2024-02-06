@@ -72,7 +72,7 @@ export default {
             sessionStorage.setItem('mostrar', true)// Verificamos si el estado es true
             this.$router.push('/')// redirigir a la página principal
           } else {
-            alert('Tu cuenta está desactivada') // Mostramos un mensaje de error si el estado es false
+            alert('La cuenta está desactivada temporalmente, un administrador autorizará su ingreso') // Mostramos un mensaje de error si el estado es false
           }
         })
         .catch(error => {
