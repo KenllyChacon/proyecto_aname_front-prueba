@@ -9,6 +9,7 @@
 
   <!--Contenido-->
   <div class="page-content">
+    <br>
     <h2><b>Información de Pago</b></h2>
 
     <h2><b>{{ nombreAsociacion }}</b></h2>
