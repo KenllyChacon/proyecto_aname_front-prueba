@@ -33,11 +33,11 @@
             <th id="encTablaAdm">Nombres</th>
             <th id="encTablaAdm">Fecha de nacimiento</th>
             <th id="encTablaAdm">Estado</th>
-            <th id="encTablaAdm">¿Es socio?</th>
+            <th id="encTablaAdm">¿Está asociado?</th>
             <th id="encTablaAdm">Documento de identidad</th>
             <th id="encTablaAdm">Aprobar usuario</th>
             <th id="encTablaAdm">Comprobante de pago</th>
-            <th id="encTablaAdm">Aprobar pago de asociación</th>
+            <th id="encTablaAdm">Aprobar pago de membresía</th>
           </tr>
         </thead>
         <tbody>
@@ -49,13 +49,13 @@
             <td>{{ u.estado ? 'Activado' : 'Desactivado' }}</td>
             <td>{{ u.socio ? 'Socio' : 'Asociado' }}</td>
 
-            <td><a :href="u.documentoIdentidad" download>Descargar Documento de Identidad</a></td>            
-            
+            <td><a :href="u.documentoIdentidad" download>Descargar Documento de Identidad</a></td>
+
             <td>
               <button class="btn btn-primary" @click="aprobarRegistroUsuario(u.email)">Aprobar usuario</button>
               <button class="btn btn-primary" @click="negarRegistroUsuario(u.email)">Denegar usuario</button>
             </td>
-            <td><a :href="u.pagoAsociacion" download>Descargar comprobante de pago</a></td>            
+            <td><a :href="u.pagoAsociacion" download>Descargar comprobante de pago</a></td>
             <td>
               <button class="btn btn-primary" @click="aprobarUsuarioAsociado(u.email)">Aprobar pago</button>
               <button class="btn btn-primary" @click="negarUsuarioAsociado(u.email)">Denegar pago</button>
@@ -75,19 +75,20 @@ import BarraNav from "@/components/BarraNav.vue";
 import BarraNavPro from "@/components/BarraNavPro.vue";
 import PiePagina from "@/components/PiePagina.vue";
 // import { listaAsociacionesCompetidorFachada } from "@/assets/js/Competidor";
-import {buscarAsociacionUsuarioFachada, 
+import {
+  buscarAsociacionUsuarioFachada,
   buscarUsuariosPorAsociacionFachada,
   aprobarRegistroUsuarioFachada,
   negarRegistroUsuarioFachada,
   aprobarUsuarioAsociadoFachada,
   negarUsuarioAsociadoFachada
-}from "@/assets/js/Usuario"
+} from "@/assets/js/Usuario"
 
 export default {
   data() {
     return {
-      listaUsuarios:[],
-      idAsociacion:null,
+      listaUsuarios: [],
+      idAsociacion: null,
     };
   },
 
@@ -104,7 +105,7 @@ export default {
   },
 
   methods: {
-   async buscarUsuarios(){
+    async buscarUsuarios() {
       this.listaUsuarios = await buscarUsuariosPorAsociacionFachada(this.idAsociacion)
     },
 
