@@ -124,7 +124,7 @@ export default {
         this.comprobantePagoRes = await cargaArchivosFachada(this.comprobantePago, "pago-asociacion", sessionStorage.getItem("email"));
       } catch (error) {
         console.error("Error loading registration file:", error);
-        alert("Error cargando el comprobante de pado");
+        alert("Error cargando el comprobante de pago");
       } finally {
         this.cargando = false; // Oculta el cargador después de que termine la carga (incluso si hay un error)
       }
@@ -144,7 +144,7 @@ export default {
 
         try {
           await registroPagoAsociacionFachada(pago);
-          alert('Pago enviado con éxito');
+          alert('Comprobante de pago enviado con éxito, un administrador verificará su pago y activará su membresía');
         } catch (error) {
           alert('No se pudo enviar el pago');
         }

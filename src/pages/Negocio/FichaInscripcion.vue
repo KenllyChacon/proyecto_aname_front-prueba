@@ -1,10 +1,10 @@
 <template>
   <!--Barra navegacion-->
   <div v-if="mostrarBarra">
-    <BarraNav/>
+    <BarraNav />
   </div>
   <div v-else>
-    <BarraNavPro/>
+    <BarraNavPro />
   </div>
   <div class="page-content">
     <!--Pestañas-->
@@ -42,8 +42,8 @@
             <br>
             <div>
               <select class="form-select" aria-label="Seleccionar campeonato"
-                      style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato"
-                      @change="listarPruebasDelCampeonato">
+                style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato"
+                @change="listarPruebasDelCampeonato">
                 <option v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id">{{ opcion.nombre }}
                 </option>
               </select>
@@ -93,50 +93,50 @@
         <div class="table-responsive-sm" id="tabla3">
           <table class="table table-bordered table-responsive">
             <thead>
-            <tr>
-              <th scope="col" id="encabezadoCamp">Campeonato</th>
-              <th scope="col" id="encabezadoCamp">Comprobante de pago</th>
-              <th scope="col" id="encabezadoCamp">Ficha de inscripción</th>
-              <th scope="col" id="encabezadoCamp">Pago realizado</th>
-              <th scope="col" id="encabezadoCamp">Ficha de inscripción firmada</th>
-              <th scope="col" id="encabezadoCamp">Estado</th>
-            </tr>
+              <tr>
+                <th scope="col" id="encabezadoCamp">Campeonato</th>
+                <th scope="col" id="encabezadoCamp">Comprobante de pago</th>
+                <th scope="col" id="encabezadoCamp">Ficha de inscripción</th>
+                <th scope="col" id="encabezadoCamp">Pago realizado</th>
+                <th scope="col" id="encabezadoCamp">Ficha de inscripción firmada</th>
+                <th scope="col" id="encabezadoCamp">Estado</th>
+              </tr>
             </thead>
             <tbody>
-            <tr v-for="c in listaCampInscritosUserEmail" :key="c">
-              <td>{{ c.nombreCampeonato }}</td>
-              <td><a @click="imprimirComprobante(c.idCampeonato)">Descargar comprobante</a></td>
-              <td><a @click="descargarFicha(c.id)">Descargar Ficha de Inscripción</a></td>
-              <td>
-                <form enctype="multipart/form-data"  @submit.prevent="enviarPago(c.id)">
-                  <div class="form-group">
-                    <label class="colorTexto fw-bold"> Subir comprobante de pago:</label>
-                    <input type="file" @change="pagoComprobante" accept="application/pdf" class="form-control-file">
+              <tr v-for="c in listaCampInscritosUserEmail" :key="c">
+                <td>{{ c.nombreCampeonato }}</td>
+                <td><a @click="imprimirComprobante(c.idCampeonato)">Descargar comprobante</a></td>
+                <td><a @click="descargarFicha(c.id)">Descargar Ficha de Inscripción</a></td>
+                <td>
+                  <form enctype="multipart/form-data" @submit.prevent="enviarPago(c.id)">
+                    <div class="form-group">
+                      <label class="colorTexto fw-bold"> Subir comprobante de pago:</label>
+                      <input type="file" @change="pagoComprobante" accept="application/pdf" class="form-control-file">
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary" :disabled="cargando">Enviar</button>
+                    <div class="loader" v-if="cargando"></div>
+                  </form>
+                </td>
+                <td>
+                  <!--                                           <form @submit.prevent="inscribirse()">-->
+                  <form enctype="multipart/form-data" @submit.prevent="enviarFicha(c.id)">
+                    <div class="form-group">
+                      <label class="colorTexto fw-bold"> Subir ficha de inscripción firmada:</label>
+                      <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary" :disabled="cargando">Enviar</button>
+                    <div class="loader" v-if="cargando"></div>
+                    <!-- <input type="submit" value="Enviar" /> -->
+                  </form>
+                </td>
+                <td>
+                  <div>
+                    <label class="fw-bold" for="estado">{{ c.estadoParticipacion }}</label>
                   </div>
-                  <br>
-                  <button type="submit" class="btn btn-primary" :disabled="cargando">Enviar</button>
-                  <div class="loader" v-if="cargando"></div>
-                </form>
-              </td>
-              <td>
-<!--                                           <form @submit.prevent="inscribirse()">-->
-                <form enctype="multipart/form-data" @submit.prevent="enviarFicha(c.id)">
-                  <div class="form-group">
-                    <label class="colorTexto fw-bold"> Subir ficha de inscripción firmada:</label>
-                    <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">
-                  </div>
-                  <br>
-                  <button type="submit" class="btn btn-primary" :disabled="cargando">Enviar</button>
-                  <div class="loader" v-if="cargando"></div>
-                  <!-- <input type="submit" value="Enviar" /> -->
-                </form>
-              </td>
-              <td>
-                <div>
-                  <label class="fw-bold" for="estado">{{ c.estadoParticipacion }}</label>
-                </div>
-              </td>
-            </tr>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -146,7 +146,7 @@
   </div>
 
   <!-- Pie de página -->
-  <PiePagina/>
+  <PiePagina />
 </template>
 
 <script>
@@ -158,9 +158,9 @@ import {
   campIncritosUsersP,
   campIncritosUserEmailP
 } from "@/assets/js/campeonato";
-import {listarPruebasPorCampFachada} from "@/assets/js/Prueba";
-import {listaAsociacionesCompetidorFachada, registrarPagoFachada, registrarFichaFachada} from "@/assets/js/Competidor"
-import {cargaArchivosFachada} from "@/assets/js/Archivo"
+import { listarPruebasPorCampFachada } from "@/assets/js/Prueba";
+import { listaAsociacionesCompetidorFachada, registrarPagoFachada, registrarFichaFachada } from "@/assets/js/Competidor"
+import { cargaArchivosFachada } from "@/assets/js/Archivo"
 import BarraNavPro from "@/components/BarraNavPro.vue";
 
 export default {
@@ -189,8 +189,8 @@ export default {
   },
   mounted() {
     this.listarCampeonatos(),
-        this.listarCampInscritosUserEmail(),
-        console.log("ROL INICIO" + sessionStorage.getItem("rol"))
+      this.listarCampInscritosUserEmail(),
+      console.log("ROL INICIO" + sessionStorage.getItem("rol"))
     if (sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
       console.log("id: " + sessionStorage.getItem("id"))
       this.mostrarBarra = false;
@@ -217,18 +217,18 @@ export default {
     },
 
     async cargarPago() {
-        this.cargando = true; // Muestra el cargador antes de que inicie la carga
+      this.cargando = true; // Muestra el cargador antes de que inicie la carga
 
-        try {
-          this.comprobantePagoRes = await cargaArchivosFachada(this.comprobantePago, "comprobante-pago", sessionStorage.getItem("email"));
-          console.log(this.comprobantePagoRes)
-        } catch (error) {
-          console.error("Error al cargar el archivo de pago:", error);
-          alert("Error al cargar el comprobante de pago");
-        } finally {
-          this.cargando = false; // Oculta el cargador después de que termine la carga (incluso si hay un error)
-        }
-      },
+      try {
+        this.comprobantePagoRes = await cargaArchivosFachada(this.comprobantePago, "comprobante-pago", sessionStorage.getItem("email"));
+        console.log(this.comprobantePagoRes)
+      } catch (error) {
+        console.error("Error al cargar el archivo de pago:", error);
+        alert("Error al cargar el comprobante de pago");
+      } finally {
+        this.cargando = false; // Oculta el cargador después de que termine la carga (incluso si hay un error)
+      }
+    },
 
 
     fichaI(event) {
@@ -352,8 +352,9 @@ export default {
       }
 
       await InscribirseCampeonatoP(ficha);
-      alert("Se ha inscrito correctamente")
-      alert("En Confirmación de Inscripción observará su proceso y comprobante de pago")
+      //alert("Se ha inscrito correctamente")
+      //alert("En Confirmación de Inscripción observará su proceso y comprobante de pago")
+      alert("Usted ha hecho una preinscripción, un administrador la aprobará. Puede seguir el proceso en la pestaña Confirmación de Inscripción.")
       this.listarCampInscritosUserEmail()
       this.selectedTab = "tab2"
 
@@ -362,12 +363,12 @@ export default {
 
     imprimirComprobante(idCampeonatos) {
       //let route = 
-      this.$router.push({name: 'comprobanteImprimir', params: {idCampeonato: idCampeonatos}})
+      this.$router.push({ name: 'comprobanteImprimir', params: { idCampeonato: idCampeonatos } })
       //window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
     },
     descargarFicha(id) {
       //let route = 
-      this.$router.push({name: 'fichaInscripcion', params: {idCompetidor: id}})
+      this.$router.push({ name: 'fichaInscripcion', params: { idCompetidor: id } })
       //window.open(route.href, "ventana1","width= 1340, height = 780, scrollbars = NO")
     }
   },
@@ -472,18 +473,19 @@ h2 {
 .loader {
   width: 120px;
   height: 20px;
-  -webkit-mask: linear-gradient(90deg,#000 70%,#0000 0) left/20% 100%;
+  -webkit-mask: linear-gradient(90deg, #000 70%, #0000 0) left/20% 100%;
   background:
-      linear-gradient(#000 0 0) left -25% top 0 /20% 100% no-repeat
-      #ddd;
+    linear-gradient(#000 0 0) left -25% top 0 /20% 100% no-repeat #ddd;
   animation: l7 1s infinite steps(6);
 }
+
 @keyframes l7 {
-  100% {background-position: right -25% top 0}
+  100% {
+    background-position: right -25% top 0
+  }
 }
 
 .page-content {
   padding-bottom: 50%;
 }
-
 </style>
