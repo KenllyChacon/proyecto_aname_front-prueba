@@ -1,11 +1,11 @@
 <template>
-  <!--Barra navegacion-->
-  <div v-if="mostrarBarra">
-    <BarraNav />
-  </div>
-  <div v-else>
-    <BarraNavPro/>
-  </div>
+    <!--Barra navegacion-->
+    <div v-if="mostrarBarra">
+        <BarraNav />
+    </div>
+    <div v-else>
+        <BarraNavPro />
+    </div>
     <!-- <br> -->
     <h2>Crear Campeonato</h2>
     <!-- <br> -->
@@ -19,15 +19,27 @@
                 </tr>
                 <tr>
                     <td><label for="" id="labelSup">Federación que Organiza: </label></td>
-                    <td> <select class="form-select" aria-label="Seleccionar federación" style="background-color: #edf3f5; color: #000000;"
-                        v-model="asociacion"> <option v-for="a in asociaciones" v-bind:key="a.id" :value="a.id">
-                            {{ a.nombre }}
-                        </option>
-                    </select></td>
+                    <td> <select class="form-select" aria-label="Seleccionar federación"
+                            style="background-color: #edf3f5; color: #000000;" v-model="asociacion">
+                            <option v-for="a in asociaciones" v-bind:key="a.id" :value="a.id">
+                                {{ a.nombre }}
+                            </option>
+                        </select></td>
                 </tr>
                 <tr>
                     <td><label for="" id="labelSup">Sede: </label></td>
-                    <td><input class="form-control" v-model="sede" type="text" required></td>
+                    <td><select class="form-select" aria-label="Seleccionar sede"
+                            style="background-color: #edf3f5; color: #000000;" v-model="sede">
+                            <option>Ambato</option>
+                            <option>Azogues</option>
+                            <option>Cuenca</option>
+                            <option>Guayaquil</option>
+                            <option>Ibarra</option>
+                            <option>La Maná</option>
+                            <option>Machala</option>
+                            <option>Quito</option>
+                            <option>Tulcán</option>
+                        </select></td>
                 </tr>
                 <tr>
                     <td><label for="" id="labelSup">Organizador: </label></td>
@@ -63,7 +75,7 @@
                 </tr>
                 <tr>
                     <td><label for="" id="labelSup">Cuenta Bancaria</label></td>
-                    <td><input class="form-control" v-model="cuentaBancaria" required type="text" ></td>
+                    <td><input class="form-control" v-model="cuentaBancaria" required type="text"></td>
                 </tr>
                 <tr>
                     <td><label for="" id="labelSup">Institucion Financiera</label></td>
@@ -74,9 +86,9 @@
                     <td><input class="form-control" v-model="titularCuenta" required type="text"></td>
                 </tr>
             </table>
-    
+
             <h4>Pruebas</h4>
-    
+
             <table id="tablaPruebas">
                 <tr>
                     <!-- <td><label id="prueba" for="">Pruebas: </label></td> -->
@@ -112,7 +124,7 @@ import BarraNavPro from "@/components/BarraNavPro.vue";
 
 export default {
     components: {
-      BarraNavPro,
+        BarraNavPro,
         BarraNav,
         PiePagina
     },
@@ -127,35 +139,35 @@ export default {
             fFinI: null,
             listaPruebas: [],
             seleccionadas: [],
-            asociaciones:[],
+            asociaciones: [],
             costoSoc: null,
             costNoSoc: null,
             costPAdic: null,
-            asociacion:null,
-            cuentaBancaria:null,
-            institucionF:null,
-            titularCuenta:null,
-          mostrarBarra: true
+            asociacion: null,
+            cuentaBancaria: null,
+            institucionF: null,
+            titularCuenta: null,
+            mostrarBarra: true
         }
     },
 
-    mounted()
-        {
-            console.log("Mounted*********")
-            this.listarAsociaciones();
-            this.listarPruebas();
-          if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
+    mounted() {
+        console.log("Mounted*********")
+        this.listarAsociaciones();
+        this.listarPruebas();
+        if (sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
             console.log("id: " + sessionStorage.getItem("id"))
             this.mostrarBarra = false;
-          }
-        } ,
-   methods: {
+        }
+    },
+    methods: {
 
-        async listarAsociaciones(){
+        async listarAsociaciones() {
             console.log("Lista asociaciones----------------------------------------------------")
             this.asociaciones = await listaAsociacionesFachada()
             console.log("Asociaciones: " + this.asociaciones)
-;        },
+                ;
+        },
 
         async insertar() {
             console.log(this.titularCuenta + " " + this.institucionF);
@@ -169,11 +181,11 @@ export default {
                 inscripcionFin: this.fFinI,
                 pruebas: this.seleccionadas,
                 costoSocio: this.costoSoc,
-                costoNoSocio:this.costNoSoc,
+                costoNoSocio: this.costNoSoc,
                 costoPruebaAdicional: this.costPAdic,
-                cuentaBancaria:this.cuentaBancaria,
-                institucionFinanciera:this.institucionF,
-                titularCuenta:this.titularCuenta,
+                cuentaBancaria: this.cuentaBancaria,
+                institucionFinanciera: this.institucionF,
+                titularCuenta: this.titularCuenta,
                 idAsociacion: this.asociacion,
             }
 
@@ -188,7 +200,7 @@ export default {
                 this.finicioI = null,
                 this.fFinI = null,
                 this.seleccionadas = null
-                this.asociaciones = null
+            this.asociaciones = null
 
             alert("Se ha ingresado correctamente")
             router.push('/')
