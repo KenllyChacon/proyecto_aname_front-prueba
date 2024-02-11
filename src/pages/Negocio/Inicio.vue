@@ -124,8 +124,11 @@
             </div>
           </div>
         </div>
-
+          
       </div>
+      <p class="textFoot">Este proyecto fué desarrollado para poner en práctica los conocimientos 
+        adquiridos en la materia de Computación Grid & Cloud, por los estudiantes de las carreras de Ingeniería en 
+        Computación e Ingeniería en Computación Gráfica de la Universidad Central del Ecuador.</p>
     </main>
   </div>
     <!-- Pie de página -->
@@ -199,6 +202,12 @@ export default {
   margin-top: 50px;
 }
 
+.textFoot {
+  margin-top: 20px;
+  margin-left: 110px;
+  margin-right: 110px;
+}
+
 .imgWma {
   width: 170px;
   height: auto;
@@ -229,6 +238,6 @@ export default {
 }
 
 .page-content {
-  padding-bottom: 50%;
+  padding-bottom: 23%;
 }
 </style>

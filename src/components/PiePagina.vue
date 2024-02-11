@@ -12,7 +12,10 @@
         <div>
             <h6>Información</h6>
             <a href="https://asudama.org/" style="color: #eeb902; align: left;">asudama.org</a>
-            <p style="align: left"></p>
+            <p></p> 
+            <a href="https://www.uce.edu.ec/">
+              <img src="@/assets/img/Escudo_de_la_Universidad_Central_del_Ecuador.png" class="imgUce"></a>
+            <p></p> 
             
         </div>
 
@@ -37,5 +40,11 @@
       width: 40%;
     }
   }
+
+.imgUce {
+  width: 50px;
+  height: 50px;
+  margin-top: 3px;
+}
 
 </style>
