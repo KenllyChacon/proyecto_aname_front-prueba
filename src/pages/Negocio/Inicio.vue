@@ -239,6 +239,6 @@ export default {
 }
 
 .page-content {
-  padding-bottom: 23%;
+  padding-bottom: 25%;
 }
 </style>
