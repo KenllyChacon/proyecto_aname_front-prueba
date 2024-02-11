@@ -90,6 +90,7 @@
 
       <div class="container" id="ficha2">
         <h2 class="fw-bold">Documentos</h2>
+        <p>Usted debe descargar el Comprobante de pago y realizar el pago correspondiente.</p>
         <div class="table-responsive-sm" id="tabla3">
           <table class="table table-bordered table-responsive">
             <thead>
