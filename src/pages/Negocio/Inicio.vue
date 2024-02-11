@@ -204,8 +204,8 @@ export default {
 
 .textFoot {
   margin-top: 20px;
-  margin-left: 110px;
-  margin-right: 110px;
+  margin-left: 8%;
+  margin-right: 8%;
 }
 
 .imgWma {
