@@ -206,7 +206,7 @@ export default {
   margin-top: 20px;
   margin-left: 8%;
   margin-right: 8%;
-  margin-bottom: 5%;
+  margin-bottom: 15%;
 }
 
 .imgWma {
