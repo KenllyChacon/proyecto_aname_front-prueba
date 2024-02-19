@@ -4,7 +4,7 @@
     <BarraNav />
   </div>
   <div v-else>
-    <BarraNavPro/>
+    <BarraNavPro />
   </div>
   <div class="page-content">
     <h2 class="fw-bold">Aprobar Inscripciones</h2>
@@ -21,22 +21,22 @@
           <tr>
             <th id="tablaInsc">Competidor</th>
             <th id="tablaInsc">Estado</th>
-            <th id="tablaInsc">Documento Pago</th>
-            <th id="tablaInsc">Documento Inscripción</th>
-            <th id="tablaInsc">Aprobar Pago</th>
-            <th id="tablaInsc">Aprobar Ficha Inscripción</th>
-            <th id="tablaInsc">Aprobar Competidor</th>
+            <th id="tablaInsc">Documento pago</th>
+            <th id="tablaInsc">Documento inscripción</th>
+            <th id="tablaInsc">Aprobar pago</th>
+            <th id="tablaInsc">Aprobar ficha inscripción</th>
+            <th id="tablaInsc">Aprobar competidor</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="c in listaCampInscritos" :key="c">
             <td>{{ c.nombres + " " + c.apellidos }}</td>
             <td>{{ c.estadoParticipacion }}</td>
-            <td><a :href="buscarComprobantePago(c.documentos)" download>Descargar Pago</a></td>
-            <td><a :href="buscarFichaInscripcion(c.documentos)" download>Descargar Ficha</a></td>
+            <td><a :href="buscarComprobantePago(c.documentos)" download>Descargar pago</a></td>
+            <td><a :href="buscarFichaInscripcion(c.documentos)" download>Descargar ficha</a></td>
             <td>
-              <button class="btn btn-primary" @click="aprobarPago(c.id)">Aprobar Pago</button><br>
-              <button class="btn btn-primary" @click="denegarPago(c.id)">Denegar Pago</button>
+              <button class="btn btn-primary" @click="aprobarPago(c.id)">Aprobar pago</button><br>
+              <button class="btn btn-primary" @click="denegarPago(c.id)">Denegar pago</button>
             </td>
             <td>
               <form enctype="multipart/form-data" @submit.prevent="enviarFicha(c.id)">
@@ -45,15 +45,15 @@
                   <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary" :disabled="cargando">Enviar Ficha firmada</button>
+                <button type="submit" class="btn btn-primary" :disabled="cargando">Enviar ficha firmada</button>
                 <div class="loader" v-if="cargando"></div>
 
               </form>
             </td>
 
             <td>
-              <button class="btn btn-primary" @click="confirmarInscripcion(c.id)">Aprobar Inscripción</button><br>
-              <button class="btn btn-primary" @click="negarInscripcion(c.id)">Denegar Inscripción</button>
+              <button class="btn btn-primary" @click="confirmarInscripcion(c.id)">Aprobar inscripción</button><br>
+              <button class="btn btn-primary" @click="negarInscripcion(c.id)">Denegar inscripción</button>
             </td>
           </tr>
 
@@ -71,14 +71,15 @@
 import PiePagina from "@/components/PiePagina.vue";
 import BarraNav from "@/components/BarraNav.vue";
 import { campIncritosP, VerCampeonatosP } from "@/assets/js/campeonato";
-import { confirmarPagoFachada, 
-  negarPagoFachada, 
-  aprobarInscripcionFachada, 
-  confirmarInscripcionFachada, 
+import {
+  confirmarPagoFachada,
+  negarPagoFachada,
+  aprobarInscripcionFachada,
+  confirmarInscripcionFachada,
   negarInscripcionFachada,
- } from "@/assets/js/Competidor"
+} from "@/assets/js/Competidor"
 import { cargaArchivosFachada } from "@/assets/js/Archivo"
-import {buscarAsociacionUsuarioFachada}from "@/assets/js/Usuario"
+import { buscarAsociacionUsuarioFachada } from "@/assets/js/Usuario"
 import BarraNavPro from "@/components/BarraNavPro.vue";
 
 
@@ -95,7 +96,7 @@ export default {
       fichaFirmada: null,
       mostrarBarra: true,
       cargando: false,
-      idAsociacion:null,
+      idAsociacion: null,
     };
   },
   components: {
@@ -105,12 +106,12 @@ export default {
   },
   async mounted() {
     this.listarCampeonatos()
-    if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
+    if (sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
       console.log("id: " + sessionStorage.getItem("id"))
       this.mostrarBarra = false;
     }
 
-    this.idAsociacion= await buscarAsociacionUsuarioFachada(sessionStorage.getItem("email"))
+    this.idAsociacion = await buscarAsociacionUsuarioFachada(sessionStorage.getItem("email"))
     console.log(this.idAsociacion)
   },
   methods: {
@@ -221,9 +222,9 @@ export default {
 
         try {
           await aprobarInscripcionFachada(ficha);
-          alert('Ficha de inscripcion firmada enviada con éxito');
+          alert('Ficha de inscripción firmada enviada con éxito');
         } catch (error) {
-          alert('No se pudo enviar la ficha firmada de inscripcion');
+          alert('No se pudo enviar la ficha de inscripción firmada');
         }
 
 
@@ -248,9 +249,9 @@ export default {
     async negarInscripcion(id) {
       try {
         await negarInscripcionFachada(id);
-        alert("Competidor Negado")
+        alert("Competidor no aprobado")
       } catch (error) {
-        alert("Error al negar inscripcion")
+        alert("Error al negar inscripción")
       }
 
       await this.listarCampIsnscritos()
@@ -308,14 +309,16 @@ h2 {
 .loader {
   width: 120px;
   height: 20px;
-  -webkit-mask: linear-gradient(90deg,#000 70%,#0000 0) left/20% 100%;
+  -webkit-mask: linear-gradient(90deg, #000 70%, #0000 0) left/20% 100%;
   background:
-      linear-gradient(#000 0 0) left -25% top 0 /20% 100% no-repeat
-      #ddd;
+    linear-gradient(#000 0 0) left -25% top 0 /20% 100% no-repeat #ddd;
   animation: l7 1s infinite steps(6);
 }
+
 @keyframes l7 {
-  100% {background-position: right -25% top 0}
+  100% {
+    background-position: right -25% top 0
+  }
 }
 
 /* .bordeCaja {
@@ -340,5 +343,4 @@ h2 {
 .page-content {
   padding-bottom: 50%;
 }
-
 </style>

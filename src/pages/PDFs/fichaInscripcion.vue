@@ -45,11 +45,11 @@
                     <td><label>{{ sexo }}</label></td>
                 </tr>
                 <tr>
-                    <th>Fecha de Nacimiento: </th>
+                    <th>Fecha de nacimiento: </th>
                     <td><label>{{ fechaNacimiento }}</label></td>
                 </tr>
                 <tr>
-                    <th>Categoría Actual: </th>
+                    <th>Categoría actual: </th>
                     <td><label>{{ categoria }}</label></td>
                 </tr>
             </table>
@@ -197,7 +197,7 @@ export default {
             // Verificar si el checkbox está seleccionado
             const checkbox = document.getElementById('descargoCheck');
             if (!checkbox.checked) {
-                console.log("Debes seleccionar el checkbox antes de imprimir.");
+                console.log("Debe seleccionar el checkbox antes de imprimir.");
                 alert("Debe aceptar el descargo de responsabilidad para imprimir")
                 return;
             }

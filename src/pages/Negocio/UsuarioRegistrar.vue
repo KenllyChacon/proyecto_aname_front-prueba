@@ -35,7 +35,7 @@
           <input type="password" class="form-control bordeCaja" id="password" name="password" v-model="password">
         </div>
         <div class="mb-3">
-          <label for="passwordConfirm" class="form-label">Confirmar Contraseña</label>
+          <label for="passwordConfirm" class="form-label">Confirmar contraseña</label>
           <input type="password" class="form-control bordeCaja" id="passwordConfirm" name="passwordConfirm"
             v-model="passwordConfirm">
         </div>
@@ -49,7 +49,8 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="year">Edad permitida: a partir de 30 años</label>
-          <input v-model="fechaNacimiento" type="date" class="form-control bordeCaja" max="1993-12-31" id="year" name="year" required>
+          <input v-model="fechaNacimiento" type="date" class="form-control bordeCaja" max="1993-12-31" id="year"
+            name="year" required>
         </div>
       </div>
       <div class="form-group">
@@ -87,7 +88,8 @@
       <div v-if="email" class="row">
         <div class="form-group">
           <label for="imageUpload" class="colorTexto fw-bold">Seleccionar documento de identidad:</label>
-          <input type="file" @change="fotoDocumento" accept="application/pdf" class="form-control-file" id="imageUpload" required>
+          <input type="file" @change="fotoDocumento" accept="application/pdf" class="form-control-file" id="imageUpload"
+            required>
         </div>
       </div>
       <button type="submit" class="btn btn-danger">Registrar</button>
@@ -239,7 +241,7 @@ export default {
           estado: true,
           direccion: this.direccion,
           sexo: this.genero,
-          fechaNacimiento:  this.transformarFecha(this.fechaNacimiento),
+          fechaNacimiento: this.transformarFecha(this.fechaNacimiento),
           ciudad: this.ciudad,
           documentoIdentidad: this.documentoResponse,
           fotografia: null,
@@ -262,7 +264,7 @@ export default {
                 message: `El usuario ${this.email} ha completado el registro inicial con éxito, un administrador revisará la solicitud para asociarse a la federación seleccionada`
               }
               enviarSimpleFachada(body);
-              alert("Usuario registrado con éxito")
+              alert("Usuario registrado con éxito, un administrador revisará la solicitud para asociarse a la federación seleccionada.")
               this.id = null;
               this.nombres = null;
               this.apellidos = null;
@@ -279,7 +281,7 @@ export default {
               this.fotoResponse = null;
               this.documentoResponse = null;
               this.idfederacion = null;
-              this.passwordConfirm=null;
+              this.passwordConfirm = null;
               this.federaciones = await this.listarFederaciones()
             }
           } catch (error) {
@@ -288,7 +290,7 @@ export default {
           }
         })
         .catch((error) => {
-          alert("Ha ocurrido un error al guardar, prueba a cambiar el nombre de usuario")
+          alert("Ha ocurrido un error al guardar, pruebe a cambiar el nombre de usuario")
           console.log(error);
         });
     },

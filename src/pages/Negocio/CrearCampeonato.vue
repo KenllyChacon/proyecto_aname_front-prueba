@@ -18,7 +18,7 @@
                     <td><input class="form-control" v-model="nombre" required type="text"></td>
                 </tr>
                 <tr>
-                    <td><label for="" id="labelSup">Federación que Organiza: </label></td>
+                    <td><label for="" id="labelSup">Federación que organiza: </label></td>
                     <td> <select class="form-select" aria-label="Seleccionar federación"
                             style="background-color: #edf3f5; color: #000000;" v-model="asociacion">
                             <option v-for="a in asociaciones" v-bind:key="a.id" :value="a.id">
@@ -62,27 +62,27 @@
                     <td><input class="form-control" v-model="fFinI" required type="date"></td>
                 </tr>
                 <tr>
-                    <td><label for="" id="labelSup">Costo Socios</label></td>
+                    <td><label for="" id="labelSup">Costo socios</label></td>
                     <td><input class="form-control" v-model="costoSoc" required type="number" step="0.01"></td>
                 </tr>
                 <tr>
-                    <td><label for="" id="labelSup">Costo No Socios</label></td>
+                    <td><label for="" id="labelSup">Costo no socios</label></td>
                     <td><input class="form-control" v-model="costNoSoc" required type="number" step="0.01"></td>
                 </tr>
                 <tr>
-                    <td><label for="" id="labelSup">Costo Prueba Adicional</label></td>
+                    <td><label for="" id="labelSup">Costo prueba adicional</label></td>
                     <td><input class="form-control" v-model="costPAdic" required type="number" step="0.01"></td>
                 </tr>
                 <tr>
-                    <td><label for="" id="labelSup">Cuenta Bancaria</label></td>
+                    <td><label for="" id="labelSup">Cuenta bancaria</label></td>
                     <td><input class="form-control" v-model="cuentaBancaria" required type="text"></td>
                 </tr>
                 <tr>
-                    <td><label for="" id="labelSup">Institucion Financiera</label></td>
+                    <td><label for="" id="labelSup">Institución financiera</label></td>
                     <td><input class="form-control" v-model="institucionF" required type="text"></td>
                 </tr>
                 <tr>
-                    <td><label for="" id="labelSup">Titular de Cuenta Bancaria</label></td>
+                    <td><label for="" id="labelSup">Titular de cuenta bancaria</label></td>
                     <td><input class="form-control" v-model="titularCuenta" required type="text"></td>
                 </tr>
             </table>

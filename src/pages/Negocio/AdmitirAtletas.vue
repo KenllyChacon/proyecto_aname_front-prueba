@@ -49,7 +49,7 @@
             <td>{{ u.estado ? 'Activado' : 'Desactivado' }}</td>
             <td>{{ u.socio ? 'Socio' : 'Asociado' }}</td>
 
-            <td><a :href="u.documentoIdentidad" download>Descargar Documento de Identidad</a></td>
+            <td><a :href="u.documentoIdentidad" download>Descargar documento de identidad</a></td>
 
             <td>
               <button class="btn btn-primary" @click="aprobarRegistroUsuario(u.email)">Aprobar usuario</button>

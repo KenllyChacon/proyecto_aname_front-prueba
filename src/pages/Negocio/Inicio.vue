@@ -1,56 +1,56 @@
 <template>
   <!--Carrusel-->
-  
-    
-    <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="@/assets/img/img-slide-01.jpg" class="d-block w-100" alt="">
-        </div>
-        <div class="carousel-caption d-none d-md-block">
-          <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
-        </div>
-        <div class="carousel-item">
-          <img src="@/assets/img/img-slide-02.jpg" class="d-block w-100" alt="">
-        </div>
-        <div class="carousel-caption d-none d-md-block">
-          <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
-        </div>
-        <div class="carousel-item">
-          <img src="@/assets/img/img-slide-03.jpg" class="d-block w-100" alt="">
-        </div>
-        <div class="carousel-caption d-none d-md-block">
-          <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
-        </div>
-        <div class="carousel-item">
-          <img src="@/assets/img/img-slide-04.jpg" class="d-block w-100" alt="">
-        </div>
-        <div class="carousel-caption d-none d-md-block">
-          <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
-        </div>
-        <div class="carousel-item">
-          <img src="@/assets/img/img-slide-05.jpg" class="d-block w-100" alt="">
-        </div>
-        <div class="carousel-caption d-none d-md-block">
-          <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-            ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
-        </div>
+
+
+  <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="@/assets/img/img-slide-01.jpg" class="d-block w-100" alt="">
       </div>
-      <!--botón anterior-->
-      <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
-      </button>
-      <!--botón siguiente-->
-      <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
-      </button>
+      <div class="carousel-caption d-none d-md-block">
+        <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+          ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
+      </div>
+      <div class="carousel-item">
+        <img src="@/assets/img/img-slide-02.jpg" class="d-block w-100" alt="">
+      </div>
+      <div class="carousel-caption d-none d-md-block">
+        <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+          ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
+      </div>
+      <div class="carousel-item">
+        <img src="@/assets/img/img-slide-03.jpg" class="d-block w-100" alt="">
+      </div>
+      <div class="carousel-caption d-none d-md-block">
+        <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+          ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
+      </div>
+      <div class="carousel-item">
+        <img src="@/assets/img/img-slide-04.jpg" class="d-block w-100" alt="">
+      </div>
+      <div class="carousel-caption d-none d-md-block">
+        <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+          ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
+      </div>
+      <div class="carousel-item">
+        <img src="@/assets/img/img-slide-05.jpg" class="d-block w-100" alt="">
+      </div>
+      <div class="carousel-caption d-none d-md-block">
+        <h1 style="color: #ffffff; text-align:left; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+          ASOCIACIÓN NACIONAL DE ATLETISMO MÁSTER</h1>
+      </div>
     </div>
+    <!--botón anterior-->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <!--botón siguiente-->
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
 
 
   <!--Barra navegacion-->
@@ -58,7 +58,7 @@
     <BarraNav />
   </div>
   <div v-else>
-    <BarraNavPro/>
+    <BarraNavPro />
   </div>
   <div class="page-content">
     <!-- Contenido -->
@@ -67,7 +67,7 @@
         <div class="col" id="banner">
           <img class="img-fluid mx-auto d-block" alt="Banner Principal" src="@/assets/img/bannerprincipal.png">
         </div>
-        
+
         <div class="card mb-2" id="cardPersonalizada">
           <div class="row g-4">
             <div class="col-md-6">
@@ -124,16 +124,15 @@
             </div>
           </div>
         </div>
-          
+
       </div>
-      <p class="textFoot">Este proyecto fué desarrollado para poner en práctica los conocimientos 
-        adquiridos en la materia de Computación Grid & Cloud, por los estudiantes de las carreras de Ingeniería en 
+      <p class="textFoot">Este proyecto fue desarrollado para poner en práctica los conocimientos
+        adquiridos en la materia de Computación Grid y Cloud, por los estudiantes de las carreras de Ingeniería en
         Computación e Ingeniería en Computación Gráfica de la Universidad Central del Ecuador.</p>
     </main>
   </div>
-    <!-- Pie de página -->
-    <PiePagina />
-  
+  <!-- Pie de página -->
+  <PiePagina />
 </template>
 
 <script>
@@ -151,13 +150,13 @@ export default {
   mounted() {
     console.log("listo NicoMachin sisisisisisis");
     console.log("ROL INICIO" + sessionStorage.getItem("rol"))
-    if(sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
+    if (sessionStorage.getItem("rol") == "ADM" || sessionStorage.getItem("rol") == "JUN" || sessionStorage.getItem("rol") == "ORG") {
       console.log("id: " + sessionStorage.getItem("id"))
       this.mostrarBarra = false;
     }
   },
-  data(){
-    return{
+  data() {
+    return {
       mostrarBarra: true
     }
   }

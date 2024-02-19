@@ -90,7 +90,7 @@
 
       <div class="container" id="ficha2">
         <h2 class="fw-bold">Documentos</h2>
-        <p>Usted debe descargar el Comprobante de pago y realizar el pago correspondiente.</p>
+        <p>Usted debe descargar el comprobante de pago y realizar el pago correspondiente.</p>
         <div class="table-responsive-sm" id="tabla3">
           <table class="table table-bordered table-responsive">
             <thead>
@@ -107,7 +107,7 @@
               <tr v-for="c in listaCampInscritosUserEmail" :key="c">
                 <td>{{ c.nombreCampeonato }}</td>
                 <td><a @click="imprimirComprobante(c.idCampeonato)">Descargar comprobante</a></td>
-                <td><a @click="descargarFicha(c.id)">Descargar Ficha de Inscripción</a></td>
+                <td><a @click="descargarFicha(c.id)">Descargar ficha de inscripción</a></td>
                 <td>
                   <form enctype="multipart/form-data" @submit.prevent="enviarPago(c.id)">
                     <div class="form-group">
@@ -259,7 +259,7 @@ export default {
         console.log(this.fichaInscripcionRes)
       } catch (error) {
         console.error("Error loading registration file:", error);
-        alert("Error cargando la ficha de inscripción");
+        alert("Error al cargar la ficha de inscripción");
       } finally {
         this.cargando = false; // Oculta el cargador después de que termine la carga (incluso si hay un error)
       }

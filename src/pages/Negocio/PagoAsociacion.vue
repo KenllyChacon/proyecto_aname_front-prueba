@@ -18,7 +18,7 @@
       <table class="table table-responsive table-bordered">
         <thead>
           <tr>
-            <th id="encTablaAdm">Cuenta Nro</th>
+            <th id="encTablaAdm">Número de cuenta</th>
             <th id="encTablaAdm">Titular de la cuenta</th>
             <th id="encTablaAdm">Institución financiera</th>
             <th id="encTablaAdm">Costo</th>
