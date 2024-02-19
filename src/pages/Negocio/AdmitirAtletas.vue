@@ -47,7 +47,7 @@
             <td>{{ new Date(u.fechaNacimiento).toLocaleDateString() }}</td>
 
             <td>{{ u.estado ? 'Activado' : 'Desactivado' }}</td>
-            <td>{{ u.socio ? 'Socio' : 'Asociado' }}</td>
+            <td>{{ u.socio ? 'Socio' : 'No socio' }}</td>
 
             <td><a :href="u.documentoIdentidad" download>Descargar documento de identidad</a></td>
 
@@ -57,8 +57,8 @@
             </td>
             <td><a :href="u.pagoAsociacion" download>Descargar comprobante de pago</a></td>
             <td>
-              <button class="btn btn-primary" @click="aprobarUsuarioAsociado(u.email)">Aprobar pago</button>
-              <button class="btn btn-primary" @click="negarUsuarioAsociado(u.email)">Denegar pago</button>
+              <button class="btn btn-primary" @click="aprobarUsuarioAsociado(u.email, u.pagoAsociacion)">Aprobar pago</button>
+              <button class="btn btn-primary" @click="negarUsuarioAsociado(u.email, u.pagoAsociacion)">Denegar pago</button>
             </td>
           </tr>
         </tbody>
@@ -83,6 +83,13 @@ import {
   aprobarUsuarioAsociadoFachada,
   negarUsuarioAsociadoFachada
 } from "@/assets/js/Usuario"
+
+import { enviarHTMLFachada } from '@/assets/js/Email'
+import ConfirmacionRegistro from "@/mailTemplates/ConfirmacionRegistro.vue";
+import RegistroNegado from "@/mailTemplates/RegistroNegado.vue";
+import PagoAsociacionAceptado from "@/mailTemplates/PagoAsociacionAceptado.vue";
+import PagoAsociacionNegado from "@/mailTemplates/PagoAsociacionNegado.vue";
+
 
 export default {
   data() {
@@ -112,41 +119,119 @@ export default {
     async aprobarRegistroUsuario(email) {
       try {
         await aprobarRegistroUsuarioFachada(email);
+
+        localStorage.setItem("emailConf", email)
+        const Vue = require('vue');
+        const app = Vue.createApp(ConfirmacionRegistro);
+
+        const tempDiv = document.createElement('div');
+        document.body.appendChild(tempDiv);
+        const instance = app.mount(tempDiv);
+
+        const htmlContent = instance.$el.outerHTML;
+        const body = {
+          toUser: email,
+          subject: "ANAME: Registro aprobado de Usuario",
+          htmlContent: htmlContent
+
+        }
+        enviarHTMLFachada(body);
+        document.body.removeChild(tempDiv);
         alert("Registro de usuario aprobado")
       } catch (error) {
         alert("Error al aprobar el registro")
       }
       await this.buscarUsuarios()
+
+      localStorage.removeItem("emailConf")
+
     },
 
     async negarRegistroUsuario(email) {
       try {
         await negarRegistroUsuarioFachada(email);
+        localStorage.setItem("emailNeg", email)
+        const Vue = require('vue');
+        const app = Vue.createApp(RegistroNegado);
+
+        const tempDiv = document.createElement('div');
+        document.body.appendChild(tempDiv);
+        const instance = app.mount(tempDiv);
+
+        const htmlContent = instance.$el.outerHTML;
+        const body = {
+          toUser: email,
+          subject: "ANAME: Registro de Usuario denegado!!!!!",
+          htmlContent: htmlContent
+
+        }
+        enviarHTMLFachada(body);
+        document.body.removeChild(tempDiv);
         alert("Registro de usuario denegado")
       } catch (error) {
         alert("Error al denegar el registro")
       }
       await this.buscarUsuarios()
+      localStorage.removeItem("emailNeg")
+
     },
 
-    async aprobarUsuarioAsociado(email) {
+    async aprobarUsuarioAsociado(email, pago) {
       try {
         await aprobarUsuarioAsociadoFachada(email);
+        localStorage.setItem("pagoAcept", pago)
+        const Vue = require('vue');
+        const app = Vue.createApp(PagoAsociacionAceptado);
+
+        const tempDiv = document.createElement('div');
+        document.body.appendChild(tempDiv);
+        const instance = app.mount(tempDiv);
+
+        const htmlContent = instance.$el.outerHTML;
+        const body = {
+          toUser: email,
+          subject: "ANAME: Confirmación de asociación",
+          htmlContent: htmlContent
+
+        }
+        enviarHTMLFachada(body);
+        document.body.removeChild(tempDiv);
         alert("Pago aprobado")
       } catch (error) {
         alert("Error al aprobar el pago")
       }
       await this.buscarUsuarios()
+      localStorage.removeItem("pagoAcept")
+
     },
 
-    async negarUsuarioAsociado(email) {
+    async negarUsuarioAsociado(email, pago) {
       try {
         await negarUsuarioAsociadoFachada(email);
+        localStorage.setItem("pagoNeg", pago)
+        const Vue = require('vue');
+        const app = Vue.createApp(PagoAsociacionNegado);
+
+        const tempDiv = document.createElement('div');
+        document.body.appendChild(tempDiv);
+        const instance = app.mount(tempDiv);
+
+        const htmlContent = instance.$el.outerHTML;
+        const body = {
+          toUser: email,
+          subject: "ANAME: Asociación negada, pago no aceptado",
+          htmlContent: htmlContent
+
+        }
+        enviarHTMLFachada(body);
+        document.body.removeChild(tempDiv);
         alert("Pago denegado")
       } catch (error) {
         alert("Error al denegar el pago")
       }
       await this.buscarUsuarios()
+      localStorage.removeItem("pagoNeg")
+
     },
   },
 };

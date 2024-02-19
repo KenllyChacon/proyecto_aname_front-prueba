@@ -10,8 +10,8 @@
     <h2 class="fw-bold">Aprobar Inscripciones</h2>
     <div>
       <label for="" id="labelSup">Seleccione campeonato:</label>
-      <select required v-model="idCampeonato" @change="listarCampIsnscritos">
-        <option v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id">{{ opcion.nombre }}</option>
+      <select required v-model="campeonato" @change="listarCampIsnscritos">
+        <option v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion">{{ opcion.nombre }}</option>
       </select>
     </div>
     <br>
@@ -35,8 +35,12 @@
             <td><a :href="buscarComprobantePago(c.documentos)" download>Descargar pago</a></td>
             <td><a :href="buscarFichaInscripcion(c.documentos)" download>Descargar ficha</a></td>
             <td>
-              <button class="btn btn-primary" @click="aprobarPago(c.id)">Aprobar pago</button><br>
-              <button class="btn btn-primary" @click="denegarPago(c.id)">Denegar pago</button>
+              <button class="btn btn-primary"
+                @click="aprobarPago(c.id, buscarComprobantePago(c.documentos), c.email)">Aprobar
+                pago</button><br>
+              <button class="btn btn-primary"
+                @click="denegarPago(c.id, buscarComprobantePago(c.documentos), c.email)">Denegar
+                pago</button>
             </td>
             <td>
               <form enctype="multipart/form-data" @submit.prevent="enviarFicha(c.id)">
@@ -52,8 +56,11 @@
             </td>
 
             <td>
-              <button class="btn btn-primary" @click="confirmarInscripcion(c.id)">Aprobar inscripción</button><br>
-              <button class="btn btn-primary" @click="negarInscripcion(c.id)">Denegar inscripción</button>
+              <button class="btn btn-primary" @click="confirmarInscripcion(c.id, c.email)">Aprobar
+                inscripción</button><br>
+              <button class="btn btn-primary"
+                @click="negarInscripcion(c.id, c.email, buscarFichaInscripcion(c.documentos))">Denegar
+                inscripción</button>
             </td>
           </tr>
 
@@ -81,6 +88,11 @@ import {
 import { cargaArchivosFachada } from "@/assets/js/Archivo"
 import { buscarAsociacionUsuarioFachada } from "@/assets/js/Usuario"
 import BarraNavPro from "@/components/BarraNavPro.vue";
+import PagoInscripcionAceptadoVue from "@/mailTemplates/PagoInscripcionAceptado.vue";
+import PagoInscripcionNegado from "@/mailTemplates/PagoInscripcionNegado.vue";
+import { enviarHTMLFachada } from '@/assets/js/Email'
+import InscripcionCampNegada from '@/mailTemplates/InscripcionCampNegada.vue';
+import InscripcionCampAceptada from '@/mailTemplates/InscripcionCampAceptada.vue';
 
 
 export default {
@@ -89,7 +101,7 @@ export default {
   data() {
     return {
       categoria: null,
-      idCampeonato: null,
+      campeonato: null,
       listaCampInscritos: [],
       listaCampeonatos: [],
       fichaFirmadaRes: null,
@@ -117,7 +129,7 @@ export default {
   methods: {
 
     async listarCampIsnscritos() {
-      this.listaCampInscritos = await campIncritosP(this.idCampeonato, this.idAsociacion)
+      this.listaCampInscritos = await campIncritosP(this.campeonato.id, this.idAsociacion)
     },
     async listarCampeonatos() {
       this.listaCampeonatos = await VerCampeonatosP();
@@ -157,23 +169,63 @@ export default {
       }
     },
 
-    async aprobarPago(id) {
+    async aprobarPago(id, pago, email) {
       try {
         await confirmarPagoFachada(id);
+        localStorage.setItem("pagoAcept", pago)
+        localStorage.setItem("camp", this.campeonato.nombre)
+        const Vue = require('vue');
+        const app = Vue.createApp(PagoInscripcionAceptadoVue);
+
+        const tempDiv = document.createElement('div');
+        document.body.appendChild(tempDiv);
+        const instance = app.mount(tempDiv);
+
+        const htmlContent = instance.$el.outerHTML;
+        const body = {
+          toUser: email,
+          subject: "ANAME: Registro de pago de inscripción exitoso",
+          htmlContent: htmlContent
+
+        }
+        enviarHTMLFachada(body);
+        document.body.removeChild(tempDiv);
         alert("Pago aprobado")
       } catch (error) {
         alert("Error al aprobar el pago")
       }
       await this.listarCampIsnscritos()
+      localStorage.removeItem("pagoAcept")
+      localStorage.removeItem("camp")
     },
-    async denegarPago(id) {
+    async denegarPago(id, pago, email) {
       try {
         await negarPagoFachada(id);
+        localStorage.setItem("pagoNeg", pago)
+        localStorage.setItem("camp", this.campeonato.nombre)
+        const Vue = require('vue');
+        const app = Vue.createApp(PagoInscripcionNegado);
+
+        const tempDiv = document.createElement('div');
+        document.body.appendChild(tempDiv);
+        const instance = app.mount(tempDiv);
+
+        const htmlContent = instance.$el.outerHTML;
+        const body = {
+          toUser: email,
+          subject: "ANAME: Se rechaza su pago de inscripción",
+          htmlContent: htmlContent
+
+        }
+        enviarHTMLFachada(body);
+        document.body.removeChild(tempDiv);
         alert("Pago denegado")
       } catch (error) {
         alert("Error al denegar el pago")
       }
       await this.listarCampIsnscritos()
+      localStorage.removeItem("pagoNeg")
+      localStorage.removeItem("camp")
     },
     fichaI(event) {
       // Accede al archivo seleccionado
@@ -237,18 +289,58 @@ export default {
 
     },
 
-    async confirmarInscripcion(id) {
+    async confirmarInscripcion(id, email) {
       try {
         await confirmarInscripcionFachada(id);
+        localStorage.setItem("usuario", email)
+        localStorage.setItem("camp", this.campeonato.nombre)
+        const Vue = require('vue');
+        const app = Vue.createApp(InscripcionCampAceptada);
+
+        const tempDiv = document.createElement('div');
+        document.body.appendChild(tempDiv);
+        const instance = app.mount(tempDiv);
+
+        const htmlContent = instance.$el.outerHTML;
+        const body = {
+          toUser: email,
+          subject: "ANAME: Inscripción al campeonato " + this.campeonato.nombre + " ha sido aprobada",
+          htmlContent: htmlContent
+
+        }
+        enviarHTMLFachada(body);
+        document.body.removeChild(tempDiv);
         alert("Competidor confirmado")
       } catch (error) {
         alert("El competidor NO cumple con los requisitos para confirmar su inscripción")
       }
       await this.listarCampIsnscritos()
+      localStorage.removeItem("usuario")
+      localStorage.removeItem("camp")
     },
-    async negarInscripcion(id) {
+    async negarInscripcion(id, email, ficha) {
       try {
         await negarInscripcionFachada(id);
+        localStorage.setItem("usuario", email)
+        localStorage.setItem("camp", this.campeonato.nombre)
+        localStorage.setItem("ficha", ficha)
+
+        const Vue = require('vue');
+        const app = Vue.createApp(InscripcionCampNegada);
+
+        const tempDiv = document.createElement('div');
+        document.body.appendChild(tempDiv);
+        const instance = app.mount(tempDiv);
+
+        const htmlContent = instance.$el.outerHTML;
+        const body = {
+          toUser: email,
+          subject: "ANAME: Inscripción al campeonato " + this.campeonato.nombre + " ha sido denegada",
+          htmlContent: htmlContent
+
+        }
+        enviarHTMLFachada(body);
+        document.body.removeChild(tempDiv);
         alert("Competidor no aprobado")
       } catch (error) {
         alert("Error al negar inscripción")

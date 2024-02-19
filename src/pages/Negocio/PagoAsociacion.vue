@@ -57,6 +57,8 @@ import BarraNav from "@/components/BarraNav.vue";
 import BarraNavPro from "@/components/BarraNavPro.vue";
 import PiePagina from "@/components/PiePagina.vue";
 import { cargaArchivosFachada } from "@/assets/js/Archivo"
+import NotificacionPagoAsociacion from "@/mailTemplates/NotificacionPagoAsociacion.vue"
+import { enviarHTMLFachada } from '@/assets/js/Email'
 
 import { buscarCostoAsociacionFachada, buscarAsociacionUsuarioFachada, registroPagoAsociacionFachada } from "@/assets/js/Usuario"
 export default {
@@ -144,18 +146,46 @@ export default {
 
         try {
           await registroPagoAsociacionFachada(pago);
+
           alert('Comprobante de pago enviado con éxito, un administrador verificará su pago y activará su membresía');
+          localStorage.setItem("emailConf", sessionStorage.getItem("email"))
+          localStorage.setItem("asociacion", this.nombreAsociacion)
+          localStorage.setItem("pagoAso", this.comprobantePagoRes.link)
+
+          const Vue = require('vue');
+          const app = Vue.createApp(NotificacionPagoAsociacion);
+
+          const tempDiv = document.createElement('div');
+          document.body.appendChild(tempDiv);
+          const instance = app.mount(tempDiv);
+
+          const htmlContent = instance.$el.outerHTML;
+          const body = {
+            toUser: sessionStorage.getItem("email"),
+            subject: "ANAME: Pago de asociación registrado con éxito",
+            htmlContent: htmlContent
+
+          }
+          enviarHTMLFachada(body);
+          document.body.removeChild(tempDiv);
+
+
         } catch (error) {
           alert('No se pudo enviar el pago');
         }
 
-
         this.comprobantePago = null
         this.comprobantePagoRes = null
         this.obtenerPrecioAsociacion()
+
+        localStorage.removeItem("emailConf")
+        localStorage.removeItem("asociacion")
+        localStorage.removeItem("pagoAso")
       } else {
         alert('Ningún documento cargado');
       }
+
+
 
     },
   },

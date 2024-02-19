@@ -42,9 +42,9 @@
             <br>
             <div>
               <select class="form-select" aria-label="Seleccionar campeonato"
-                style="background-color: #edf3f5; color: #000000;" v-model="idCampeonato"
+                style="background-color: #edf3f5; color: #000000;" v-model="campeonato"
                 @change="listarPruebasDelCampeonato">
-                <option v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion.id">{{ opcion.nombre }}
+                <option v-for="opcion in listaCampeonatos" :key="opcion.id" :value="opcion">{{ opcion.nombre }}
                 </option>
               </select>
             </div>
@@ -109,7 +109,7 @@
                 <td><a @click="imprimirComprobante(c.idCampeonato)">Descargar comprobante</a></td>
                 <td><a @click="descargarFicha(c.id)">Descargar ficha de inscripción</a></td>
                 <td>
-                  <form enctype="multipart/form-data" @submit.prevent="enviarPago(c.id)">
+                  <form enctype="multipart/form-data" @submit.prevent="enviarPago(c.id, c.nombreCampeonato)">
                     <div class="form-group">
                       <label class="colorTexto fw-bold"> Subir comprobante de pago:</label>
                       <input type="file" @change="pagoComprobante" accept="application/pdf" class="form-control-file">
@@ -121,7 +121,7 @@
                 </td>
                 <td>
                   <!--                                           <form @submit.prevent="inscribirse()">-->
-                  <form enctype="multipart/form-data" @submit.prevent="enviarFicha(c.id)">
+                  <form enctype="multipart/form-data" @submit.prevent="enviarFicha(c.id,  c.nombreCampeonato)">
                     <div class="form-group">
                       <label class="colorTexto fw-bold"> Subir ficha de inscripción firmada:</label>
                       <input type="file" @change="fichaI" accept="application/pdf" class="form-control-file">
@@ -163,12 +163,18 @@ import { listarPruebasPorCampFachada } from "@/assets/js/Prueba";
 import { listaAsociacionesCompetidorFachada, registrarPagoFachada, registrarFichaFachada } from "@/assets/js/Competidor"
 import { cargaArchivosFachada } from "@/assets/js/Archivo"
 import BarraNavPro from "@/components/BarraNavPro.vue";
+import RequisitosPreinscripcion from "@/mailTemplates/RequisitosPreinscripcion.vue";
+import PagoInscripcionCampeonato from "@/mailTemplates/PagoInscripcionCampeonato.vue";
+import FichaInscripcionCampeonato from "@/mailTemplates/FichaInscripcionCampeonato.vue";
+
+import { enviarHTMLFachada } from '@/assets/js/Email'
+
 
 export default {
   data() {
     return {
       selectedTab: 'tab1', // Pestaña seleccionada por defecto
-      idCampeonato: null,
+      campeonato: null,
       listaCampeonatos: [],
       listaPruebas: [],
       pruebasDelCampeonato: [],
@@ -265,7 +271,7 @@ export default {
       }
     },
 
-    async enviarPago(idComp) {
+    async enviarPago(idComp, campeonato) {
 
       if (this.comprobantePagoRes) {
         const pago = {
@@ -276,10 +282,29 @@ export default {
         };
 
         console.log(pago)
-
+        localStorage.setItem("campeonato", campeonato)
+        localStorage.setItem("pagoInsc", this.comprobantePagoRes.link)
         try {
           await registrarPagoFachada(pago);
+
           alert('Pago enviado con éxito');
+
+          const Vue = require('vue');
+          const app = Vue.createApp(PagoInscripcionCampeonato);
+
+          const tempDiv = document.createElement('div');
+          document.body.appendChild(tempDiv);
+          const instance = app.mount(tempDiv);
+
+          const htmlContent = instance.$el.outerHTML;
+          const body = {
+            toUser: sessionStorage.getItem("email"),
+            subject: "ANAME: Registro del pago de inscripción al campeonato " + campeonato,
+            htmlContent: htmlContent
+
+          }
+          enviarHTMLFachada(body);
+          document.body.removeChild(tempDiv);
         } catch (error) {
           alert('No se pudo enviar el pago');
         }
@@ -290,13 +315,16 @@ export default {
         this.fichaInscripcion = null
         this.fichaInscripcionRes = null
         this.listarCampInscritosUserEmail()
+        localStorage.removeItem("campeonato")
+        localStorage.removeItem("pagoInsc")
+
       } else {
         alert('Ningún documento cargado');
       }
 
     },
 
-    async enviarFicha(idComp) {
+    async enviarFicha(idComp, campeonato) {
 
       if (this.fichaInscripcionRes) {
         const ficha = {
@@ -306,9 +334,28 @@ export default {
           extension: this.fichaInscripcionRes.extension
         };
 
+        localStorage.setItem("campeonato", campeonato)
+        localStorage.setItem("fichaInsc", this.fichaInscripcionRes.link)
+
         try {
           await registrarFichaFachada(ficha);
           alert('Ficha de inscripcion enviada con éxito');
+          const Vue = require('vue');
+          const app = Vue.createApp(FichaInscripcionCampeonato);
+
+          const tempDiv = document.createElement('div');
+          document.body.appendChild(tempDiv);
+          const instance = app.mount(tempDiv);
+
+          const htmlContent = instance.$el.outerHTML;
+          const body = {
+            toUser: sessionStorage.getItem("email"),
+            subject: "ANAME: Registro de ficha de inscripción al campeonato " + campeonato,
+            htmlContent: htmlContent
+
+          }
+          enviarHTMLFachada(body);
+          document.body.removeChild(tempDiv);
         } catch (error) {
           alert('No se pudo enviar la ficha de inscripción');
         }
@@ -318,6 +365,9 @@ export default {
         this.fichaInscripcion = null
         this.fichaInscripcionRes = null
         this.listarCampInscritosUserEmail()
+        
+        localStorage.removeItem("campeonato")
+        localStorage.removeItem("fichaInsc")
       } else {
         alert('Ningún documento cargado');
 
@@ -330,8 +380,8 @@ export default {
       this.listaCampeonatos = await listarCampeonatosDisponiblesFachada();
     },
     async listarPruebasDelCampeonato() {
-      console.log(this.idCampeonato)
-      this.pruebasDelCampeonato = await listarPruebasPorCampFachada(this.idCampeonato);
+      console.log("PRUEBAS" + this.campeonato.id)
+      this.pruebasDelCampeonato = await listarPruebasPorCampFachada(this.campeonato.id);
       this.selectedPruebas = [];
     },
 
@@ -342,17 +392,37 @@ export default {
 
     async inscribirse() {
 
-      console.log(this.idCampeonato)
+      console.log(this.campeonato)
       console.log(this.federacion)
       console.log("Pruebas: " + this.selectedPruebas)
+      localStorage.setItem("campInscrito", this.campeonato.nombre)
       const ficha = {
         email: sessionStorage.getItem("email"),
-        idCampeonato: this.idCampeonato,
+        idCampeonato: this.campeonato.id,
         idAsociacionDeportiva: this.federacion,
         pruebas: this.selectedPruebas
       }
 
       await InscribirseCampeonatoP(ficha);
+
+      const Vue = require('vue');
+      const app = Vue.createApp(RequisitosPreinscripcion);
+
+      const tempDiv = document.createElement('div');
+      document.body.appendChild(tempDiv);
+      const instance = app.mount(tempDiv);
+
+      const htmlContent = instance.$el.outerHTML;
+      const body = {
+        toUser: sessionStorage.getItem("email"),
+        subject: "ANAME: Preinscripción al campeonato " + this.campeonato.nombre + " exitosa",
+        htmlContent: htmlContent
+
+      }
+      enviarHTMLFachada(body);
+      document.body.removeChild(tempDiv);
+      localStorage.removeItem("campInscrito")
+
       //alert("Se ha inscrito correctamente")
       //alert("En Confirmación de Inscripción observará su proceso y comprobante de pago")
       alert("Usted ha hecho una preinscripción, un administrador la aprobará. Puede seguir el proceso en la pestaña Confirmación de Inscripción.")

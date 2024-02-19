@@ -18,3 +18,11 @@ export const enviarArchivoFachada = async (body) => {
 const enviarArchivo = async (body) => {
     return axios.post(url + `/usuario/email/enviarArchivo`, body).then(r => r.data)
 }
+
+export const enviarHTMLFachada = async (body) => {
+    return await enviarHTML(body);
+}
+
+const enviarHTML = async (body) => {
+    return axios.post(url + `/usuario/email/enviarHTML`, body).then(r => r.data)
+}

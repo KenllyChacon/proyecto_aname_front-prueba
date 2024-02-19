@@ -106,10 +106,10 @@
 <script>
 import "@/router/index.js"
 import { registrarUsuarioFachada } from '@/assets/js/Usuario'
-import { enviarSimpleFachada } from '@/assets/js/Email'
+import { enviarHTMLFachada } from '@/assets/js/Email'
 import { cargaArchivosFachada } from '@/assets/js/Archivo'
 import { listaAsociacionesCompetidorFachada } from "@/assets/js/Competidor";
-
+import NotificacionRegistroInicial from "@/mailTemplates/NotificacionRegistroInicial.vue";
 
 export default {
 
@@ -198,7 +198,7 @@ export default {
       return edad;
     },
 
-    registrarUsuario() {
+    async registrarUsuario() {
       if (this.password !== this.passwordConfirm) {
         alert('Las contraseñas no coinciden');
         return;
@@ -249,21 +249,35 @@ export default {
         };
       }
 
+      localStorage.setItem("emailReg", this.email)
 
-      registrarUsuarioFachada(usuario)
+      await registrarUsuarioFachada(usuario)
         .then(async (response) => {
           try {
             console.log(response.status);
             if (response.status === 410) {
               alert("Ya existe un usuario con el email:" + this.email)
             } else {
+              // Crear una instancia del componente Vue
+              const Vue = require('vue');
+              const app = Vue.createApp(NotificacionRegistroInicial);
 
+              const tempDiv = document.createElement('div');
+              document.body.appendChild(tempDiv);
+              const instance = app.mount(tempDiv);
+
+              const htmlContent = instance.$el.outerHTML;
               const body = {
                 toUser: this.email,
                 subject: "ANAME: Registro Inicial de Usuario",
-                message: `El usuario ${this.email} ha completado el registro inicial con éxito, un administrador revisará la solicitud para asociarse a la federación seleccionada`
+                htmlContent: htmlContent
+
               }
-              enviarSimpleFachada(body);
+              enviarHTMLFachada(body);
+              document.body.removeChild(tempDiv);
+         ;
+
+
               alert("Usuario registrado con éxito, un administrador revisará la solicitud para asociarse a la federación seleccionada.")
               this.id = null;
               this.nombres = null;
@@ -283,6 +297,8 @@ export default {
               this.idfederacion = null;
               this.passwordConfirm = null;
               this.federaciones = await this.listarFederaciones()
+              
+
             }
           } catch (error) {
             alert("Ha ocurrido un error al procesar la respuesta del servidor")
@@ -293,6 +309,7 @@ export default {
           alert("Ha ocurrido un error al guardar, pruebe a cambiar el nombre de usuario")
           console.log(error);
         });
+        localStorage.removeItem("emailReg")
     },
 
     transformarFecha(fecha) {
