@@ -96,9 +96,13 @@ export default defineConfig({
             text: "Barra de navegación de usuarios atletas",
             link: "/Componentes/barraNav",
           },
+          {
+            text: "Barra de navegación de administradores",
+            link: "/Componentes/barraNavPro",
+          },
         ],
       },
-      
+
     ],
 
     socialLinks: [
