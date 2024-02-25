@@ -126,7 +126,7 @@
 
 <script>
 import { obtenerFichaInscripcionFachada } from "@/assets/js/Competidor"
-import "@/router/index.js"
+import "@/router/index.js";
 export default {
 
     data() {

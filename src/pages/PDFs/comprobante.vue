@@ -99,7 +99,6 @@
 
 <script>
 import jsPDF from "jspdf";
-
 import { obtenerCompetidorPorUseryCampFachada, obtenerPreciosPorCampFachada } from "@/assets/js/Competidor"
 import "@/router/index.js"
 export default {
