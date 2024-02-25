@@ -1,0 +1,135 @@
+# RequisitosPreinscripcion.vue
+
+Este código implementa una plantilla de correo electrónico para informar al usuario sobre los requisitos necesarios para que se apruebe su inscripción a un campeonato.
+
+## Estructura HTML
+
+### Encabezado
+
+El encabezado del correo electrónico contiene el logo de ANAME y la indicación de que se ha preinscrito.
+
+```html
+<div class="container" id="encabezadoMail">
+  <!--Logo de ANAME-->
+  <img
+    src="@/assets/img/logofin.png"
+    alt=""
+    width="50"
+    height="50"
+    align="left"
+  />
+  <h3><b>ANAME</b></h3>
+</div>
+```
+
+### Contenido
+
+Contiene el mensaje destinado al atleta, indicando los requisitos necesarios para que se apruebe su inscripción al campeonato. Incluye su usuario y el campeonato al que se preinscribe.
+
+```html
+<!--Contenido del mail-->
+<div class="container" id="cuerpoMail">
+  <p align="left">Estimado usuario: {{ usuario }}</p>
+  <p align="left">
+    Le informamos que su preinscripción al campeonato {{ campeonato }} ha sido
+    recibida. Su aprobación está sujeta a verificación por un administrador
+    según los siguientes requisitos:
+  </p>
+  <br />
+  <ul>
+    <li>
+      Envío de Ficha de inscripción firmada, aceptando el descargo de
+      responsabilidad.
+    </li>
+    <li>Envío de comprobante de pago de valor de inscripción.</li>
+  </ul>
+</div>
+```
+
+### Pie de página
+
+Dirige al usuario a la página oficial de ANAME en Facebook.
+
+```html
+<!--Pie de página del mail con información sobre ANAME-->
+<div class="container-fluid fixed-bottom" id="piePag">
+  <div class="position-absolute">
+    <a
+      href="https://www.facebook.com/p/ANAME-Asociaci%C3%B3n-Nacional-de-Atletismo-Master-del-Ecuador-100064841912450/?paipv=0&eav=AfaSv9pzpI9ergJbpLVMMNEX0dEx9-1RJWBzc4GFil1sb49W38fNLM9QEMSUzDbZtN0&_rdr"
+      style="color: #eeb902; align:center;"
+      >Página Oficial de ANAME en Facebook</a
+    >
+  </div>
+</div>
+```
+
+## Funcionalidad JS
+
+Se importa el archivo de router.
+
+```javascript
+import "@/router/index.js";
+```
+
+Se usan las variables `usuario` y `campeonato` para almacenar los datos requeridos.
+
+```javascript
+export default {
+  data() {
+    return {
+      usuario: sessionStorage.getItem("email"),
+      campeonato: localStorage.getItem("campInscrito"),
+    };
+  },
+};
+```
+
+## Diseño CSS
+
+Se establecen las configuraciones de diseño del encabezado y el pie de página.
+
+```css
+#encabezadoMail {
+  background-color: #52bad1;
+  color: #edf3f5;
+  padding-top: 15px;
+  padding-bottom: 25px;
+}
+
+#piePag {
+  background-color: #003153;
+  align-content: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: auto;
+}
+```
+
+Se ajusta la disposición de elementos según el ancho del dispositivo (responsividad).
+
+```css
+@media (max-width: 768px) {
+  #cuerpoMail {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  #piePag {
+    width: 100%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  #cuerpoMail {
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 40%;
+  }
+
+  #piePag {
+    padding-left: 20px;
+    width: 100%;
+  }
+}
+```
