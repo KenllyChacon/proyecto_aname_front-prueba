@@ -100,6 +100,10 @@ export default defineConfig({
             text: "Barra de navegación de administradores",
             link: "/Componentes/barraNavPro",
           },
+          {
+            text: "Componente cerrar sesión",
+            link: "/Componentes/logOutComp",
+          },
         ],
       },
 
