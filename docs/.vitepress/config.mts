@@ -8,8 +8,8 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Documentación Frontend ANAME", link: "/" },
-      { text: "Archivos JS", link: "/Js/archivo" },
-      { text: "Plantillas de Correo", link: "/Mt/ConfirmacionRegistro" },
+      //{ text: "Archivos JS", link: "/Js/archivo" },
+      //{ text: "Plantillas de Correo", link: "/Mt/ConfirmacionRegistro" },
     ],
 
     sidebar: [
@@ -88,6 +88,17 @@ export default defineConfig({
           },
         ],
       },
+
+      {
+        text: "Componentes",
+        items: [
+          {
+            text: "Barra de navegación de usuarios atletas",
+            link: "/Componentes/barraNav",
+          },
+        ],
+      },
+      
     ],
 
     socialLinks: [

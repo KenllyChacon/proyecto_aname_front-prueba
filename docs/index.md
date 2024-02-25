@@ -18,6 +18,9 @@ hero:
     - theme: alt
       text: Plantillas de correo
       link: /Mt/ConfirmacionRegistro
+    - theme: alt
+      text: Componentes
+      link: /Componentes/barraNav  
 
 features:
   - title: Lenguajes utilizados
