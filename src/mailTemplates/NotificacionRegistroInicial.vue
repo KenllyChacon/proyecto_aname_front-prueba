@@ -7,11 +7,10 @@
       <h3><b>¡Bienvenido a ANAME!</b></h3>
     </div>
     <br>
-    <div class="container" id="cuerpoMail" >
+    <div class="container" id="cuerpoMail">
       <p align="left">Su usuario {{ usuario }} ha completado el registro inicial.</p>
-      <p align="left">Un administrador verificará sus datos y documentos de identidad.</p>
+      <p align="left">Un administrador verificará sus datos y documento de identidad.</p>
       <p align="left">Por favor espere la confirmación de su registro.</p>
-
     </div>
 
     <div class="container-fluid fixed-bottom" id="piePag">
@@ -35,8 +34,8 @@ export default {
 
   mounted() {
     this.usuario = localStorage.getItem("emailReg")
-    console.log("Usuario:  "+this.usuario)
-    console.log("Email:  "+ localStorage.getItem("emailReg"))
+    console.log("Usuario:  " + this.usuario)
+    console.log("Email:  " + localStorage.getItem("emailReg"))
 
   },
 }
