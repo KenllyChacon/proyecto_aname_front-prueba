@@ -4,7 +4,7 @@
       <img src="@/assets/img/logofin.png" id="logo">
       <h2 class="fw-bold">Iniciar sesión</h2>
       <form @submit.prevent="login">
-        <label for="username" class="form-label"> Ingrese su Email: </label>
+        <label for="username" class="form-label"> Ingrese su email: </label>
         <input id="username" placeholder="Ingrese su email" class="form-control" type="text" v-model="email" required>
 
         <label for="password" class="form-label"> Contraseña:</label>
@@ -31,8 +31,8 @@
 
 
 <script>
-import axios from 'axios'
-import "@/router/index.js"
+import axios from 'axios';
+import "@/router/index.js";
 
 export default {
   data() {
