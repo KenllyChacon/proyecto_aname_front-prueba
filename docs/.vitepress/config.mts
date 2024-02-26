@@ -121,7 +121,11 @@ export default defineConfig({
           {
             text: "Aprobar inscripciones",
             link: "/Paginas/aprobarInscripciones",
-          },          
+          }, 
+          {
+            text: "Crear campeonato",
+            link: "/Paginas/crearCampeonato",
+          },         
         ],
       },
 
