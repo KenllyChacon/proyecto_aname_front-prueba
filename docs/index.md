@@ -21,6 +21,9 @@ hero:
     - theme: alt
       text: Componentes
       link: /Componentes/barraNav  
+    - theme: alt
+      text: Páginas
+      link: /Paginas/admitirAtletas
 
 features:
   - title: Lenguajes utilizados

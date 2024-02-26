@@ -111,6 +111,16 @@ export default defineConfig({
         ],
       },
 
+      {
+        text: "Páginas de navegación de la aplicación web",
+        items: [
+          {
+            text: "Admitir atletas",
+            link: "/Paginas/admitirAtletas",
+          },
+        ],
+      },
+
     ],
 
     socialLinks: [

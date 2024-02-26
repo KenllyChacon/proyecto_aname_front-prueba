@@ -1,12 +1,28 @@
-<template>
-  <!--Barra navegacion-->
+# AdmitirAtletas.vue
+
+Archivo que implementa la página que permite al administrador de alguna asociación deportiva admitir atletas. Para esto verifica primero el documento de identidad y puede aprobar o negar el usuario, si lo aprueba el usuario podrá iniciar sesión y adjuntar el pago de membresía.
+
+Posterior a este proceso, el administrador podrá descargar el comprobante de pago de membresía y aprobar o denegar el pago realizado por el usuario. Si lo aprueba el usuario pasa a ser socio quedando admitido como atleta.  
+
+## Estructura HTML
+
+### Elementos de la página Admitir Atletas
+
+Fragmento de código que utiliza directivas condicionales de Vue.js (v-if y v-else) para alternar entre dos componentes de barra de navegación basados en el valor de la variable mostrarBarra.
+
+```html
+  <!--Barra de navegación-->
   <div v-if="mostrarBarra">
     <BarraNav />
   </div>
   <div v-else>
     <BarraNavPro />
   </div>
+```
 
+El siguiente código HTML crea una tabla que muestra información detallada sobre cada atleta, incluyendo su correo electrónico, nombre completo, fecha de nacimiento, estado, asociación, enlaces para descargar documentos de identidad y comprobantes de pago. También se incluyen botones para que el administrador pueda aprobar o denegar usuarios y pagos de membresía.  
+
+```html
   <!--Contenido-->
   <div class="page-content">
     <br>
@@ -52,12 +68,19 @@
       </table>
     </div>
   </div>
+```
+Se inserta el componente "PiePagina" en el pie de página de la página actual.
 
+```html
   <!-- Pie de página -->
   <PiePagina />
-</template>
+```
 
-<script>
+## Funcionalidad JS
+
+Bloque de código que importa varios componentes y funciones relacionadas con la gestión de usuarios para que sean admitidos como atletas.
+
+```javascript
 import BarraNav from "@/components/BarraNav.vue";
 import BarraNavPro from "@/components/BarraNavPro.vue";
 import PiePagina from "@/components/PiePagina.vue";
@@ -76,8 +99,11 @@ import ConfirmacionRegistro from "@/mailTemplates/ConfirmacionRegistro.vue";
 import RegistroNegado from "@/mailTemplates/RegistroNegado.vue";
 import PagoAsociacionAceptado from "@/mailTemplates/PagoAsociacionAceptado.vue";
 import PagoAsociacionNegado from "@/mailTemplates/PagoAsociacionNegado.vue";
+```
 
+Fragmento dee código que maneja la lógica relacionada con la aprobación y denegación de registros de usuarios y pagos de membresía, así como el envío de correos electrónicos de confirmación y notificación. Además, se encarga de obtener la lista de usuarios asociados a una asociación deportiva y actualizarla según sea necesario.
 
+```javascript
 export default {
   data() {
     return {
@@ -222,9 +248,13 @@ export default {
     },
   },
 };
-</script>
+```
 
-<style>
+## Diseño CSS
+
+Se establecen las configuraciones de estilo aplicadas a la página "AdmitirAtletas.vue".
+
+```css
 .h2 {
   color: #003153;
 }
@@ -250,4 +280,4 @@ export default {
 .page-content {
   padding-bottom: 50%;
 }
-</style>
+```
