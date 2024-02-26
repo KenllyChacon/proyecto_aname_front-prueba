@@ -125,6 +125,18 @@ export default defineConfig({
           {
             text: "Crear campeonato",
             link: "/Paginas/crearCampeonato",
+          }, 
+          {
+            text: "Inscripción de atletas",
+            link: "/Paginas/fichaInscrip",
+          }, 
+          {
+            text: "Inicio",
+            link: "/Paginas/inicio",
+          }, 
+          {
+            text: "Pago de Asociación",
+            link: "/Paginas/pagoAso",
           },         
         ],
       },
