@@ -101,7 +101,7 @@ import PagoAsociacionAceptado from "@/mailTemplates/PagoAsociacionAceptado.vue";
 import PagoAsociacionNegado from "@/mailTemplates/PagoAsociacionNegado.vue";
 ```
 
-Fragmento dee código que maneja la lógica relacionada con la aprobación y denegación de registros de usuarios y pagos de membresía, así como el envío de correos electrónicos de confirmación y notificación. Además, se encarga de obtener la lista de usuarios asociados a una asociación deportiva y actualizarla según sea necesario.
+Fragmento de código que maneja la lógica relacionada con la aprobación y denegación de registros de usuarios y pagos de membresía, así como el envío de correos electrónicos de confirmación y notificación. Además, se encarga de obtener la lista de usuarios asociados a una asociación deportiva y actualizarla según sea necesario.
 
 ```javascript
 export default {
