@@ -1,3 +1,14 @@
+# PiePagina.vue
+
+Este código implementa el componente que muestra los datos del Pie de Página de la aplicación web.
+
+## Estructura HTML
+
+### Elementos del componente
+
+Código que muestra información en el Pie de Página distribuida en tres secciones: Contacto, Información y Redes Sociales. Esta información está relacionada con la ANAME (Asociación Nacional de Atletas Máster del Ecuador).
+
+```html
 <template>
     <!-- Pie de página -->
     <footer class="text-center fixed-bottom" style="background-color: #003153; color: #edf3f5; display: flex; justify-content: space-around; padding-top: 20px;">
@@ -24,9 +35,22 @@
         </div>
     </footer>
 </template>
+```
 
-<style>
+## Diseño CSS
 
+Se establecen las configuraciones de estilo aplicadas al componente PiePagina.vue.
+
+```css
+.imgUce {
+  width: 50px;
+  height: 50px;
+  margin-top: 3px;
+}
+```
+Se ajusta la disposición de elementos según el ancho del dispositivo (responsividad).
+
+```css
 @media (min-width: 768px) {
     footer {
       width: 100%;
@@ -38,11 +62,4 @@
       width: 40%;
     }
   }
-
-.imgUce {
-  width: 50px;
-  height: 50px;
-  margin-top: 3px;
-}
-
-</style>
+```

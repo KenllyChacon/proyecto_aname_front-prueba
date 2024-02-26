@@ -104,6 +104,10 @@ export default defineConfig({
             text: "Componente cerrar sesión",
             link: "/Componentes/logOutComp",
           },
+          {
+            text: "Componente pie de página",
+            link: "/Componentes/piePagina",
+          },
         ],
       },
 
