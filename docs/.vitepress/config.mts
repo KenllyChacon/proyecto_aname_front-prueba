@@ -137,7 +137,11 @@ export default defineConfig({
           {
             text: "Pago de Asociación",
             link: "/Paginas/pagoAso",
-          },         
+          },   
+          {
+            text: "Registro de usuario",
+            link: "/Paginas/usuarioRegistrar",
+          },       
         ],
       },
 
