@@ -118,6 +118,10 @@ export default defineConfig({
             text: "Admitir atletas",
             link: "/Paginas/admitirAtletas",
           },
+          {
+            text: "Aprobar inscripciones",
+            link: "/Paginas/aprobarInscripciones",
+          },          
         ],
       },
 
